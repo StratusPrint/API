@@ -54,7 +54,7 @@ node default {
   class { 'firewall': }
   # Update MOTD
   class { 'motd':
-    content => "Welcome to your Rails development VM. To get started, access http://localhost:8080/ in your web browser.\n"
+    content => "Welcome to your Rails development VM. To get started, access http://localhost:8081/ in your web browser.\n"
   }
 } 
 class passenger {
