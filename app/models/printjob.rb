@@ -1,0 +1,2 @@
+class Printjob < ApplicationRecord
+end

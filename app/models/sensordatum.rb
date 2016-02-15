@@ -1,0 +1,2 @@
+class Sensordatum < ApplicationRecord
+end
