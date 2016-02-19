@@ -1,2 +1,0 @@
-class Sensordatum < ApplicationRecord
-end

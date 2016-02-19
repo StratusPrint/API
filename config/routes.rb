@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
   scope module: 'api' do
     namespace :v1 do
-      resources :sensordata
-      resources :sensors
-      resources :jobs
-      resources :printers
-      resources :printjobs
-      resources :users
+                          resources :users
     end
   end
 end

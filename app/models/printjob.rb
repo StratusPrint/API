@@ -1,2 +1,0 @@
-class Printjob < ApplicationRecord
-end
