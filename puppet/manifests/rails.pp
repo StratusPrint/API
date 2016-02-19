@@ -2,23 +2,25 @@ node default {
   # Ruby (managed via RVM)
   class { '::rvm': }
   rvm::system_user { vagrant: ; }
-  rvm_system_ruby {
-    'ruby-2.3.0':
-      ensure      => 'present',
-      default_use => true;
-    'ruby-1.9.3':
-      ensure      => 'present',
-      default_use => false;
-  }
-  rvm_gem {
-    'bundler':
-      name         => 'bundler',
-      ruby_version => 'ruby-2.3.0',
-      ensure       => latest;
-    'rails':
-      name         => 'rails',
-      ruby_version => 'ruby-2.3.0',
-      ensure       => latest;
+  if($rvm_installed == "true") {
+    rvm_system_ruby {
+      'ruby-2.3.0':
+        ensure      => 'present',
+        default_use => true;
+      'ruby-1.9.3':
+        ensure      => 'present',
+        default_use => false;
+    }
+    rvm_gem {
+      'bundler':
+        name         => 'bundler',
+        ruby_version => 'ruby-2.3.0',
+        ensure       => latest;
+      'rails':
+        name         => 'rails',
+        ruby_version => 'ruby-2.3.0',
+        ensure       => latest;
+    }
   }
   # NodeJS (managed via NVM)
   class { 'nvm':
