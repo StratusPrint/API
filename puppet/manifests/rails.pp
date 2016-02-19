@@ -2,7 +2,7 @@ node default {
   # Ruby (managed via RVM)
   class { '::rvm': }
   rvm::system_user { vagrant: ; }
-  if($rvm_installed == "true") {
+  #if($rvm_installed == "true") {
     rvm_system_ruby {
       'ruby-2.3.0':
         ensure      => 'present',
@@ -21,7 +21,7 @@ node default {
         ruby_version => 'ruby-2.3.0',
         ensure       => latest;
     }
-  }
+  #}
   # NodeJS (managed via NVM)
   class { 'nvm':
     user => 'vagrant',
