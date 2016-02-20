@@ -24,6 +24,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  # Default URL options
+  config.action_mailer.default_url_options = { host: 'https://dev.stratusprint.com/', port: 80 }
+
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

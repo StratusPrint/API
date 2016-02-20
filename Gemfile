@@ -14,7 +14,11 @@ gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Data serialization
-gem 'active_model_serializers'
+gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_serializers.git'
+# User Authentication
+gem 'omniauth', '>= 1.0.0'
+gem 'devise', git: 'git@github.com:plataformatec/devise.git'
+gem 'devise_token_auth', git: 'git://github.com/lynndylanhurley/devise_token_auth.git'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
