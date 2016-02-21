@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   scope module: 'api' do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: '/user/auth'
+      #TODO: mount_devise_token_auth_for 'Hub', at: '/hub/auth'
     end
   end
 end
