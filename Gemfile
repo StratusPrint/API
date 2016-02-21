@@ -19,7 +19,8 @@ gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_seri
 gem 'omniauth', '>= 1.0.0'
 gem 'devise', git: 'git@github.com:plataformatec/devise.git'
 gem 'devise_token_auth', git: 'git://github.com/lynndylanhurley/devise_token_auth.git'
-
+# Environment variables
+gem 'figaro'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

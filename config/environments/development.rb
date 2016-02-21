@@ -25,10 +25,20 @@ Rails.application.configure do
   end
 
   # Default URL options
-  config.action_mailer.default_url_options = { host: 'https://dev.stratusprint.com/', port: 80 }
+  config.action_mailer.default_url_options = { host: 'https://dev.stratusprint.com' }
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  # Enable mail sending
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "mg.stratusprint.com",
+    :user_name => ENV["smtp_username"],
+    :password => ENV["smtp_password"]
+  }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

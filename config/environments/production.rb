@@ -18,8 +18,19 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
-  # Default URL options
-  config.action_mailer.default_url_options = { host: 'https://www.stratusprint.com/', port: 80 }
+  # E-mail sending
+  config.action_mailer.default_url_options = { host: 'https://www.stratusprint.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "mg.stratusprint.com",
+    :user_name => ENV["smtp_username"],
+    :password => ENV["smtp_password"]
+  }
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
