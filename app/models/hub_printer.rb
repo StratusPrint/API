@@ -1,0 +1,2 @@
+class HubPrinter < ApplicationRecord
+end

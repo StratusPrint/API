@@ -1,0 +1,2 @@
+class HubSensor < ApplicationRecord
+end

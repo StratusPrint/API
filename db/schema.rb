@@ -11,7 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160220224301) do
+ActiveRecord::Schema.define(version: 20160222214812) do
+
+  create_table "hub_printers", force: :cascade do |t|
+    t.integer  "printer_id"
+    t.integer  "hub_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hub_id"], name: "index_hub_printers_on_hub_id"
+    t.index ["printer_id"], name: "index_hub_printers_on_printer_id"
+  end
+
+  create_table "hub_sensors", force: :cascade do |t|
+    t.integer  "sensor_id"
+    t.integer  "hub_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hub_id"], name: "index_hub_sensors_on_hub_id"
+    t.index ["sensor_id"], name: "index_hub_sensors_on_sensor_id"
+  end
+
+  create_table "hubs", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "printers", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sensors", force: :cascade do |t|
+    t.string   "label"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",               default: "email", null: false
