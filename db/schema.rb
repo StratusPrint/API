@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20160222214812) do
 
   create_table "hubs", force: :cascade do |t|
     t.string   "label"
+    t.string   "location"
+    t.string   "ip"
+    t.string   "hostname"
+    t.string   "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
