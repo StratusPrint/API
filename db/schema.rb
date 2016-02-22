@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222214812) do
+ActiveRecord::Schema.define(version: 20160222231025) do
 
   create_table "hub_printers", force: :cascade do |t|
     t.integer  "printer_id"
@@ -39,6 +39,27 @@ ActiveRecord::Schema.define(version: 20160222214812) do
     t.string   "api_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", force: :cascade do |t|
+    t.string   "file"
+    t.datetime "started"
+    t.datetime "completed"
+    t.string   "status"
+    t.time     "duration"
+    t.decimal  "progress"
+    t.string   "status_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "printer_jobs", force: :cascade do |t|
+    t.integer  "printer_id"
+    t.integer  "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_printer_jobs_on_job_id"
+    t.index ["printer_id"], name: "index_printer_jobs_on_printer_id"
   end
 
   create_table "printers", force: :cascade do |t|

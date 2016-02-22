@@ -14,13 +14,3 @@ class Hub < ApplicationRecord
     end while self.class.exists?(api_key: api_key)
   end
 end
-
-class HubPrinter < ApplicationRecord
-  belongs_to :hub
-  belongs_to :printer
-end
-
-class HubSensor < ApplicationRecord
-  belongs_to :hub
-  belongs_to :sensor
-end
