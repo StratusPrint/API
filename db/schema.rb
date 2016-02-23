@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160222231025) do
+ActiveRecord::Schema.define(version: 20160222233204) do
+
+  create_table "data_points", force: :cascade do |t|
+    t.text     "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "hub_printers", force: :cascade do |t|
     t.integer  "printer_id"
@@ -32,23 +38,25 @@ ActiveRecord::Schema.define(version: 20160222231025) do
   end
 
   create_table "hubs", force: :cascade do |t|
-    t.string   "label"
-    t.string   "location"
-    t.string   "ip"
-    t.string   "hostname"
-    t.string   "api_key"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "label"
+    t.text     "friendly_id"
+    t.text     "location"
+    t.text     "ip"
+    t.text     "hostname"
+    t.text     "api_key"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["friendly_id"], name: "index_hubs_on_friendly_id", unique: true
   end
 
   create_table "jobs", force: :cascade do |t|
-    t.string   "file"
+    t.text     "file"
     t.datetime "started"
     t.datetime "completed"
-    t.string   "status"
-    t.time     "duration"
+    t.text     "status"
+    t.integer  "duration"
     t.decimal  "progress"
-    t.string   "status_code"
+    t.text     "status_code"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -63,15 +71,35 @@ ActiveRecord::Schema.define(version: 20160222231025) do
   end
 
   create_table "printers", force: :cascade do |t|
-    t.string   "label"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "label"
+    t.text     "manufacturer"
+    t.text     "model"
+    t.text     "status"
+    t.text     "friendly_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["friendly_id"], name: "index_printers_on_friendly_id", unique: true
+  end
+
+  create_table "sensor_data_points", force: :cascade do |t|
+    t.integer  "sensor_id"
+    t.integer  "data_point_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["data_point_id"], name: "index_sensor_data_points_on_data_point_id"
+    t.index ["sensor_id"], name: "index_sensor_data_points_on_sensor_id"
   end
 
   create_table "sensors", force: :cascade do |t|
-    t.string   "label"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "label"
+    t.text     "category"
+    t.text     "model"
+    t.text     "manufacturer"
+    t.text     "friendly_id"
+    t.text     "desc"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["friendly_id"], name: "index_sensors_on_friendly_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

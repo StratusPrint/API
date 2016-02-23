@@ -1,5 +1,6 @@
 class Hub < ApplicationRecord
   before_create :gen_api_key
+  validates :friendly_id, :uniqueness => true
 
   has_many :hub_printers
   has_many :hub_sensors
