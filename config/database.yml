@@ -7,8 +7,8 @@ default: &default
   adapter: postgresql
   host: <%= ENV['db_host'] %>
   database: <%= ENV['db_name'] %>
-  database: <%= ENV['db_user'] %> 
-  database: <%= ENV['db_pw'] %>
+  user: <%= ENV['db_user'] %> 
+  password: <%= ENV['db_pw'] %>
   encoding: unicode
   sslmode: require
   pool: 5
