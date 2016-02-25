@@ -1,17 +1,11 @@
 Rails.application.routes.draw do
-  resources :jobs
-  resources :printers
-  resources :sensors
-  resources :hubs
   scope module: 'api' do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: '/user/auth'
-
       resources :hubs, shallow: true do
         resources :printers do
           resources :jobs
         end
-
         resources :sensors
       end
     end
