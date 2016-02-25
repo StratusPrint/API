@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160222233204) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "data_points", force: :cascade do |t|
     t.text     "value"
     t.datetime "created_at", null: false
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.integer  "hub_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hub_id"], name: "index_hub_printers_on_hub_id"
-    t.index ["printer_id"], name: "index_hub_printers_on_printer_id"
+    t.index ["hub_id"], name: "index_hub_printers_on_hub_id", using: :btree
+    t.index ["printer_id"], name: "index_hub_printers_on_printer_id", using: :btree
   end
 
   create_table "hub_sensors", force: :cascade do |t|
@@ -33,8 +36,8 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.integer  "hub_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["hub_id"], name: "index_hub_sensors_on_hub_id"
-    t.index ["sensor_id"], name: "index_hub_sensors_on_sensor_id"
+    t.index ["hub_id"], name: "index_hub_sensors_on_hub_id", using: :btree
+    t.index ["sensor_id"], name: "index_hub_sensors_on_sensor_id", using: :btree
   end
 
   create_table "hubs", force: :cascade do |t|
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.text     "api_key"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["friendly_id"], name: "index_hubs_on_friendly_id", unique: true
+    t.index ["friendly_id"], name: "index_hubs_on_friendly_id", unique: true, using: :btree
   end
 
   create_table "jobs", force: :cascade do |t|
@@ -66,8 +69,8 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.integer  "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["job_id"], name: "index_printer_jobs_on_job_id"
-    t.index ["printer_id"], name: "index_printer_jobs_on_printer_id"
+    t.index ["job_id"], name: "index_printer_jobs_on_job_id", using: :btree
+    t.index ["printer_id"], name: "index_printer_jobs_on_printer_id", using: :btree
   end
 
   create_table "printers", force: :cascade do |t|
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.text     "friendly_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["friendly_id"], name: "index_printers_on_friendly_id", unique: true
+    t.index ["friendly_id"], name: "index_printers_on_friendly_id", unique: true, using: :btree
   end
 
   create_table "sensor_data_points", force: :cascade do |t|
@@ -86,8 +89,8 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.integer  "data_point_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["data_point_id"], name: "index_sensor_data_points_on_data_point_id"
-    t.index ["sensor_id"], name: "index_sensor_data_points_on_sensor_id"
+    t.index ["data_point_id"], name: "index_sensor_data_points_on_data_point_id", using: :btree
+    t.index ["sensor_id"], name: "index_sensor_data_points_on_sensor_id", using: :btree
   end
 
   create_table "sensors", force: :cascade do |t|
@@ -99,7 +102,7 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.text     "desc"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.index ["friendly_id"], name: "index_sensors_on_friendly_id", unique: true
+    t.index ["friendly_id"], name: "index_sensors_on_friendly_id", unique: true, using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -125,9 +128,9 @@ ActiveRecord::Schema.define(version: 20160222233204) do
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
 end
