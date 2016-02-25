@@ -3,7 +3,16 @@
 # on the current environment. Those environment variables are stored
 # in config/application.yml, a file which should NOT be checked in to
 # version control for security purposes.
-default: &default
+development:
+  adapter: postgresql
+  host: <%= ENV['db_host'] %>
+  database: <%= ENV['db_name'] %>
+  user: <%= ENV['db_user'] %> 
+  password: <%= ENV['db_pw'] %>
+  encoding: unicode
+  sslmode: require
+  pool: 5
+production:
   adapter: postgresql
   host: <%= ENV['db_host'] %>
   database: <%= ENV['db_name'] %>
@@ -21,5 +30,4 @@ test:
   database: db/test.sqlite3
   pool: 5
   timeout: 5000
-
 
