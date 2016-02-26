@@ -1,7 +1,8 @@
 class SensorSerializer < ActiveModel::Serializer
-  attributes :id, :friendly_id, :category, :manufacturer, :model, :desc, :data
+  attributes :id, :friendly_id, :category, :manufacturer, :model, :desc, :data_count
 
-  def data
-    object.data_points.as_json(except: [:id, :updated_at])
+  def data_count
+	object.data_points.count
   end
 end
+

@@ -6,7 +6,9 @@ Rails.application.routes.draw do
         resources :printers do
           resources :jobs
         end
-        resources :sensors
+        resources :sensors do
+          resources :data, :controller => :data_points
+        end 
       end
     end
   end
