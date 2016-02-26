@@ -47,7 +47,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def data_point_params
-      params.fetch(:data_point, {})
+      params.fetch(:data_point, {}).permit(:value)
     end
   end
 end
