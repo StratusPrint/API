@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :data_points
   scope module: 'api' do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: '/user/auth'
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
         end
         resources :sensors do
           resources :data, :controller => :data_points
-        end 
+        end
       end
     end
   end
