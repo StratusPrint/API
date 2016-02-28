@@ -6,6 +6,6 @@ module Api::V1
 
     # Authenticate user before allowing them to use the
     # API
-    before_action :authenticate_user!
+    before_action :authenticate_v1_hub!
   end
 end
