@@ -16,6 +16,7 @@ class Hub < ApplicationRecord
   def gen_api_key
     begin
       self.api_token = SecureRandom.hex
+      self.uid = api_token
     end while self.class.exists?(api_token: api_token)
   end
 end

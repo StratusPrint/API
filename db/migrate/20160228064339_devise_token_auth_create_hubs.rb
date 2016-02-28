@@ -9,12 +9,8 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
       t.text :hostname
 
       ## Required
-      t.string :provider, :null => false, :default => "email"
-      t.string :uid, :null => false, :default => ""
-      t.text :email
-
-      ## Database authenticatable
-      t.string :encrypted_password, :null => false, :default => ""
+      t.string :provider, :null => false, :default => "api_token"
+      t.string :uid, :null => false, :default => "api_token"
 
       ## Trackable
       t.integer  :sign_in_count, :default => 0, :null => false
@@ -32,11 +28,7 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
       t.timestamps
     end
 
-    #add_index :hubs, :email
     add_index :hubs, [:uid, :provider],     :unique => true
-    #add_index :hubs, :reset_password_token, :unique => true
     add_index :hubs, :friendly_id, :unique => true
-    # add_index :hubs, :confirmation_token,   :unique => true
-    # add_index :hubs, :unlock_token,         :unique => true
   end
 end
