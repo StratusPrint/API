@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   scope module: 'api' do
-    devise_for :users
     namespace :v1 do
+      mount_devise_token_auth_for 'Hub', at: 'hub_auth'
       mount_devise_token_auth_for 'User', at: 'auth'
       resources :hubs, shallow: true do
         resources :printers do
