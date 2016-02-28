@@ -10,7 +10,7 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
 
       ## Required
       t.string :provider, :null => false, :default => "api_token"
-      t.string :uid, :null => false, :default => "api_token"
+      t.string :uid, :null => false, :default => ""
 
       ## Trackable
       t.integer  :sign_in_count, :default => 0, :null => false
