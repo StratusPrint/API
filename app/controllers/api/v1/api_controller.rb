@@ -12,5 +12,14 @@ module Api::V1
 
     # Authorized access to each resource
     load_and_authorize_resource
+
+    private
+    def current_ability
+      if user_signed_in?
+        @current_ability ||= UserAbility.new(current_user)
+      elsif hub_signed_in?
+        @current_ability ||= HubAbility.new(current_hub)
+      end
+    end
   end
 end

@@ -2,9 +2,12 @@ module Api::V1
   class DataPointsController < ApiController
     before_action :set_data_point, only: [:show, :update, :destroy]
 
+    load_and_authorize_resource :sensor
+    load_and_authorize_resource :data_point, :through => :sensor
+
     # GET /data_points
     def index
-      @data_points = DataPoint.all
+      @data_points = Sensor.find_by(id: params[:sensor_id]).data_points
 
       render json: @data_points
     end

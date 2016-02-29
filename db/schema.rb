@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20160228064339) do
     t.text     "hostname"
     t.string   "provider",           default: "api_token", null: false
     t.string   "uid",                default: "",          null: false
+    t.string   "encrypted_password", default: "",          null: false
     t.integer  "sign_in_count",      default: 0,           null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"

@@ -12,6 +12,9 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
       t.string :provider, :null => false, :default => "api_token"
       t.string :uid, :null => false, :default => ""
 
+      ## Database authenticatable
+      t.string :encrypted_password, :null => false, :default => ""
+
       ## Trackable
       t.integer  :sign_in_count, :default => 0, :null => false
       t.datetime :current_sign_in_at

@@ -1,7 +1,7 @@
-class Ability
+class HubAbility
   include CanCan::Ability
 
-  def initialize(user)
+  def initialize(hub)
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -28,15 +28,14 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-    if user.kind_of? Hub
-      can [:create, :read, :update], [DataPoint, Job]
-      can [:read, :update], [Printer, Sensor]
-      can :read, [Hub]
-    elsif user.admin?
-      can :manage, :all
-    else
-      cannot :manage, :all
-      can :read, [Hub, Sensor, DataPoint, Printer, Job]
+    can [:create, :read, :update], [DataPoint, Job]
+    can [:read, :update], Sensor do |s|
+      s.hub.id == hub.id
     end
+    can [:read, :update], Printer do |p|
+      p.hub.id == hub.id
+    end
+    can :show, Hub, :id => hub.id
+
   end
 end

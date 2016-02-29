@@ -2,9 +2,12 @@ module Api::V1
   class JobsController < ApiController
     before_action :set_job, only: [:show, :update, :destroy]
 
+    load_and_authorize_resource :printer
+    load_and_authorize_resource :job, :through => :printer
+
     # GET /jobs
     def index
-      @jobs = Job.all
+      @jobs = Printer.find_by(id: params[:printer_id]).jobs
 
       render json: @jobs
     end

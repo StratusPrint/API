@@ -49,6 +49,12 @@ Rails.application.configure do
   # Prettify JSON responses
   config.middleware.use PrettyJsonResponse
 
+  DeviseTokenAuth.setup do |config|
+    # Don't change auth headers after each request while in development
+    # mode (for testing convenience).
+    config.change_headers_on_each_request = false
+  end
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 

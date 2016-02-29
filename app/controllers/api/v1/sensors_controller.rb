@@ -2,9 +2,14 @@ module Api::V1
   class SensorsController < ApiController
     before_action :set_sensor, only: [:show, :update, :destroy]
 
+    include DeviseTokenAuth::Concerns::SetUserByToken
+
+    load_and_authorize_resource :hub
+    load_and_authorize_resource :sensor, :through => :hub
+
     # GET /sensors
     def index
-      @sensors = Sensor.all
+      @sensors = Hub.find_by(id: params[:hub_id]).sensors
 
       render json: @sensors
     end

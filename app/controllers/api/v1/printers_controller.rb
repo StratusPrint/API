@@ -2,9 +2,14 @@ module Api::V1
   class PrintersController < ApiController
     before_action :set_printer, only: [:show, :update, :destroy]
 
+    include DeviseTokenAuth::Concerns::SetUserByToken
+
+    load_and_authorize_resource :hub
+    load_and_authorize_resource :printer, :through => :hub
+
     # GET /printers
     def index
-      @printers = Printer.all
+      @printers = Hub.find_by(id: params[:hub_id]).printers
 
       render json: @printers
     end
