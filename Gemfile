@@ -23,6 +23,8 @@ gem 'devise_token_auth', git: 'git@github.com:StratusPrint/devise_token_auth.git
 gem 'cancancan', '~> 1.10'
 # Environment variables
 gem 'figaro'
+# API documentation via swagger
+gem 'swagger-blocks'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

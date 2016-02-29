@@ -142,10 +142,10 @@ ActiveRecord::Schema.define(version: 20160228064339) do
     t.string   "nickname"
     t.string   "image"
     t.string   "email"
+    t.boolean  "admin",                  default: false
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

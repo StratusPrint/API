@@ -5,6 +5,34 @@ module Api::V1
     load_and_authorize_resource :printer
     load_and_authorize_resource :job, :through => :printer
 
+    include Swagger::Blocks
+
+    swagger_path '/jobs/{id}' do
+      operation :get do
+        key :description, 'Fetches a single job belonging to a printer'
+        key :operationId, 'findJobById'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Printer Jobs'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the job'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'job response'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+      end
+    end
+
     # GET /jobs
     def index
       @jobs = Printer.find_by(id: params[:printer_id]).jobs
