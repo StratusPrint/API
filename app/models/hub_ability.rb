@@ -36,6 +36,5 @@ class HubAbility
       p.hub.id == hub.id
     end
     can :show, Hub, :id => hub.id
-
   end
 end
