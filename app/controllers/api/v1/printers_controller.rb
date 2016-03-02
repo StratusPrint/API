@@ -12,7 +12,7 @@ module Api::V1
     swagger_path '/printers/{id}' do
       operation :get do
         key :summary, 'Find printer by ID'
-        key :description, 'Fetches a single printer if user has access'
+        key :description, 'Fetches a single printer. Note that user must have access to the parent hub to carry out this action.'
         key :operationId, 'findPrinterById'
         key :produces, [
           'application/json'
@@ -39,7 +39,7 @@ module Api::V1
     swagger_path '/printers/{id}/jobs' do
       operation :get do
         key :summary, 'List all current and previous jobs managed by a printer'
-        key :description, 'Fetches a list of jobs associated with the given printer'
+        key :description, 'Fetches a list of jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
         key :operationId, 'findPrinterJobById'
         key :produces, [
           'application/json'

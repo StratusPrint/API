@@ -12,7 +12,7 @@ module Api::V1
     swagger_path '/data/{id}' do
       operation :get do
         key :summary, 'Find data entry by ID'
-        key :description, 'Fetches a single data entry logged by a sensor'
+        key :description, 'Fetches a single data entry logged by a sensor. Note that user must have access the parent sensor to carry out this action.'
         key :operationId, 'findDataById'
         key :produces, [
           'application/json'

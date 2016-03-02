@@ -12,7 +12,7 @@ module Api::V1
     swagger_path '/sensors/{id}' do
       operation :get do
         key :summary, 'Find sensor by ID'
-        key :description, 'Fetches a single sensor if user has access'
+        key :description, 'Fetches a single sensor if user has access.'
         key :operationId, 'findSensorById'
         key :produces, [
           'application/json'
@@ -39,7 +39,7 @@ module Api::V1
     swagger_path '/sensors/{id}/data' do
       operation :get do
         key :summary, 'List all data collected by a sensor'
-        key :description, 'Fetches the logged data associated with the given sensor'
+        key :description, 'Fetches the logged data associated with the given sensor. Note that user must have access the parent sensor to carry out this action.'
         key :operationId, 'findSensorDataById'
         key :produces, [
           'application/json'

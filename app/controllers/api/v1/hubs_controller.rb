@@ -6,7 +6,7 @@ module Api::V1
     swagger_path '/hubs' do
       operation :get do
         key :summary, 'List all hubs'
-        key :description, 'Fetches a list of all hubs if user has access'
+        key :description, 'Fetches a list of all hubs if user has access.'
         key :operationId, 'findHubs'
         key :produces, [
           'application/json'
@@ -26,7 +26,7 @@ module Api::V1
     swagger_path '/hubs/{id}' do
       operation :get do
         key :summary, 'Find hub by ID'
-        key :description, 'Fetches a single hub if user has access'
+        key :description, 'Fetches a single hub if user has access.'
         key :operationId, 'findHubById'
         key :produces, [
           'application/json'
@@ -53,7 +53,7 @@ module Api::V1
     swagger_path '/hubs/{id}/sensors' do
       operation :get do
         key :summary, 'List all sensors managed by a hub'
-        key :description, 'Fetches a list of sensors managed by the given hub'
+        key :description, 'Fetches a list of sensors managed by the given hub. Note that the user must have access the parent hub to carry out this action.'
         key :operationId, 'findHubSensors'
         key :produces, [
           'application/json'
@@ -80,7 +80,7 @@ module Api::V1
     swagger_path '/hubs/{id}/printers' do
       operation :get do
         key :summary, 'List all printers managed by a hub'
-        key :description, 'Fetches a list of printers managed by the given hub'
+        key :description, 'Fetches a list of printers managed by the given hub. Note that user must have access to the parent hub to carry out this action.'
         key :operationId, 'findHubPrinters'
         key :produces, [
           'application/json'

@@ -11,8 +11,8 @@ module Api::V1
     ###########################################################################
     swagger_path '/jobs/{id}' do
       operation :get do
-        key :summary, 'Find a print job by ID'
-        key :description, 'Fetches a single job belonging to a printer'
+        key :summary, 'Find a print job by ID '
+        key :description, 'Fetches a single print job. Note that user must have access the parent printer to carry out this action.'
         key :operationId, 'findJobById'
         key :produces, [
           'application/json'
