@@ -1,3 +1,3 @@
 class JobSerializer < ActiveModel::Serializer
-  attributes :id, :file, :started, :completed, :status, :duration, :progress, :status_code
+  attributes :id, :file, :started, :completed, :status, :duration, :progress
 end
