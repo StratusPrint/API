@@ -2,25 +2,35 @@ class Hub < ApplicationRecord
   include Swagger::Blocks
 
   swagger_schema :Hub do
-    key :required, [:id, :friendly_id, :ip, :hostname, :location, :label]
+    key :required, [:friendly_id, :ip, :hostname]
     property :id do
       key :type, :integer
-      key :format, :int64
+      key :description, 'The unique ID of the hub'
     end
     property :friendly_id do
       key :type, :string
+      key :description, 'The user defined (friendly) unique ID of the hub'
     end
     property :ip do
       key :type, :string
+      key :description, 'The IPv4 address of the hub'
     end
     property :hostname do
       key :type, :string
+      key :description, 'The hostname (FQDN) of the hub'
     end
     property :location do
       key :type, :string
+      key :description, 'The location where the hub is installed on-site'
     end
-    property :label do
+    property :desc do
       key :type, :string
+      key :description, 'An optional description of the hub'
+    end
+    property :status do
+      key :type, :string
+      key :description, 'The current status of the hub'
+      key :enum, ['online', 'offline', 'unknown']
     end
   end
 

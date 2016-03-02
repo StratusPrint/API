@@ -1,3 +1,3 @@
 class HubSerializer < ActiveModel::Serializer
-  attributes :id, :friendly_id, :label, :location, :ip, :hostname, :api_token
+  attributes :id, :friendly_id, :desc, :location, :ip, :hostname, :status, :api_token
 end

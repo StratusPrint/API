@@ -7,6 +7,7 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
       t.text :location
       t.text :ip
       t.text :hostname
+      t.text :status
 
       ## Required
       t.string :provider, :null => false, :default => "api_token"
