@@ -1,7 +1,6 @@
 class CreatePrinters < ActiveRecord::Migration[5.0]
   def change
     create_table :printers do |t|
-      t.text :label
       t.text :manufacturer
       t.text :model
       t.text :status

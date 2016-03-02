@@ -2,12 +2,12 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
   def change
     create_table(:hubs) do |t|
       ## Hub Info
-      t.text :label
       t.text :friendly_id
       t.text :location
       t.text :ip
       t.text :hostname
       t.text :status
+      t.text :desc
 
       ## Required
       t.string :provider, :null => false, :default => "api_token"
