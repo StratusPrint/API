@@ -1,9 +1,8 @@
 module Api::V1
   class HubsController < ApiController
-    before_action :set_hub, only: [:show, :update, :destroy]
-
-    include Swagger::Blocks
-
+    ###########################################################################
+    # SWAGGER API DOCUMENTATION
+    ###########################################################################
     swagger_path '/hubs' do
       operation :get do
         key :summary, 'List all hubs'
@@ -104,6 +103,11 @@ module Api::V1
         end
       end
     end
+
+    ###########################################################################
+    # CONTROLLER ACTIONS
+    ###########################################################################
+    before_action :set_hub, only: [:show, :update, :destroy]
 
     # GET /hubs
     def index

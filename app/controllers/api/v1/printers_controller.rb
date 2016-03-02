@@ -1,13 +1,14 @@
 module Api::V1
   class PrintersController < ApiController
-    before_action :set_printer, only: [:show, :update, :destroy]
-
+    ###########################################################################
+    # AUTHORIZATION AND AUTHENTICATION
+    ###########################################################################
     load_and_authorize_resource :hub
     load_and_authorize_resource :printer, :through => :hub
 
-    include DeviseTokenAuth::Concerns::SetUserByToken
-    include Swagger::Blocks
-
+    ###########################################################################
+    # SWAGGER API DOCUMENTATION
+    ###########################################################################
     swagger_path '/printers/{id}' do
       operation :get do
         key :summary, 'Find printer by ID'
@@ -61,6 +62,11 @@ module Api::V1
         end
       end
     end
+
+    ###########################################################################
+    # CONTROLLER ACTIONS
+    ###########################################################################
+    before_action :set_printer, only: [:show, :update, :destroy]
 
     # GET /printers
     def index

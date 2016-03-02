@@ -1,12 +1,14 @@
 module Api::V1
   class JobsController < ApiController
-    before_action :set_job, only: [:show, :update, :destroy]
-
+    ###########################################################################
+    # AUTHORIZATION
+    ###########################################################################
     load_and_authorize_resource :printer
     load_and_authorize_resource :job, :through => :printer
 
-    include Swagger::Blocks
-
+    ###########################################################################
+    # SWAGGER API DOCUMENTATION
+    ###########################################################################
     swagger_path '/jobs/{id}' do
       operation :get do
         key :summary, 'Find a print job by ID'
@@ -33,6 +35,11 @@ module Api::V1
         end
       end
     end
+
+    ###########################################################################
+    # CONTROLLER ACTIONS
+    ###########################################################################
+    before_action :set_job, only: [:show, :update, :destroy]
 
     # GET /jobs
     def index

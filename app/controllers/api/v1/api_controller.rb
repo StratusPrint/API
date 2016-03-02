@@ -1,9 +1,10 @@
 module Api::V1
   class ApiController < ApplicationController
     # Provide controllers access to methods such as
-    # authenticate_user!, user_signed_in?, etc
+    # authenticate_user!, user_signed_in?, swagger_path, etc
     include DeviseTokenAuth::Concerns::SetUserByToken
     include CanCan::ControllerAdditions
+    include Swagger::Blocks
 
     # Authenticate user or hub before allowing them to use the
     # API

@@ -1,12 +1,14 @@
 module Api::V1
   class DataPointsController < ApiController
-    before_action :set_data_point, only: [:show, :update, :destroy]
-
+    ###########################################################################
+    # AUTHORIZATION
+    ###########################################################################
     load_and_authorize_resource :sensor
     load_and_authorize_resource :data_point, :through => :sensor
 
-    include Swagger::Blocks
-
+    ###########################################################################
+    # SWAGGER API DOCUMENTATION
+    ###########################################################################
     swagger_path '/data/{id}' do
       operation :get do
         key :summary, 'Find data entry by ID'
@@ -33,6 +35,11 @@ module Api::V1
         end
       end
     end
+
+    ###########################################################################
+    # CONTROLLER ACTIONS
+    ###########################################################################
+    before_action :set_data_point, only: [:show, :update, :destroy]
 
     # GET /data_points
     def index

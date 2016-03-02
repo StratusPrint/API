@@ -1,13 +1,14 @@
 module Api::V1
   class SensorsController < ApiController
-    before_action :set_sensor, only: [:show, :update, :destroy]
-
+    ###########################################################################
+    # AUTHORIZATION
+    ###########################################################################
     load_and_authorize_resource :hub
     load_and_authorize_resource :sensor, :through => :hub
 
-    include DeviseTokenAuth::Concerns::SetUserByToken
-    include Swagger::Blocks
-
+    ###########################################################################
+    # SWAGGER API DOCUMENTATION
+    ###########################################################################
     swagger_path '/sensors/{id}' do
       operation :get do
         key :summary, 'Find sensor by ID'
@@ -61,6 +62,11 @@ module Api::V1
         end
       end
     end
+
+    ###########################################################################
+    # CONTROLLER ACTIONS
+    ###########################################################################
+    before_action :set_sensor, only: [:show, :update, :destroy]
 
     # GET /sensors
     def index
