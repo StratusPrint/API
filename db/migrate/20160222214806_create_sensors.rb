@@ -1,7 +1,6 @@
 class CreateSensors < ActiveRecord::Migration[5.0]
   def change
     create_table :sensors do |t|
-      t.text :label
       t.text :category
       t.text :model
       t.text :manufacturer

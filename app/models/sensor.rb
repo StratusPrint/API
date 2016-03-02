@@ -2,29 +2,35 @@ class Sensor < ApplicationRecord
   include Swagger::Blocks
 
   swagger_schema :Sensor do
-    key :required, [:id, :friendly_id, :manufacturer, :model, :label, :desc, :data_count]
+    key :required, [:friendly_id, :manufacturer, :model, :category]
     property :id do
       key :type, :integer
-      key :format, :int64
+      key :description, 'The unique ID of the sensor'
     end
     property :friendly_id do
       key :type, :string
+      key :description, 'The user defined (friendly) unique ID of the sensor'
+    end
+    property :category do
+      key :type, :string
+      key :description, 'The type of sensor'
+      key :enum, ['temperature', 'humidity', '...']
     end
     property :manufacturer do
       key :type, :string
+      key :description, 'The manufacturer of the sensor'
     end
     property :model do
       key :type, :string
-    end
-    property :label do
-      key :type, :string
+      key :description, 'The model name of the sensor'
     end
     property :desc do
       key :type, :string
+      key :description, 'An optional description of the sensor'
     end
     property :data_count do
       key :type, :integer
-      key :format, :int64
+      key :description, 'The number of data entries logged by the sensor'
     end
   end
 

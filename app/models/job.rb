@@ -2,7 +2,7 @@ class Job < ApplicationRecord
   include Swagger::Blocks
 
   swagger_schema :Job do
-    key :required, [:id, :file, :started, :completed, :status, :duration, :progress, :status_code]
+    key :required, [:file]
     property :id do
       key :type, :integer
       key :description, 'The unique ID of the print job'

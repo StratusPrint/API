@@ -2,7 +2,7 @@ class Printer < ApplicationRecord
   include Swagger::Blocks
 
   swagger_schema :Printer do
-    key :required, [:id, :friendly_id, :manufacturer, :model, :status, :num_jobs]
+    key :required, [:friendly_id, :manufacturer, :model]
     property :id do
       key :type, :integer
       key :description, 'The unique ID of the printer'
