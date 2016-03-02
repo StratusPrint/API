@@ -6,13 +6,14 @@ module Api::V1
 
     swagger_path '/hubs' do
       operation :get do
+        key :summary, 'List all hubs'
         key :description, 'Fetches a list of all hubs if user has access'
         key :operationId, 'findHubs'
         key :produces, [
           'application/json'
         ]
         key :tags, [
-          'Hubs'
+          'Hubs',
         ]
         response 200 do
           key :description, 'hub response'
@@ -25,6 +26,7 @@ module Api::V1
 
     swagger_path '/hubs/{id}' do
       operation :get do
+        key :summary, 'Find hub by ID'
         key :description, 'Fetches a single hub if user has access'
         key :operationId, 'findHubById'
         key :produces, [
@@ -51,6 +53,7 @@ module Api::V1
 
     swagger_path '/hubs/{id}/sensors' do
       operation :get do
+        key :summary, 'List all sensors managed by a hub'
         key :description, 'Fetches a list of sensors managed by the given hub'
         key :operationId, 'findHubSensors'
         key :produces, [
@@ -77,6 +80,7 @@ module Api::V1
 
     swagger_path '/hubs/{id}/printers' do
       operation :get do
+        key :summary, 'List all printers managed by a hub'
         key :description, 'Fetches a list of printers managed by the given hub'
         key :operationId, 'findHubPrinters'
         key :produces, [

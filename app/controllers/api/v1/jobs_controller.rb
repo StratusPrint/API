@@ -9,13 +9,14 @@ module Api::V1
 
     swagger_path '/jobs/{id}' do
       operation :get do
+        key :summary, 'Find a print job by ID'
         key :description, 'Fetches a single job belonging to a printer'
         key :operationId, 'findJobById'
         key :produces, [
           'application/json'
         ]
         key :tags, [
-          'Printer Jobs'
+          'Jobs'
         ]
         parameter do
           key :name, :id

@@ -8,7 +8,6 @@ class ApidocsController < ApplicationController
       key :title, 'StratusPrint API'
       key :description, '3D printer management and environmental monitoring'
       contact do
-        key :github, 'https://github.com/stratusprint'
       end
       license do
         key :name, 'Apache'

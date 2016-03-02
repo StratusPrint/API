@@ -9,18 +9,19 @@ module Api::V1
 
     swagger_path '/data/{id}' do
       operation :get do
-        key :description, 'Fetches a single data point belonging to a sensor'
+        key :summary, 'Find data entry by ID'
+        key :description, 'Fetches a single data entry logged by a sensor'
         key :operationId, 'findDataById'
         key :produces, [
           'application/json'
         ]
         key :tags, [
-          'Sensors', 'Sensor Data'
+          'Sensors'
         ]
         parameter do
           key :name, :id
           key :in, :path
-          key :description, 'ID of the data point'
+          key :description, 'ID of the data entry'
           key :required, :true
           key :type, :integer
         end

@@ -10,6 +10,7 @@ module Api::V1
 
     swagger_path '/printers/{id}' do
       operation :get do
+        key :summary, 'Find printer by ID'
         key :description, 'Fetches a single printer if user has access'
         key :operationId, 'findPrinterById'
         key :produces, [
@@ -36,13 +37,14 @@ module Api::V1
 
     swagger_path '/printers/{id}/jobs' do
       operation :get do
+        key :summary, 'List all current and previous jobs managed by a printer'
         key :description, 'Fetches a list of jobs associated with the given printer'
         key :operationId, 'findPrinterJobById'
         key :produces, [
           'application/json'
         ]
         key :tags, [
-          'Printers', 'Printer Jobs'
+          'Printers', 'Jobs'
         ]
         parameter do
           key :name, :id
