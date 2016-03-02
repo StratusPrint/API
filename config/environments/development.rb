@@ -40,6 +40,14 @@ Rails.application.configure do
     :password => ENV["smtp_password"]
   }
 
+  # CORS
+  config.middleware.insert_before 0, "Rack::Cors" do
+    allow do
+      origins '*'
+      resource '*', :headers => :any, :methods => [:get, :post, :options]
+    end
+  end
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 

@@ -100,6 +100,7 @@ GEM
     puma (3.0.2)
     rack (2.0.0.alpha)
       json
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.beta3)
@@ -181,6 +182,7 @@ DEPENDENCIES
   omniauth (>= 1.0.0)
   pg
   puma
+  rack-cors
   rails (>= 5.0.0.beta2, < 5.1)
   redis (~> 3.0)
   rspec-rails

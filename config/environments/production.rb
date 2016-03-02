@@ -32,6 +32,14 @@ Rails.application.configure do
     :password => ENV["smtp_password"]
   }
 
+  # CORS
+  config.middleware.insert_before 0, "Rack::Cors" do
+    allow do
+      origins 'docs.stratusprint.com', 'dev.stratusprint.com', 'stratusprint.com'
+      resource '*', :headers => :any, :methods => [:get, :post, :options]
+    end
+  end
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'
 
