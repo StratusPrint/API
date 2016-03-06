@@ -9,7 +9,7 @@ Rails.application.routes.draw do
           resources :jobs
         end
         resources :sensors do
-          resources :data, :controller => :data_points
+          resources :data, :controller => :data_points, :key => :data
         end
       end
     end

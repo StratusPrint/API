@@ -58,7 +58,8 @@ module Api::V1
       @data_point = DataPoint.new(data_point_params)
 
       if @data_point.save
-        render json: @data_point, status: :created, location: @data_point
+        Sensor.find_by(id: params[:sensor_id]).data_points << @data_point
+        render json: @data_point, status: :created, location: v1_datum_path(@data_point)
       else
         render json: @data_point.errors, status: :unprocessable_entity
       end

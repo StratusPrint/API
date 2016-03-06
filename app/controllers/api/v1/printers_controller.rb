@@ -83,8 +83,8 @@ module Api::V1
     # POST /printers
     def create
       @printer = Printer.new(printer_params)
-
       if @printer.save
+        @printer << Hub.find_by(id: params[:hub_id]).printers
         render json: @printer, status: :created, location: @printer
       else
         render json: @printer.errors, status: :unprocessable_entity

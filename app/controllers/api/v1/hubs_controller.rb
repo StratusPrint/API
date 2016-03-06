@@ -83,7 +83,7 @@ module Api::V1
           key :description, 'Unauthorized access'
         end
       end
-      operation :post do
+      operation :patch do
         key :summary, 'Update an existing hub'
         key :description, 'Update an existing hub if user has access.'
         key :operationId, 'updateHub'

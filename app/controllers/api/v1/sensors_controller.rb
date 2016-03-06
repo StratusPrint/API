@@ -34,6 +34,35 @@ module Api::V1
           end
         end
       end
+      operation :patch do
+        key :summary, 'Update sensor by ID'
+        key :description, 'Update the specified sensor if user has access.'
+        key :operationId, 'updateSensor'
+        key :tags, [
+          'Sensors'
+        ]
+        parameter do
+          key :name, :sensor
+          key :in, :body
+          key :description, 'Sensor object'
+          key :required, true
+          schema do
+            key :'$ref', :Sensor
+          end
+        end
+        response 200 do
+          key :description, 'Sensor successfully updated'
+          schema do
+            key :'$ref', :Sensor
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     swagger_path '/sensors/{id}/data' do
@@ -61,6 +90,35 @@ module Api::V1
           end
         end
       end
+      operation :post do
+        key :summary, 'Add data entry to sensor'
+        key :description, 'Add a single data entry to specified sensor if user has access.'
+        key :operationId, 'addSensorData'
+        key :tags, [
+          'Sensors'
+        ]
+        parameter do
+          key :name, :data_point
+          key :in, :body
+          key :description, 'Data object'
+          key :required, true
+          schema do
+            key :'$ref', :DataPoint
+          end
+        end
+        response 200 do
+          key :description, 'Data successfully added to sensor'
+          schema do
+            key :'$ref', :Sensor
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     ###########################################################################
@@ -83,9 +141,9 @@ module Api::V1
     # POST /sensors
     def create
       @sensor = Sensor.new(sensor_params)
-
       if @sensor.save
-        render json: @sensor, status: :created, location: @sensor
+        Hub.find_by(id: params[:hub_id]).sensors << @sensor
+        render json: @sensor, status: :created, location: v1_sensor_path(@sensor)
       else
         render json: @sensor.errors, status: :unprocessable_entity
       end
@@ -113,7 +171,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def sensor_params
-      params.fetch(:sensor, {})
+      params.fetch(:sensor, {}).permit(:friendly_id, :category, :manufacturer, :model, :desc, :data_count)
     end
   end
 end

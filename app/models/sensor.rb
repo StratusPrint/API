@@ -35,7 +35,7 @@ class Sensor < ApplicationRecord
     end
   end
 
-  validates :friendly_id, :uniqueness => true
+  validates :friendly_id, :uniqueness => true, :presence => true
 
   enumerize :category, in: [:temperature, :humidity, :infrared]
 
