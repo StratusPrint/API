@@ -112,6 +112,23 @@ module Api::V1
           key :description, 'Unauthorized access'
         end
       end
+      operation :delete do
+        key :summary, 'Delete an existing hub'
+        key :description, 'Deletes an existing hub and all associated printers, jobs, sensors, and data. Requires admin priveleges.'
+        key :operationId, 'deleteHub'
+        key :tags, [
+          'Hubs'
+        ]
+        response 200 do
+          key :description, 'Hub successfully deleted'
+          schema do
+            key :'$ref', :Hub
+          end
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     swagger_path '/hubs/{id}/sensors' do
