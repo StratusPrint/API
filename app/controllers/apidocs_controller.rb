@@ -31,6 +31,8 @@ class ApidocsController < ApplicationController
     Api::V1::PrintersController,
     Api::V1::DataPointsController,
     Api::V1::JobsController,
+    Api::V1::UsersController,
+    User,
     Hub,
     Sensor,
     Printer,
