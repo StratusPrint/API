@@ -15,10 +15,13 @@ module Api::V1
           'Hubs',
         ]
         response 200 do
-          key :description, 'hub response'
+          key :description, 'List of hubs'
           schema do
             key :'$ref', :Hub
           end
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
         end
       end
       operation :post do
@@ -38,10 +41,16 @@ module Api::V1
           end
         end
         response 200 do
-          key :description, 'hub response'
+          key :description, 'Hub successfully added'
           schema do
             key :'$ref', :Hub
           end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
         end
       end
     end
@@ -70,6 +79,38 @@ module Api::V1
             key :'$ref', :Hub
           end
         end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
+      operation :post do
+        key :summary, 'Update an existing hub'
+        key :description, 'Update an existing hub if user has access.'
+        key :operationId, 'updateHub'
+        key :tags, [
+          'Hubs'
+        ]
+        parameter do
+          key :name, :hub
+          key :in, :body
+          key :description, 'Hub object'
+          key :required, true
+          schema do
+            key :'$ref', :Hub
+          end
+        end
+        response 200 do
+          key :description, 'Hub successfully updated'
+          schema do
+            key :'$ref', :Hub
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
       end
     end
 
@@ -92,10 +133,42 @@ module Api::V1
           key :type, :integer
         end
         response 200 do
-          key :description, 'sensor response'
+          key :description, 'A list of sensors'
           schema do
             key :'$ref', :Sensor
           end
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
+      operation :post do
+        key :summary, 'Add new sensor to hub'
+        key :description, 'Add a new sensor to the hub if user has access.'
+        key :operationId, 'addSensorToHub'
+        key :tags, [
+          'Hubs', 'Sensors'
+        ]
+        parameter do
+          key :name, :sensor
+          key :in, :body
+          key :description, 'Sensor object'
+          key :required, true
+          schema do
+            key :'$ref', :Sensor
+          end
+        end
+        response 200 do
+          key :description, 'Sensor successfully added to hub'
+          schema do
+            key :'$ref', :Sensor
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
         end
       end
     end
@@ -119,10 +192,42 @@ module Api::V1
           key :type, :integer
         end
         response 200 do
-          key :description, 'printer response'
+          key :description, 'A list of printers'
           schema do
             key :'$ref', :Printer
           end
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
+      operation :post do
+        key :summary, 'Add new printer to hub'
+        key :description, 'Add a new printer to the hub if user has access.'
+        key :operationId, 'addPrinterToHub'
+        key :tags, [
+          'Hubs', 'Printers'
+        ]
+        parameter do
+          key :name, :printer
+          key :in, :body
+          key :description, 'Printer object'
+          key :required, true
+          schema do
+            key :'$ref', :Printer
+          end
+        end
+        response 200 do
+          key :description, 'Printer successfully added to hub'
+          schema do
+            key :'$ref', :Printer
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
         end
       end
     end

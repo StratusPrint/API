@@ -1,5 +1,6 @@
 class Sensor < ApplicationRecord
   include Swagger::Blocks
+  extend Enumerize
 
   swagger_schema :Sensor do
     key :required, [:friendly_id, :manufacturer, :model, :category]
@@ -14,7 +15,7 @@ class Sensor < ApplicationRecord
     property :category do
       key :type, :string
       key :description, 'The type of sensor'
-      key :enum, ['temperature', 'humidity', '...']
+      key :enum, ['temperature', 'humidity', 'infrared']
     end
     property :manufacturer do
       key :type, :string
@@ -35,6 +36,8 @@ class Sensor < ApplicationRecord
   end
 
   validates :friendly_id, :uniqueness => true
+
+  enumerize :category, in: [:temperature, :humidity, :infrared]
 
   has_one :hub_sensor
   has_one :hub, through: :hub_sensor

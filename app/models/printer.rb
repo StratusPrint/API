@@ -1,5 +1,6 @@
 class Printer < ApplicationRecord
   include Swagger::Blocks
+  extend Enumerize
 
   swagger_schema :Printer do
     key :required, [:friendly_id, :manufacturer, :model]
@@ -22,7 +23,7 @@ class Printer < ApplicationRecord
     property :status do
       key :type, :string
       key :description, 'The current status of the printer'
-      key :enum, ['idle', 'printing', 'offline']
+      key :enum, ['idle', 'printing', 'online', 'offline']
     end
     property :num_jobs do
       key :type, :integer
@@ -31,6 +32,8 @@ class Printer < ApplicationRecord
   end
 
   validates :friendly_id, :uniqueness => true
+
+  enumerize :status, in: [:idle, :printing, :online, :offline]
 
   has_one :hub_printer
   has_one :hub, through: :hub_printer
