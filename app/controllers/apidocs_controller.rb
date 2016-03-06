@@ -13,6 +13,7 @@ class ApidocsController < ApplicationController
         key :name, 'Apache'
       end
     end
+    key :schemes, ['https']
     if Rails.env.development?
       key :host, 'dev.api.stratusprint.com'
     else
