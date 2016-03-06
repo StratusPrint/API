@@ -35,6 +35,8 @@ class Hub < ApplicationRecord
     end
   end
 
+  before_destroy :destroy_sensors_printers
+
   validates :friendly_id, :hostname, :uniqueness => true, :presence => true
   validates :ip, :uniqueness => true, :presence => true, :ip => { :format => :v4 }
   validates_format_of :hostname, :with => /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}\z/ix
@@ -43,10 +45,16 @@ class Hub < ApplicationRecord
 
   has_many :hub_printers
   has_many :hub_sensors
-  has_many :printers, through: :hub_printers, dependent: :destroy
-  has_many :sensors, through: :hub_sensors, dependent: :destroy
+  has_many :printers, through: :hub_printers
+  has_many :sensors, through: :hub_sensors
 
   # Include default devise modules.
   devise :database_authenticatable, :trackable
   include DeviseTokenAuth::Concerns::User
+
+  private
+  def destroy_sensors_printers
+    self.sensors.destroy_all
+    self.printers.destroy_all
+  end
 end

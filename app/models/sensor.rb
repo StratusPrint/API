@@ -35,6 +35,8 @@ class Sensor < ApplicationRecord
     end
   end
 
+  before_destroy :destroy_data
+
   validates :friendly_id, :uniqueness => true, :presence => true
 
   enumerize :category, in: [:temperature, :humidity, :infrared]
@@ -42,5 +44,10 @@ class Sensor < ApplicationRecord
   has_one :hub_sensor
   has_one :hub, through: :hub_sensor
   has_many :sensor_data_points
-  has_many :data_points, through: :sensor_data_points, dependent: :destroy
+  has_many :data_points, through: :sensor_data_points
+
+  private
+  def destroy_data
+    self.data_points.destroy_all
+  end
 end

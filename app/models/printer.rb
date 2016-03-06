@@ -31,6 +31,8 @@ class Printer < ApplicationRecord
     end
   end
 
+  before_destroy :destroy_jobs
+
   validates :friendly_id, :uniqueness => true, :presence => true
 
   enumerize :status, in: [:idle, :printing, :online, :offline]
@@ -38,5 +40,10 @@ class Printer < ApplicationRecord
   has_one :hub_printer
   has_one :hub, through: :hub_printer
   has_many :printer_jobs
-  has_many :jobs, through: :printer_jobs, dependent: :destroy
+  has_many :jobs, through: :printer_jobs
+
+  private
+  def destroy_job
+    self.jobs.destroy_all
+  end
 end
