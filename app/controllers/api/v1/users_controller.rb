@@ -73,7 +73,6 @@ module Api::V1
     swagger_path '/auth/sign_in' do
       operation :post do
         key :summary, 'Sign in user'
-        key :in, :body
         key :description, 'Requires email and password as params. This route will return a JSON representation of the User model on successful login along with the access-token and client in the header of the response.'
         key :operationId, 'signInUser'
         key :produces, [
