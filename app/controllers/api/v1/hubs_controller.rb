@@ -119,11 +119,8 @@ module Api::V1
         key :tags, [
           'Hubs'
         ]
-        response 200 do
+        response 204 do
           key :description, 'Hub successfully deleted'
-          schema do
-            key :'$ref', :Hub
-          end
         end
         response 401 do
           key :description, 'Unauthorized access'
