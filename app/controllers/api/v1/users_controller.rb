@@ -16,18 +16,21 @@ module Api::V1
         ]
         parameter do
           key :name, :email
+          key :in, :body
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password
+          key :in, :body
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password_confirmation
+          key :in, :body
           key :description, 'Password confirmation'
           key :required, :true
           key :type, :string
@@ -50,12 +53,14 @@ module Api::V1
         ]
         parameter do
           key :name, :password
+          key :in, :body
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password_confirmation
+          key :in, :body
           key :description, 'Password confirmation'
           key :required, :true
           key :type, :string
@@ -68,6 +73,7 @@ module Api::V1
     swagger_path '/auth/sign_in' do
       operation :post do
         key :summary, 'Sign in user'
+        key :in, :body
         key :description, 'Requires email and password as params. This route will return a JSON representation of the User model on successful login along with the access-token and client in the header of the response.'
         key :operationId, 'signInUser'
         key :produces, [
@@ -78,12 +84,14 @@ module Api::V1
         ]
         parameter do
           key :name, :email
+          key :in, :body
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password
+          key :in, :body
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
@@ -125,18 +133,21 @@ module Api::V1
         ]
         parameter do
           key :name, :uid
+          key :in, :body
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :client
+          key :in, :body
           key :description, 'Session ID'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :'access-token'
+          key :in, :body
           key :description, 'Access token'
           key :required, :true
           key :type, :string
@@ -162,12 +173,14 @@ module Api::V1
         ]
         parameter do
           key :name, :uid
+          key :in, :body
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :redirect_url
+          key :in, :body
           key :description, 'The url to which the user will be redirected after visiting the link contained in the email'
           key :required, :true
           key :type, :string
@@ -188,12 +201,14 @@ module Api::V1
         ]
         parameter do
           key :name, :password
+          key :in, :body
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password_confirmation
+          key :in, :body
           key :description, 'Password confirmation'
           key :required, :true
           key :type, :string

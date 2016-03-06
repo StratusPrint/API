@@ -18,7 +18,7 @@ class ApidocsController < ApplicationController
     else
       key :host, 'api.stratusprint.com'
     end
-    key :scheme, 'https'
+    key :schemes, 'https'
     key :basePath, '/v1'
     key :consumes, ['application/json']
     key :produces, ['application/json']
