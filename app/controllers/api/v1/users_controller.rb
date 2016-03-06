@@ -16,21 +16,21 @@ module Api::V1
         ]
         parameter do
           key :name, :email
-          key :in, :body
+          key :in, :query
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password
-          key :in, :body
+          key :in, :query
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password_confirmation
-          key :in, :body
+          key :in, :query
           key :description, 'Password confirmation'
           key :required, :true
           key :type, :string
@@ -53,14 +53,14 @@ module Api::V1
         ]
         parameter do
           key :name, :password
-          key :in, :body
+          key :in, :query
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password_confirmation
-          key :in, :body
+          key :in, :query
           key :description, 'Password confirmation'
           key :required, :true
           key :type, :string
@@ -83,14 +83,14 @@ module Api::V1
         ]
         parameter do
           key :name, :email
-          key :in, :body
+          key :in, :query
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password
-          key :in, :body
+          key :in, :query
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
@@ -132,21 +132,21 @@ module Api::V1
         ]
         parameter do
           key :name, :uid
-          key :in, :body
+          key :in, :query
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :client
-          key :in, :body
+          key :in, :query
           key :description, 'Session ID'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :'access-token'
-          key :in, :body
+          key :in, :query
           key :description, 'Access token'
           key :required, :true
           key :type, :string
@@ -172,14 +172,14 @@ module Api::V1
         ]
         parameter do
           key :name, :uid
-          key :in, :body
+          key :in, :query
           key :description, 'E-mail address of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :redirect_url
-          key :in, :body
+          key :in, :query
           key :description, 'The url to which the user will be redirected after visiting the link contained in the email'
           key :required, :true
           key :type, :string
@@ -200,14 +200,14 @@ module Api::V1
         ]
         parameter do
           key :name, :password
-          key :in, :body
+          key :in, :query
           key :description, 'Password of the user'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :password_confirmation
-          key :in, :body
+          key :in, :query
           key :description, 'Password confirmation'
           key :required, :true
           key :type, :string

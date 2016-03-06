@@ -297,21 +297,21 @@ module Api::V1
         ]
         parameter do
           key :name, :uid
-          key :in, :body
+          key :in, :query
           key :description, 'Friendly ID of the hub'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :client
-          key :in, :body
+          key :in, :query
           key :description, 'Session ID'
           key :required, :true
           key :type, :string
         end
         parameter do
           key :name, :'access-token'
-          key :in, :body
+          key :in, :query
           key :description, 'Access token'
           key :required, :true
           key :type, :string
