@@ -126,7 +126,7 @@ module Api::V1
       @hub = Hub.new(hub_params)
 
       if @hub.save
-        render json: @hub, status: :created, location: @hub
+        render json: @hub, status: :created, location: v1_hub_path(@hub)
       else
         render json: @hub.errors, status: :unprocessable_entity
       end
@@ -154,7 +154,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def hub_params
-      params.fetch(:hub, {})
+      params.fetch(:hub, {}).permit(:friendly_id, :ip, :hostname, :location, :desc, :status)
     end
   end
 end

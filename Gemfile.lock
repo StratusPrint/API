@@ -66,12 +66,30 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    activevalidators (3.3.0)
+      activemodel (>= 3.0.0)
+      countries (>= 0.9.3)
+      credit_card_validations (~> 2.0.2)
+      date_validator
+      mail
+      phony (>= 1.9.0)
+      rake (>= 0.8.7)
     arel (7.0.0)
     bcrypt (3.1.10)
     builder (3.2.2)
     byebug (8.2.2)
     cancancan (1.13.1)
     concurrent-ruby (1.0.1)
+    countries (1.2.5)
+      currencies (~> 0.4.2)
+      i18n_data (~> 0.7.0)
+    credit_card_validations (2.0.2)
+      activemodel (>= 3, < 5)
+      activesupport (>= 3, < 5)
+    currencies (0.4.2)
+    date_validator (0.9.0)
+      activemodel
+      activesupport
     diff-lcs (1.2.5)
     erubis (2.7.0)
     figaro (1.1.1)
@@ -80,6 +98,7 @@ GEM
       activesupport (>= 4.1.0)
     hashie (3.4.3)
     i18n (0.7.0)
+    i18n_data (0.7.0)
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -97,6 +116,7 @@ GEM
       rack (>= 1.0, < 3)
     orm_adapter (0.5.0)
     pg (0.18.4)
+    phony (2.15.17)
     puma (3.0.2)
     rack (2.0.0.alpha)
       json
@@ -174,6 +194,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers!
+  activevalidators
   byebug
   cancancan (~> 1.10)
   devise!

@@ -43,11 +43,12 @@ ActiveRecord::Schema.define(version: 20160228064339) do
   add_index "hub_sensors", ["sensor_id"], name: "index_hub_sensors_on_sensor_id", using: :btree
 
   create_table "hubs", force: :cascade do |t|
-    t.text     "label"
     t.text     "friendly_id"
     t.text     "location"
     t.text     "ip"
     t.text     "hostname"
+    t.text     "status"
+    t.text     "desc"
     t.string   "provider",           default: "api_token", null: false
     t.string   "uid",                default: "",          null: false
     t.string   "encrypted_password", default: "",          null: false
@@ -88,7 +89,6 @@ ActiveRecord::Schema.define(version: 20160228064339) do
   add_index "printer_jobs", ["printer_id"], name: "index_printer_jobs_on_printer_id", using: :btree
 
   create_table "printers", force: :cascade do |t|
-    t.text     "label"
     t.text     "manufacturer"
     t.text     "model"
     t.text     "status"
@@ -110,7 +110,6 @@ ActiveRecord::Schema.define(version: 20160228064339) do
   add_index "sensor_data_points", ["sensor_id"], name: "index_sensor_data_points_on_sensor_id", using: :btree
 
   create_table "sensors", force: :cascade do |t|
-    t.text     "label"
     t.text     "category"
     t.text     "model"
     t.text     "manufacturer"

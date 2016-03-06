@@ -27,7 +27,8 @@ gem 'figaro'
 gem 'swagger-blocks'
 # CORS
 gem 'rack-cors', :require => 'rack/cors'
-
+# ActiveModel Validators
+gem 'activevalidators'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
