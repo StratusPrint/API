@@ -29,6 +29,7 @@ gem 'swagger-blocks'
 gem 'rack-cors', :require => 'rack/cors'
 # ActiveModel Validators
 gem 'activevalidators'
+gem 'enumerize'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
