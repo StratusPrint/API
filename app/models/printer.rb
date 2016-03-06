@@ -31,12 +31,12 @@ class Printer < ApplicationRecord
     end
   end
 
-  validates :friendly_id, :uniqueness => true
+  validates :friendly_id, :uniqueness => true, :presence => true
 
   enumerize :status, in: [:idle, :printing, :online, :offline]
 
   has_one :hub_printer
   has_one :hub, through: :hub_printer
   has_many :printer_jobs
-  has_many :jobs, through: :printer_jobs
+  has_many :jobs, through: :printer_jobs, dependent: :destroy
 end

@@ -34,6 +34,35 @@ module Api::V1
           end
         end
       end
+      operation :patch do
+        key :summary, 'Update print job by ID'
+        key :description, 'Update the specified job if user has access.'
+        key :operationId, 'updateJob'
+        key :tags, [
+          'Jobs'
+        ]
+        parameter do
+          key :name, :job
+          key :in, :body
+          key :description, 'Job object'
+          key :required, true
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 200 do
+          key :description, 'Job successfully updated'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     ###########################################################################
@@ -58,7 +87,8 @@ module Api::V1
       @job = Job.new(job_params)
 
       if @job.save
-        render json: @job, status: :created, location: @job
+        Printer.find_by(id: params[:printer_id]).jobs << @job
+        render json: @job, status: :created, location: v1_job_path(@job)
       else
         render json: @job.errors, status: :unprocessable_entity
       end

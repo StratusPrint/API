@@ -43,8 +43,8 @@ class Hub < ApplicationRecord
 
   has_many :hub_printers
   has_many :hub_sensors
-  has_many :printers, through: :hub_printers
-  has_many :sensors, through: :hub_sensors
+  has_many :printers, through: :hub_printers, dependent: :destroy
+  has_many :sensors, through: :hub_sensors, dependent: :destroy
 
   # Include default devise modules.
   devise :database_authenticatable, :trackable

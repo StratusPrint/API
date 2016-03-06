@@ -34,6 +34,35 @@ module Api::V1
           end
         end
       end
+      operation :patch do
+        key :summary, 'Update printer by ID'
+        key :description, 'Update the specified printer if user has access.'
+        key :operationId, 'updatePrinter'
+        key :tags, [
+          'Printers'
+        ]
+        parameter do
+          key :name, :printer
+          key :in, :body
+          key :description, 'Printer object'
+          key :required, true
+          schema do
+            key :'$ref', :Printer
+          end
+        end
+        response 200 do
+          key :description, 'Printer successfully updated'
+          schema do
+            key :'$ref', :Printer
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     swagger_path '/printers/{id}/jobs' do
@@ -61,6 +90,35 @@ module Api::V1
           end
         end
       end
+      operation :post do
+        key :summary, 'Add job to printer'
+        key :description, 'Add a job to specified printer if user has access.'
+        key :operationId, 'addPrinterJob'
+        key :tags, [
+          'Printers', 'Jobs'
+        ]
+        parameter do
+          key :name, :job
+          key :in, :body
+          key :description, 'Job object'
+          key :required, true
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 200 do
+          key :description, 'Job successfully added to printer'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 421 do
+          key :description, 'Validation error(s)'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     ###########################################################################
@@ -84,8 +142,8 @@ module Api::V1
     def create
       @printer = Printer.new(printer_params)
       if @printer.save
-        @printer << Hub.find_by(id: params[:hub_id]).printers
-        render json: @printer, status: :created, location: @printer
+        Hub.find_by(id: params[:hub_id]).printers << @printer
+        render json: @printer, status: :created, location: v1_printer_path(@printer)
       else
         render json: @printer.errors, status: :unprocessable_entity
       end
@@ -113,7 +171,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def printer_params
-      params.fetch(:printer, {})
+      params.fetch(:printer, {}).permit(:friendly_id, :manufacturer, :model, :status, :num_jobs)
     end
   end
 end
