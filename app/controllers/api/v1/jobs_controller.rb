@@ -18,7 +18,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Jobs'
+          'Job Management'
         ]
         parameter do
           key :name, :id
@@ -39,7 +39,7 @@ module Api::V1
         key :description, 'Update the specified job if user has access.'
         key :operationId, 'updateJob'
         key :tags, [
-          'Jobs'
+          'Job Management'
         ]
         parameter do
           key :name, :job
@@ -68,7 +68,7 @@ module Api::V1
         key :description, 'Deletes an existing job. Requires admin priveleges.'
         key :operationId, 'deleteJob'
         key :tags, [
-          'Jobs'
+          'Job Management'
         ]
         response 204 do
           key :description, 'Job successfully deleted'

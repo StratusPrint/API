@@ -12,7 +12,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'User Auth'
+          'User Authentication'
         ]
         parameter do
           key :name, :email
@@ -46,7 +46,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'User Auth'
+          'User Authentication'
         ]
         parameter do
           key :name, :password
@@ -74,7 +74,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'User Auth'
+          'User Authentication'
         ]
         parameter do
           key :name, :email
@@ -91,18 +91,21 @@ module Api::V1
         response 200 do
           key :description, 'User successfully logged in'
         end
+        response 401 do
+          key :description, 'Not authorized'
+        end
       end
     end
     swagger_path '/auth/sign_out' do
       operation :delete do
         key :summary, 'Sign out user'
-        key :description, 'Use this route to end the user\'s current session. This route will invalidate the user\'s authentication token.'
+        key :description, 'Use this route to end the user\'s current session. This route will invalidate the user\'s access token.'
         key :operationId, 'signOutUser'
         key :produces, [
           'application/json'
         ]
         key :tags, [
-          'User Auth'
+          'User Authentication'
         ]
         response 201 do
           key :description, 'User successfully logged out'
@@ -118,7 +121,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'User Auth'
+          'User Authentication'
         ]
         parameter do
           key :name, :uid
@@ -155,7 +158,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'User Auth'
+          'User Authentication'
         ]
         parameter do
           key :name, :uid
@@ -181,7 +184,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'User Auth'
+          'User Authentication'
         ]
         parameter do
           key :name, :password

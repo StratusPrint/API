@@ -18,7 +18,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Printers'
+          'Printer Management'
         ]
         parameter do
           key :name, :id
@@ -39,7 +39,7 @@ module Api::V1
         key :description, 'Update the specified printer if user has access.'
         key :operationId, 'updatePrinter'
         key :tags, [
-          'Printers'
+          'Printer Management'
         ]
         parameter do
           key :name, :printer
@@ -68,7 +68,7 @@ module Api::V1
         key :description, 'Deletes an existing printer. Requires admin priveleges.'
         key :operationId, 'deletePrinter'
         key :tags, [
-          'Printers'
+          'Printer Management'
         ]
         response 204 do
           key :description, 'Printer successfully deleted'
@@ -88,7 +88,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Printers', 'Jobs'
+          'Printer Management', 'Job Management'
         ]
         parameter do
           key :name, :id
@@ -109,7 +109,7 @@ module Api::V1
         key :description, 'Add a job to specified printer if user has access.'
         key :operationId, 'addPrinterJob'
         key :tags, [
-          'Printers', 'Jobs'
+          'Printer Management', 'Job Management'
         ]
         parameter do
           key :name, :job

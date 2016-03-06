@@ -12,7 +12,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Hubs',
+          'Hub Management',
         ]
         response 200 do
           key :description, 'List of hubs'
@@ -29,7 +29,7 @@ module Api::V1
         key :description, 'Add a new hub if user has access.'
         key :operationId, 'addHub'
         key :tags, [
-          'Hubs'
+          'Hub Management'
         ]
         parameter do
           key :name, :hub
@@ -54,7 +54,6 @@ module Api::V1
         end
       end
     end
-
     swagger_path '/hubs/{id}' do
       operation :get do
         key :summary, 'Find hub by ID'
@@ -64,7 +63,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Hubs'
+          'Hub Management'
         ]
         parameter do
           key :name, :id
@@ -88,7 +87,7 @@ module Api::V1
         key :description, 'Update an existing hub if user has access.'
         key :operationId, 'updateHub'
         key :tags, [
-          'Hubs'
+          'Hub Management'
         ]
         parameter do
           key :name, :hub
@@ -117,7 +116,7 @@ module Api::V1
         key :description, 'Deletes an existing hub and all associated printers, jobs, sensors, and data. Requires admin priveleges.'
         key :operationId, 'deleteHub'
         key :tags, [
-          'Hubs'
+          'Hub Management'
         ]
         response 204 do
           key :description, 'Hub successfully deleted'
@@ -127,7 +126,6 @@ module Api::V1
         end
       end
     end
-
     swagger_path '/hubs/{id}/sensors' do
       operation :get do
         key :summary, 'List all sensors managed by a hub'
@@ -137,7 +135,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Hubs', 'Sensors'
+          'Hub Management', 'Sensor Management'
         ]
         parameter do
           key :name, :id
@@ -161,7 +159,7 @@ module Api::V1
         key :description, 'Add a new sensor to the hub if user has access.'
         key :operationId, 'addSensorToHub'
         key :tags, [
-          'Hubs', 'Sensors'
+          'Hub Management', 'Sensor Management'
         ]
         parameter do
           key :name, :sensor
@@ -186,7 +184,6 @@ module Api::V1
         end
       end
     end
-
     swagger_path '/hubs/{id}/printers' do
       operation :get do
         key :summary, 'List all printers managed by a hub'
@@ -196,7 +193,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Hubs', 'Printers'
+          'Hub Management', 'Printer Management'
         ]
         parameter do
           key :name, :id
@@ -220,7 +217,7 @@ module Api::V1
         key :description, 'Add a new printer to the hub if user has access.'
         key :operationId, 'addPrinterToHub'
         key :tags, [
-          'Hubs', 'Printers'
+          'Hub Management', 'Printer Management'
         ]
         parameter do
           key :name, :printer
@@ -242,6 +239,85 @@ module Api::V1
         end
         response 401 do
           key :description, 'Unauthorized access'
+        end
+      end
+    end
+    swagger_path '/hub_auth/sign_in' do
+      operation :post do
+        key :summary, 'Sign in hub'
+        key :description, 'Requires Authorization header with the hub\'s API key. This route will return a JSON representation of the Hub model on successful login along with the access-token, uid, and client in the header of the response. The access token expires every two weeks. Once logged in, the hub can begin logging sensor data, print jobs, and maintaining state of said objects.'
+        key :operationId, 'signInHub'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Hub Authentication'
+        ]
+        parameter do
+          key :name, :Authorization
+          key :in, :header
+          key :description, 'API key of the hub'
+          key :required, :true
+          key :type, :string
+        end
+        response 200 do
+          key :description, 'Hub successfully logged in'
+        end
+        response 401 do
+          key :description, 'Not authorized'
+        end
+      end
+    end
+    swagger_path '/hub_auth/sign_out' do
+      operation :delete do
+        key :summary, 'Sign out hub'
+        key :description, 'Use this route to end the hub\'s current session. This route will invalidate the hub\'s access token.'
+        key :operationId, 'signOutHub'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Hub Authentication'
+        ]
+        response 201 do
+          key :description, 'Hub successfully logged out'
+        end
+      end
+    end
+    swagger_path '/hub_auth/validate_token' do
+      operation :get do
+        key :summary, 'Validate access token'
+        key :description, 'Use this route to validate tokens on return visits to the client. Requires uid, client, and access-token as params.'
+        key :operationId, 'validateHubToken'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Hub Authentication'
+        ]
+        parameter do
+          key :name, :uid
+          key :description, 'Friendly ID of the hub'
+          key :required, :true
+          key :type, :string
+        end
+        parameter do
+          key :name, :client
+          key :description, 'Session ID'
+          key :required, :true
+          key :type, :string
+        end
+        parameter do
+          key :name, :'access-token'
+          key :description, 'Access token'
+          key :required, :true
+          key :type, :string
+        end
+        response 200 do
+          key :description, 'Token valid'
+        end
+        response 401 do
+          key :description, 'Token invalid'
         end
       end
     end

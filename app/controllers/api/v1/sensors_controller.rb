@@ -18,7 +18,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Sensors'
+          'Sensor Management'
         ]
         parameter do
           key :name, :id
@@ -28,7 +28,7 @@ module Api::V1
           key :type, :integer
         end
         response 200 do
-          key :description, 'sensor response'
+          key :description, 'Sensor object'
           schema do
             key :'$ref', :Sensor
           end
@@ -39,7 +39,7 @@ module Api::V1
         key :description, 'Update the specified sensor if user has access.'
         key :operationId, 'updateSensor'
         key :tags, [
-          'Sensors'
+          'Sensor Management'
         ]
         parameter do
           key :name, :sensor
@@ -68,7 +68,7 @@ module Api::V1
         key :description, 'Deletes an existing sensor and all associated data.'
         key :operationId, 'deleteSensor'
         key :tags, [
-          'Sensors'
+          'Sensor Management'
         ]
         response 204 do
           key :description, 'Sensor successfully deleted'
@@ -88,7 +88,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Sensors'
+          'Sensor Management'
         ]
         parameter do
           key :name, :id
@@ -98,7 +98,7 @@ module Api::V1
           key :type, :integer
         end
         response 200 do
-          key :description, 'data response'
+          key :description, 'Sensor data'
           schema do
             key :'$ref', :DataPoint
           end
@@ -109,7 +109,7 @@ module Api::V1
         key :description, 'Add a single data entry to specified sensor if user has access.'
         key :operationId, 'addSensorData'
         key :tags, [
-          'Sensors'
+          'Sensor Management'
         ]
         parameter do
           key :name, :data_point

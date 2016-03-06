@@ -18,7 +18,7 @@ module Api::V1
           'application/json'
         ]
         key :tags, [
-          'Sensors'
+          'Sensor Management'
         ]
         parameter do
           key :name, :id
