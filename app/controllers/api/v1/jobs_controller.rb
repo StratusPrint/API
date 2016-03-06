@@ -63,6 +63,20 @@ module Api::V1
           key :description, 'Unauthorized access'
         end
       end
+      operation :delete do
+        key :summary, 'Delete an existing job'
+        key :description, 'Deletes an existing job. Requires admin priveleges.'
+        key :operationId, 'deleteJob'
+        key :tags, [
+          'Jobs'
+        ]
+        response 204 do
+          key :description, 'Job successfully deleted'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     ###########################################################################

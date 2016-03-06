@@ -63,6 +63,20 @@ module Api::V1
           key :description, 'Unauthorized access'
         end
       end
+      operation :delete do
+        key :summary, 'Delete an existing sensor'
+        key :description, 'Deletes an existing sensor and all associated data.'
+        key :operationId, 'deleteSensor'
+        key :tags, [
+          'Sensors'
+        ]
+        response 204 do
+          key :description, 'Sensor successfully deleted'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     swagger_path '/sensors/{id}/data' do

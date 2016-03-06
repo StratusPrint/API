@@ -63,6 +63,20 @@ module Api::V1
           key :description, 'Unauthorized access'
         end
       end
+      operation :delete do
+        key :summary, 'Delete an existing printer'
+        key :description, 'Deletes an existing printer. Requires admin priveleges.'
+        key :operationId, 'deletePrinter'
+        key :tags, [
+          'Printers'
+        ]
+        response 204 do
+          key :description, 'Printer successfully deleted'
+        end
+        response 401 do
+          key :description, 'Unauthorized access'
+        end
+      end
     end
 
     swagger_path '/printers/{id}/jobs' do
