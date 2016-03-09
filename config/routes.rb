@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  #devise_for :hubs, :users
+  devise_for :hubs, :users
   scope module: 'api' do
     namespace :v1 do
       mount_devise_token_auth_for 'Hub', at: 'hub_auth'

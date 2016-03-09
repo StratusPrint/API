@@ -22,6 +22,12 @@ class ApidocsController < ApplicationController
     key :basePath, '/v1'
     key :consumes, ['application/json']
     key :produces, ['application/json']
+
+    security_definition :bearer do
+      key :type, :apiKey
+      key :name, :Authorization
+      key :in, :header
+    end
   end
 
   # A list of all classes that have swagger_* declarations.

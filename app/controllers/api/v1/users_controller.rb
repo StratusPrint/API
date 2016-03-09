@@ -119,7 +119,7 @@ module Api::V1
           end
         end
         response 401 do
-          key :description, 'Not authorized'
+          key :description, 'Authorization error'
         end
       end
     end
