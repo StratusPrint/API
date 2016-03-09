@@ -289,7 +289,28 @@ module Api::V1
         end
         response 200 do
           key :description, 'Hub successfully logged in'
+          header 'access-token' do
+            key :description, 'The access token header to use for authenticated requests. Note that this access token expires every two weeks or until the hub explicitly signs out.'
+            key :type, :string
+          end
+          header 'token-type' do
+            key :description, 'The token type header to use for authenticated requests'
+            key :type, :string
+          end
+          header 'uid' do
+            key :description, 'The uid header to use for authenticated requests'
+            key :type, :string
+          end
+          header 'client' do
+            key :description, 'The client header to use for authenticated requests'
+            key :type, :string
+          end
+          header 'expiry' do
+            key :description, 'The expiry header to use for authenticated requests'
+            key :type, :string
+          end
         end
+
         response 401 do
           key :description, 'Not authorized'
         end

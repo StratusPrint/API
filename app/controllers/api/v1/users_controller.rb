@@ -97,6 +97,26 @@ module Api::V1
         end
         response 200 do
           key :description, 'User successfully logged in'
+          header 'access-token' do
+            key :description, 'The access token header to use for the next authenticated request. Note that this access token is regenerated after each request for security purposes.'
+            key :type, :string
+          end
+          header 'token-type' do
+            key :description, 'The token type header to use for authenticated requests'
+            key :type, :string
+          end
+          header 'uid' do
+            key :description, 'The uid header to use for authenticated requests'
+            key :type, :string
+          end
+          header 'client' do
+            key :description, 'The client header to use for authenticated requests'
+            key :type, :string
+          end
+          header 'expiry' do
+            key :description, 'The expiry header to use for authenticated requests'
+            key :type, :string
+          end
         end
         response 401 do
           key :description, 'Not authorized'
