@@ -1,7 +1,4 @@
 class Sensor < ApplicationRecord
-  include Swagger::Blocks
-  extend Enumerize
-
   swagger_schema :Sensor do
     key :required, [:friendly_id, :manufacturer, :model, :category]
     property :id do

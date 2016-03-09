@@ -1,7 +1,4 @@
 class Hub < ApplicationRecord
-  include Swagger::Blocks
-  extend Enumerize
-
   swagger_schema :Hub do
     key :required, [:friendly_id, :ip, :hostname]
     property :id do

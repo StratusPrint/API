@@ -1,6 +1,4 @@
 class DataPoint < ApplicationRecord
-  include Swagger::Blocks
-
   swagger_schema :DataPoint do
     key :required, [:id, :created_at, :value]
     property :id do

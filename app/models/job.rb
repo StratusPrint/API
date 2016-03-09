@@ -1,6 +1,4 @@
 class Job < ApplicationRecord
-  include Swagger::Blocks
-
   swagger_schema :Job do
     key :required, [:file]
     property :id do

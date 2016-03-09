@@ -1,7 +1,4 @@
 class Printer < ApplicationRecord
-  include Swagger::Blocks
-  extend Enumerize
-
   swagger_schema :Printer do
     key :required, [:friendly_id, :manufacturer, :model]
     property :id do
