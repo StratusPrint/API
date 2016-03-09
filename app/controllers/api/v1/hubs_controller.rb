@@ -99,6 +99,13 @@ module Api::V1
           'Hub Management'
         ]
         parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the hub'
+          key :required, :true
+          key :type, :integer
+        end
+        parameter do
           key :name, :hub
           key :in, :body
           key :description, 'Hub object'
@@ -130,6 +137,13 @@ module Api::V1
         key :tags, [
           'Hub Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the hub'
+          key :required, :true
+          key :type, :integer
+        end
         response 204 do
           key :description, 'Hub successfully deleted'
         end
@@ -179,6 +193,13 @@ module Api::V1
         key :tags, [
           'Hub Management', 'Sensor Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the hub'
+          key :required, :true
+          key :type, :integer
+        end
         parameter do
           key :name, :sensor
           key :in, :body
@@ -243,6 +264,13 @@ module Api::V1
         key :tags, [
           'Hub Management', 'Printer Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the hub'
+          key :required, :true
+          key :type, :integer
+        end
         parameter do
           key :name, :printer
           key :in, :body
