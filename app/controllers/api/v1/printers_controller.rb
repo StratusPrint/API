@@ -69,7 +69,7 @@ module Api::V1
             key :'$ref', :Printer
           end
         end
-        response 421 do
+        response 422 do
           key :description, 'Validation error(s)'
         end
         response 401 do
@@ -162,7 +162,7 @@ module Api::V1
             key :'$ref', :Job
           end
         end
-        response 421 do
+        response 422 do
           key :description, 'Validation error(s)'
         end
         response 401 do
