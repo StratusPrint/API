@@ -48,6 +48,13 @@ module Api::V1
           'Sensor Management'
         ]
         parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the sensor'
+          key :required, :true
+          key :type, :integer
+        end
+        parameter do
           key :name, :sensor
           key :in, :body
           key :description, 'Sensor object'
@@ -79,6 +86,13 @@ module Api::V1
         key :tags, [
           'Sensor Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the sensor'
+          key :required, :true
+          key :type, :integer
+        end
         response 204 do
           key :description, 'Sensor successfully deleted'
         end
@@ -129,6 +143,13 @@ module Api::V1
         key :tags, [
           'Sensor Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the sensor'
+          key :required, :true
+          key :type, :integer
+        end
         parameter do
           key :name, :data_point
           key :in, :body

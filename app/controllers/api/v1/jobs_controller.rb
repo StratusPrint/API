@@ -48,6 +48,13 @@ module Api::V1
           'Job Management'
         ]
         parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the job'
+          key :required, :true
+          key :type, :integer
+        end
+        parameter do
           key :name, :job
           key :in, :body
           key :description, 'Job object'
@@ -79,6 +86,13 @@ module Api::V1
         key :tags, [
           'Job Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the job'
+          key :required, :true
+          key :type, :integer
+        end
         response 204 do
           key :description, 'Job successfully deleted'
         end

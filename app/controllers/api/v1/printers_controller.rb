@@ -48,6 +48,13 @@ module Api::V1
           'Printer Management'
         ]
         parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
+        parameter do
           key :name, :printer
           key :in, :body
           key :description, 'Printer object'
@@ -79,6 +86,13 @@ module Api::V1
         key :tags, [
           'Printer Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
         response 204 do
           key :description, 'Printer successfully deleted'
         end
@@ -126,6 +140,13 @@ module Api::V1
         key :tags, [
           'Printer Management', 'Job Management'
         ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
         parameter do
           key :name, :job
           key :in, :body
