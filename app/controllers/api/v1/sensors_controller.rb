@@ -39,6 +39,9 @@ module Api::V1
         response 403 do
           key :description, 'No permission to access'
         end
+        response 404 do
+          key :description, 'Sensor not found'
+        end
       end
       operation :patch do
         key :summary, 'Update sensor by ID'
@@ -69,14 +72,17 @@ module Api::V1
             key :'$ref', :Sensor
           end
         end
-        response 422 do
-          key :description, 'Validation error(s)'
-        end
         response 401 do
           key :description, 'Authorization error'
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Sensor not found'
+        end
+        response 422 do
+          key :description, 'Validation error(s) - see response for details'
         end
       end
       operation :delete do
@@ -102,9 +108,11 @@ module Api::V1
         response 403 do
           key :description, 'No permission to access'
         end
+        response 404 do
+          key :description, 'Sensor not found'
+        end
       end
     end
-
     swagger_path '/sensors/{id}/data' do
       operation :get do
         key :summary, 'List all data collected by a sensor'
@@ -134,6 +142,9 @@ module Api::V1
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Sensor not found'
         end
       end
       operation :post do
@@ -165,14 +176,17 @@ module Api::V1
             key :'$ref', :Sensor
           end
         end
-        response 422 do
-          key :description, 'Validation error(s)'
-        end
         response 401 do
           key :description, 'Authorization error'
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Sensor not found'
+        end
+        response 422 do
+          key :description, 'Validation error(s) - see response for details'
         end
       end
     end

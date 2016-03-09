@@ -49,14 +49,14 @@ module Api::V1
             key :'$ref', :Hub
           end
         end
-        response 421 do
-          key :description, 'Validation error(s)'
-        end
         response 401 do
           key :description, 'Authorization error'
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 421 do
+          key :description, 'Validation error(s) - see response for details'
         end
       end
     end
@@ -90,6 +90,9 @@ module Api::V1
         response 403 do
           key :description, 'No permission to access'
         end
+        response 404 do
+          key :description, 'Hub not found'
+        end
       end
       operation :patch do
         key :summary, 'Update an existing hub'
@@ -120,14 +123,17 @@ module Api::V1
             key :'$ref', :Hub
           end
         end
-        response 421 do
-          key :description, 'Validation error(s)'
-        end
         response 401 do
           key :description, 'Authorization error'
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Hub not found'
+        end
+        response 421 do
+          key :description, 'Validation error(s) - see response for details'
         end
       end
       operation :delete do
@@ -152,6 +158,9 @@ module Api::V1
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Hub not found'
         end
       end
     end
@@ -185,6 +194,9 @@ module Api::V1
         response 403 do
           key :description, 'No permission to access'
         end
+        response 404 do
+          key :description, 'Hub not found'
+        end
       end
       operation :post do
         key :summary, 'Add new sensor to hub'
@@ -215,14 +227,17 @@ module Api::V1
             key :'$ref', :Sensor
           end
         end
-        response 421 do
-          key :description, 'Validation error(s)'
-        end
         response 401 do
           key :description, 'Authorization error'
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Hub not found'
+        end
+        response 421 do
+          key :description, 'Validation error(s) - see response for details'
         end
       end
     end
@@ -256,6 +271,9 @@ module Api::V1
         response 403 do
           key :description, 'No permission to access'
         end
+        response 404 do
+          key :description, 'Hub not found'
+        end
       end
       operation :post do
         key :summary, 'Add new printer to hub'
@@ -286,14 +304,17 @@ module Api::V1
             key :'$ref', :Printer
           end
         end
-        response 421 do
-          key :description, 'Validation error(s)'
-        end
         response 401 do
           key :description, 'Authorization error'
         end
         response 403 do
           key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Hub not found'
+        end
+        response 421 do
+          key :description, 'Validation error(s) - see response for details'
         end
       end
     end
@@ -334,11 +355,10 @@ module Api::V1
             key :type, :string
           end
           header 'expiry' do
-            key :description, 'The expiry header to use for authenticated requests'
+            key :description, 'When the access token expires'
             key :type, :string
           end
         end
-
         response 401 do
           key :description, 'Not authorized'
         end

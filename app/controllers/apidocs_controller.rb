@@ -23,6 +23,10 @@ class ApidocsController < ApplicationController
     key :consumes, ['application/json']
     key :produces, ['application/json']
 
+    response 500 do
+      key :description, 'User successfully registered'
+    end
+
     security_definition :bearer do
       key :type, :apiKey
       key :name, :Authorization

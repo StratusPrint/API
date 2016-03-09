@@ -39,6 +39,9 @@ module Api::V1
         response 403 do
           key :description, 'No permission to access'
         end
+        response 404 do
+          key :description, 'Data entry not found'
+        end
       end
     end
 
