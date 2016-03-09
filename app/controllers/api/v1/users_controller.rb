@@ -114,7 +114,7 @@ module Api::V1
             key :type, :string
           end
           header 'expiry' do
-            key :description, 'The expiry header to use for authenticated requests'
+            key :description, 'When the access token expires'
             key :type, :string
           end
         end
