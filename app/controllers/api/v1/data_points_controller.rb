@@ -33,6 +33,12 @@ module Api::V1
             key :'$ref', :DataPoint
           end
         end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
       end
     end
 

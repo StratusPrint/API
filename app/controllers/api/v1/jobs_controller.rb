@@ -33,6 +33,12 @@ module Api::V1
             key :'$ref', :Job
           end
         end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
       end
       operation :patch do
         key :summary, 'Update print job by ID'
@@ -60,7 +66,10 @@ module Api::V1
           key :description, 'Validation error(s)'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
       operation :delete do
@@ -74,7 +83,10 @@ module Api::V1
           key :description, 'Job successfully deleted'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
     end

@@ -21,7 +21,10 @@ module Api::V1
           end
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
       operation :post do
@@ -50,7 +53,10 @@ module Api::V1
           key :description, 'Validation error(s)'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
     end
@@ -73,13 +79,16 @@ module Api::V1
           key :type, :integer
         end
         response 200 do
-          key :description, 'hub response'
+          key :description, 'Hub object'
           schema do
             key :'$ref', :Hub
           end
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
       operation :patch do
@@ -108,7 +117,10 @@ module Api::V1
           key :description, 'Validation error(s)'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
       operation :delete do
@@ -122,7 +134,10 @@ module Api::V1
           key :description, 'Hub successfully deleted'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
     end
@@ -151,7 +166,10 @@ module Api::V1
           end
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
       operation :post do
@@ -180,7 +198,10 @@ module Api::V1
           key :description, 'Validation error(s)'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
     end
@@ -209,7 +230,10 @@ module Api::V1
           end
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
       operation :post do
@@ -238,7 +262,10 @@ module Api::V1
           key :description, 'Validation error(s)'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
     end

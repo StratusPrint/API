@@ -187,6 +187,9 @@ module Api::V1
         response 200 do
           key :description, 'Password reset e-mail sent'
         end
+        response 401 do
+          key :description, 'Authorization error'
+        end
       end
       operation :patch do
         key :summary, 'Change user password'
@@ -214,6 +217,9 @@ module Api::V1
         end
         response 200 do
           key :description, 'Password changed'
+        end
+        response 401 do
+          key :description, 'Authorization error'
         end
       end
     end

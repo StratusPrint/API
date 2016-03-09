@@ -33,6 +33,12 @@ module Api::V1
             key :'$ref', :Sensor
           end
         end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
       end
       operation :patch do
         key :summary, 'Update sensor by ID'
@@ -60,7 +66,10 @@ module Api::V1
           key :description, 'Validation error(s)'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
       operation :delete do
@@ -74,7 +83,10 @@ module Api::V1
           key :description, 'Sensor successfully deleted'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
     end
@@ -103,6 +115,12 @@ module Api::V1
             key :'$ref', :DataPoint
           end
         end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
       end
       operation :post do
         key :summary, 'Add data entry to sensor'
@@ -130,7 +148,10 @@ module Api::V1
           key :description, 'Validation error(s)'
         end
         response 401 do
-          key :description, 'Unauthorized access'
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
         end
       end
     end
