@@ -43,8 +43,8 @@ module Api::V1
             key :'$ref', :Hub
           end
         end
-        response 200 do
-          key :description, 'Hub successfully added'
+        response 201 do
+          key :description, 'Hub successfully created'
           schema do
             key :'$ref', :Hub
           end
@@ -221,7 +221,7 @@ module Api::V1
             key :'$ref', :Sensor
           end
         end
-        response 200 do
+        response 201 do
           key :description, 'Sensor successfully added to hub'
           schema do
             key :'$ref', :Sensor
@@ -298,7 +298,7 @@ module Api::V1
             key :'$ref', :Printer
           end
         end
-        response 200 do
+        response 201 do
           key :description, 'Printer successfully added to hub'
           schema do
             key :'$ref', :Printer

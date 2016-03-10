@@ -168,7 +168,7 @@ module Api::V1
             key :'$ref', :Job
           end
         end
-        response 200 do
+        response 201 do
           key :description, 'Job successfully added to printer'
           schema do
             key :'$ref', :Job
