@@ -26,5 +26,9 @@ module Api
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Autoload application specific libraries. Basically, any kind of custom code that
+    # doesn’t belong under controllers, models, or helpers.
+    config.autoload_paths << Rails.root.join('lib')
   end
 end
