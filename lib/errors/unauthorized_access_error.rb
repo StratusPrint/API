@@ -1,5 +1,9 @@
 module Errors
   class UnauthorizedAccessError
+    def self.status
+      403
+    end
+
     def self.message
       'You do not have permission to access this resource.'
     end
