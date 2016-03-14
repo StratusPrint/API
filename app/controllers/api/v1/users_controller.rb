@@ -6,7 +6,7 @@ module Api::V1
     swagger_path '/auth' do
       operation :post do
         key :summary, 'Register new user'
-        key :description, 'Requires email, password, and password_confirmation params. A verification email will be sent to the email address provided.'
+        key :description, 'Requires email, password, password_confirmation, and confirm_success_url params. A verification email will be sent to the email address provided.'
         key :operationId, 'registerNewUser'
         key :produces, [
           'application/json'
@@ -32,6 +32,13 @@ module Api::V1
           key :name, :password_confirmation
           key :in, :query
           key :description, 'Password confirmation'
+          key :required, :true
+          key :type, :string
+        end
+        parameter do
+          key :name, :confirm_success_url
+          key :in, :query
+          key :description, 'Where to redirect user after successful e-mail confirmation'
           key :required, :true
           key :type, :string
         end
