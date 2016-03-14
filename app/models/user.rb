@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   validates :email, :uniqueness => true
-  validates :provider, :uniqueness => true
 
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
