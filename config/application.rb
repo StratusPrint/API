@@ -30,5 +30,7 @@ module Api
     # Autoload application specific libraries. Basically, any kind of custom code that
     # doesn’t belong under controllers, models, or helpers.
     config.autoload_paths << Rails.root.join('lib')
+
+    config.middleware.use ActionDispatch::Flash
   end
 end

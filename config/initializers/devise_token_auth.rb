@@ -42,5 +42,5 @@ DeviseTokenAuth.setup do |config|
   # By default this value is expected to be sent by the client so that the API knows
   # where to redirect users after successful email confirmation. If this param is set,
   # the API will redirect to this value when no value is provided by the client.
-  # default_confirm_success_url = 'https://www.stratusprint.com/'
+  default_confirm_success_url = 'https://www.stratusprint.com/'
 end

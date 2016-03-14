@@ -1,6 +1,9 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  # Logging
+  config.log_level = :debug
+
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
@@ -25,7 +28,7 @@ Rails.application.configure do
   end
 
   # Default URL options
-  config.action_mailer.default_url_options = { host: 'https://dev.stratusprint.com' }
+  config.action_mailer.default_url_options = { host: 'https://dev.api.stratusprint.com' }
 
   # Enable mail sending
   config.action_mailer.perform_deliveries = true
@@ -57,10 +60,15 @@ Rails.application.configure do
   # Prettify JSON responses
   config.middleware.use PrettyJsonResponse
 
+  # Devise token auth configuration
   DeviseTokenAuth.setup do |config|
     # Don't change auth headers after each request while in development
     # mode (for testing convenience).
     config.change_headers_on_each_request = false
+    # By default this value is expected to be sent by the client so that the API knows
+    # where to redirect users after successful email confirmation. If this param is set,
+    # the API will redirect to this value when no value is provided by the client.
+    default_confirm_success_url = 'https://dev.stratusprint.com/'
   end
 
   # Raises error for missing translations
