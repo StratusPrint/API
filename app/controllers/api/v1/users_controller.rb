@@ -141,7 +141,7 @@ module Api::V1
         key :tags, [
           'User Authentication'
         ]
-        response 201 do
+        response 200 do
           key :description, 'User successfully logged out'
         end
       end
