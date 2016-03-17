@@ -36,7 +36,7 @@ Rails.application.configure do
   config.middleware.insert_before 0, "Rack::Cors" do
     allow do
       origins 'docs.stratusprint.com', 'dev.stratusprint.com', 'stratusprint.com'
-      resource '*', :headers => :any, :methods => [:get, :post, :options, :delete], :expose => ['access-token', 'token-type', 'uid', 'client', 'expiry']
+      resource '*', :headers => :any, :methods => [:get, :post, :options, :delete, :patch], :expose => ['access-token', 'token-type', 'uid', 'client', 'expiry']
     end
   end
 
