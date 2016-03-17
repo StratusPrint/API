@@ -28,7 +28,13 @@ class HubAbility
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
-    can [:create, :read, :update], [DataPoint, Job]
+    can [:create], [DataPoint, Job]
+    can [:read, :update], DataPoint do |dp|
+      dp.sensor.hub.id == hub.id
+    end
+    can [:read, :update], Job do |j|
+      j.printer.hub.id == hub.id
+    end
     can [:read, :update], Sensor do |s|
       s.hub.id == hub.id
     end
