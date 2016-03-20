@@ -30,11 +30,12 @@ class HubAbility
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
 
     # The abilities defined below allow a hub to manage itself and its child
-    # resources, namely: printers, print jobs, sensors, and sensor data. These
-    # definitions also prevent a hub from modifying resources which do not belong to it.
+    # resources, namely: printers, print jobs, sensors, and sensor data. More importantly,
+    # the definitions prevent a hub from modifying resources which do not belong to it.
     # For example, if a hub tries to modify or view a sensor that belongs to another hub
-    # in the system, a 403 error is returned. This allows the system to securely manage
-    # multiple deployments, each with its own hub and set of sensors and printers.
+    # in the system, access is denied and a 403 error is returned. This allows the system
+    # to securely manage multiple deployments, each with its own hub and set of sensors
+    # and printers.
 
     # Allow hub to log sensor data
     # and create new printer jobs
