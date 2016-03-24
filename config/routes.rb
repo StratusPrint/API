@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+8Rails.application.routes.draw do
   #devise_for :hubs, :users
   mount_devise_token_auth_for 'Hub', at: 'v1/hub_auth'
   mount_devise_token_auth_for 'User', at: 'v1/auth'
@@ -9,7 +9,7 @@ Rails.application.routes.draw do
           resources :jobs
         end
         resources :sensors do
-          resources :data, :controller => :data_points, :key => :data
+          resources :data, :controller => :data_points
         end
       end
     end
