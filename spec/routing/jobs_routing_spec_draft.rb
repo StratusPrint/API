@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe JobsController, :type => :routing do
+RSpec.describe Api::V1::JobsController, :type => :routing do
   describe "routing" do
 
     it "routes to #index" do

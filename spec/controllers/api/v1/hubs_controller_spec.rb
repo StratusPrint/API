@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe HubsController, :type => :controller do
+RSpec.describe Api::V1::HubsController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Hub. As you add validations to Hub, be sure to
@@ -49,13 +49,6 @@ RSpec.describe HubsController, :type => :controller do
       hub = Hub.create! valid_attributes
       get :show, {:id => hub.to_param}, valid_session
       expect(assigns(:hub)).to eq(hub)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new hub as @hub" do
-      get :new, {}, valid_session
-      expect(assigns(:hub)).to be_a_new(Hub)
     end
   end
 

@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe PrintersController, :type => :controller do
+RSpec.describe Api::V1::PrintersController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Printer. As you add validations to Printer, be sure to
@@ -49,13 +49,6 @@ RSpec.describe PrintersController, :type => :controller do
       printer = Printer.create! valid_attributes
       get :show, {:id => printer.to_param}, valid_session
       expect(assigns(:printer)).to eq(printer)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new printer as @printer" do
-      get :new, {}, valid_session
-      expect(assigns(:printer)).to be_a_new(Printer)
     end
   end
 

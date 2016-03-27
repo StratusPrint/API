@@ -17,7 +17,7 @@ gem 'redis', '~> 3.0'
 gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_serializers.git'
 # User authentication
 gem 'omniauth', '>= 1.0.0'
-gem 'devise', git: 'git@github.com:plataformatec/devise.git'
+gem "devise", :github => 'plataformatec/devise', :branch => 'master'
 gem 'devise_token_auth', git: 'git@github.com:StratusPrint/devise_token_auth.git'
 # Resource authorization
 gem 'cancancan', '~> 1.10'
@@ -41,6 +41,9 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'sqlite3'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+  gem 'json-schema'
 end
 
 group :development do

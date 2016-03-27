@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe SensorsController, :type => :controller do
+RSpec.describe Api::V1::SensorsController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Sensor. As you add validations to Sensor, be sure to
@@ -49,13 +49,6 @@ RSpec.describe SensorsController, :type => :controller do
       sensor = Sensor.create! valid_attributes
       get :show, {:id => sensor.to_param}, valid_session
       expect(assigns(:sensor)).to eq(sensor)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new sensor as @sensor" do
-      get :new, {}, valid_session
-      expect(assigns(:sensor)).to be_a_new(Sensor)
     end
   end
 

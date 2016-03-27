@@ -18,7 +18,7 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe DataPointsController, :type => :controller do
+RSpec.describe Api::V1::DataPointsController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # DataPoint. As you add validations to DataPoint, be sure to
@@ -49,13 +49,6 @@ RSpec.describe DataPointsController, :type => :controller do
       data_point = DataPoint.create! valid_attributes
       get :show, {:id => data_point.to_param}, valid_session
       expect(assigns(:data_point)).to eq(data_point)
-    end
-  end
-
-  describe "GET new" do
-    it "assigns a new data_point as @data_point" do
-      get :new, {}, valid_session
-      expect(assigns(:data_point)).to be_a_new(DataPoint)
     end
   end
 
@@ -155,5 +148,4 @@ RSpec.describe DataPointsController, :type => :controller do
       expect(response).to redirect_to(data_points_url)
     end
   end
-
 end

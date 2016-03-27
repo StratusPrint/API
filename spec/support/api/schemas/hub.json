@@ -1,0 +1,33 @@
+{
+    "title": "Hub",
+    "description": "A hub that communicates with 3D printers and environment sensors.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "friendly_id": {
+            "type": "string"
+        },
+        "ip": {
+            "type": "string"
+        },
+        "hostname": {
+            "type": "string"
+        },
+        "status": {
+            "enum": [ "online", "offline", "unknown" ],
+            "type": "string"
+        },
+        "desc": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "api_token": {
+            "type": "string"
+        }
+    },
+    "required": ["id", "friendly_id", "ip", "hostname"]
+}

@@ -1,4 +1,4 @@
-8Rails.application.routes.draw do
+Rails.application.routes.draw do
   #devise_for :hubs, :users
   mount_devise_token_auth_for 'Hub', at: 'v1/hub_auth'
   mount_devise_token_auth_for 'User', at: 'v1/auth'
