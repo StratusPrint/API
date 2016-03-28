@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228064339) do
+ActiveRecord::Schema.define(version: 20160328002619) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 20160228064339) do
     t.text     "friendly_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "num_jobs"
+    t.string   "desc"
   end
 
   add_index "printers", ["friendly_id"], name: "index_printers_on_friendly_id", unique: true, using: :btree

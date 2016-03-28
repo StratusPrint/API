@@ -1,0 +1,27 @@
+{
+    "title": "Printer",
+    "description": "A 3D printer.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "friendly_id": {
+            "type": "string"
+        },
+        "manufacturer": {
+            "type": "string"
+        },
+        "model": {
+            "type": "string"
+        },
+        "status": {
+            "enum": ["idle", "printing", "online", "offline"],
+            "type": "string"
+        },
+        "num_jobs": {
+            "type": "number"
+        }
+    },
+    "required": ["id", "friendly_id", "manufacturer", "model", "status", "num_jobs"]
+}

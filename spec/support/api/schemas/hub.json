@@ -10,10 +10,10 @@
             "type": "string"
         },
         "ip": {
-            "type": "string"
+            "type": "ipv4"
         },
         "hostname": {
-            "type": "string"
+            "type": "hostname"
         },
         "status": {
             "enum": [ "online", "offline", "unknown" ],
@@ -29,5 +29,5 @@
             "type": "string"
         }
     },
-    "required": ["id", "friendly_id", "ip", "hostname"]
+    "required": ["friendly_id", "ip", "hostname", "status", "api_token"]
 }

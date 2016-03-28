@@ -1,0 +1,30 @@
+{
+    "title": "Printer",
+    "description": "A printing job belonging to a 3D printer.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "file": {
+            "type": "string"
+        },
+        "started": {
+            "type": "date-time"
+        },
+        "completed": {
+            "type": "date-time"
+        },
+        "status": {
+            "enum": ["active", "completed", "paused", "cancelled", "errored"],
+            "type": "string"
+        },
+        "duration": {
+            "type": "number"
+        },
+        "progress": {
+            "type": "number"
+        }
+    },
+    "required": ["id", "file", "completed", "status", "duration", "progress"]
+}

@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  sequence :friendly_id do |n|
+  sequence :hub_name do |n|
     "hub#{n}"
   end
 
@@ -11,12 +11,17 @@ FactoryGirl.define do
     "hub#{n}.stratusprint.com"
   end
 
-  factory :hub do |h|
-    friendly_id { generate(:friendly_id) }
+  factory :hub do
+    friendly_id { generate(:hub_name) }
     ip { generate(:ip) }
     hostname { generate(:hostname) }
-    location 'Secret Location 1234'
-    desc 'Manages the printers and sensors of a deployment.'
-    status { ['online', 'offline', 'unknown'].sample }
+    location "Secret Location 1234"
+    desc "Manages the printers and sensors of a deployment."
+    status { ["online", "offline", "unknown"].sample }
+
+    after(:create) do |hub|
+      2.times do hub.printers << create(:printer) end
+      5.times do hub.sensors << create(:sensor) end
+    end
   end
 end

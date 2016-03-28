@@ -5,6 +5,8 @@ class CreatePrinters < ActiveRecord::Migration[5.0]
       t.text :model
       t.text :status
       t.text :friendly_id
+      t.text :num_jobs
+      t.text :desc
       t.timestamps
     end
 

@@ -1,0 +1,30 @@
+{
+    "title": "Sensor",
+    "description": "A general purpose sensor that detects information about the environment.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "friendly_id": {
+            "type": "string"
+        },
+        "category": {
+            "enum": ["temperature", "humidity", "infrared"],
+            "type": "string"
+        },
+        "manufacturer": {
+            "type": "string"
+        },
+        "model": {
+            "type": "string"
+        },
+        "desc": {
+            "type": "string"
+        },
+        "data_count": {
+            "type": "number"
+        }
+    },
+    "required": ["friendly_id", "category", "manufacturer", "model", "data_count"]
+}

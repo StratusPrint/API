@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Hub Management", :type => :request do
-  let!(:hubs) { create_list(:hub, 10) }
+  let!(:hubs) { create_list(:hub, 3) }
   let(:new_hub) { build :hub }
   let(:admin) { create :admin }
   let(:user) { create :user }
@@ -77,7 +77,7 @@ describe "Hub Management", :type => :request do
     end
 
     it "should update a hub if authenticated as admin" do
-      patch v1_hub_path(hubs.first.id), headers: admin_auth_headers
+      patch v1_hub_path(hubs.first.id), params: { hub: new_hub.attributes }, headers: admin_auth_headers
       expect(response).to have_http_status(:success)
       expect(response).to match_response_schema("hub")
     end
