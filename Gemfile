@@ -14,11 +14,11 @@ gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Data serialization
-gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_serializers.git'
+gem 'active_model_serializers'
 # User authentication
 gem 'omniauth', '>= 1.0.0'
 gem "devise", :github => 'plataformatec/devise', :branch => 'master'
-gem 'devise_token_auth', git: 'git@github.com:StratusPrint/devise_token_auth.git'
+gem 'devise_token_auth', :github => 'StratusPrint/devise_token_auth'
 # Resource authorization
 gem 'cancancan', '~> 1.10'
 # Environment variables
