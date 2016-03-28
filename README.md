@@ -1,4 +1,4 @@
-# API
+# API ![Build Status](https://travis-ci.org/StratusPrint/API.svg?branch=dev) [![Coverage Status](https://coveralls.io/repos/github/StratusPrint/API/badge.svg?branch=dev)](https://coveralls.io/github/StratusPrint/API?branch=dev)
 Commits pushed to the <b>master</b> branch are automatically deployed to [https://api.stratusprint.com](https://api.stratusprint.com).
 
 Commits pushed to the <b>dev</b> branch are automatically deployed to [https://dev.api.stratusprint.com](https://dev.api.stratusprint.com).
