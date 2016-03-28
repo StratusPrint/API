@@ -44,7 +44,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'json-schema'
-  gem 'memory_test_fix'
+  gem 'coveralls', require: false
 end
 
 group :development do
