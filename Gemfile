@@ -2,9 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '>= 5.0.0.beta2', '< 5.1'
+gem 'rails', '5.0.0.beta3'
 # Use PostgreSQL as the database for Active Record
-gem 'pg'
+gem 'pg', group: [:development, :production]
 # Use Puma as the app server
 gem 'puma'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,7 +36,7 @@ gem 'enumerize'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
-group :development, :test do
+group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rspec-rails'
@@ -44,6 +44,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'json-schema'
+  gem 'memory_test_fix'
 end
 
 group :development do

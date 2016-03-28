@@ -27,7 +27,7 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
       t.string   :api_token
 
       ## Tokens
-      t.json :tokens
+      t.text :tokens
 
       t.timestamps
     end
