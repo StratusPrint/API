@@ -3,6 +3,7 @@ require "rails_helper"
 describe "Hub Management", :type => :request do
   let!(:hubs) { create_list(:hub, 3) }
   let(:new_hub) { build :hub }
+  let(:new_sensor) { build :sensor }
   let(:admin) { create :admin }
   let(:user) { create :user }
   let(:admin_auth_headers) { admin.create_new_auth_token }
@@ -121,6 +122,17 @@ describe "Hub Management", :type => :request do
     it "should not create a new sensor if not authenticated" do
       post v1_hub_sensors_path(hubs.first.id)
       expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "should not create a new sensor if authenticated as user" do
+      post v1_hub_sensors_path(hubs.first.id), params: { sensor: new_sensor.attributes }, headers: user_auth_headers
+      expect(response).to have_http_status(:forbidden)
+    end
+
+    it "should create a new sensor if authenticated as admin" do
+      post v1_hub_sensors_path(hubs.first.id), params: { sensor: new_sensor.attributes }, headers: admin_auth_headers
+      expect(response).to have_http_status(:created)
+      expect(response).to match_response_schema("sensor")
     end
   end
 
