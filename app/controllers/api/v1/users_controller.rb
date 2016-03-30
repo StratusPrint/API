@@ -250,6 +250,56 @@ module Api::V1
         end
       end
     end
+    swagger_path '/users' do
+      operation :get do
+        key :summary, 'List all users'
+        key :description, 'Use this route to list all registered users.'
+        key :operationId, 'listUsers'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'User Management'
+        ]
+        response 200 do
+          key :description, 'List of users'
+          schema do
+            key :'$ref', :User
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+      end
+    end
+    swagger_path '/users/{id}' do
+      operation :get do
+        key :summary, 'Find user by ID'
+        key :description, 'Fetch a single user. Users only have access to themselves while admins can access all registered users.'
+        key :operationId, 'findUserById'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'User Management'
+        ]
+        response 200 do
+          key :description, 'User object'
+          schema do
+            key :'$ref', :User
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+      end
+    end
 
     ###########################################################################
     # CONTROLLER ACTIONS

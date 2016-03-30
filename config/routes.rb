@@ -12,6 +12,7 @@ Rails.application.routes.draw do
           resources :data, :controller => :data_points
         end
       end
+      resources :users
     end
   end
   resources :apidocs, only: [:index]

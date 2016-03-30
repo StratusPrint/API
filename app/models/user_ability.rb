@@ -32,6 +32,8 @@ class UserAbility
       can :manage, :all
     else
       can :read, :all
+      cannot :read, User
+      can [:read, :update], User, id: user.id
       can :create, Job
     end
   end
