@@ -18,7 +18,7 @@ gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 # User authentication
 gem 'omniauth', '>= 1.0.0'
 gem "devise", :github => 'plataformatec/devise', :branch => 'master'
-gem 'devise_token_auth', :github => 'StratusPrint/devise_token_auth'
+gem 'devise_token_auth', :github => 'StratusPrint/devise_token_auth', :branch => 'master'
 # Resource authorization
 gem 'cancancan', '~> 1.10'
 # Environment variables
