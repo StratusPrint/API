@@ -11,7 +11,7 @@
         },
         "value": {
             "type": "string"
-        },
+        }
     },
     "required": ["id", "created_at", "value"]
 }
