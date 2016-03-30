@@ -20,7 +20,7 @@
             "type": "string"
         },
         "num_jobs": {
-            "type": "number"
+            "type": "integer"
         }
     },
     "required": ["id", "friendly_id", "manufacturer", "model", "status", "num_jobs"]

@@ -32,12 +32,12 @@ describe "Hub Management", :type => :request do
 
   context "POST /hubs" do
     it "should not create a new hub if not authenticated" do
-      post v1_hubs_path
+      post v1_hubs_path, params: { hub: new_hub.attributes }
       expect(response).to have_http_status(:unauthorized)
     end
 
     it "should not create a new hub if authenticated as user" do
-      post v1_hubs_path(new_hub), user_auth_headers
+      post v1_hubs_path(new_hub), params: { hub: new_hub.attributes }, headers: user_auth_headers
       expect(response).to have_http_status(:forbidden)
     end
 
@@ -69,12 +69,12 @@ describe "Hub Management", :type => :request do
 
   context "PATCH /hubs/:id" do
     it "should not update a hub if not authenticated" do
-      patch v1_hub_path(hubs.first.id)
+      patch v1_hub_path(hubs.first.id), params: { hub: new_hub.attributes }
       expect(response).to have_http_status(:unauthorized)
     end
 
     it "should not update a hub if authenticated as user" do
-      patch v1_hub_path(hubs.first.id), headers: user_auth_headers
+      patch v1_hub_path(hubs.first.id), params: { hub: new_hub.attributes }, headers: user_auth_headers
       expect(response).to have_http_status(:forbidden)
     end
 
@@ -121,7 +121,7 @@ describe "Hub Management", :type => :request do
 
   context "POST /hubs/:id/sensors" do
     it "should not create a new sensor if not authenticated" do
-      post v1_hub_sensors_path(hubs.first.id)
+      post v1_hub_sensors_path(hubs.first.id), params: { sensor: new_sensor.attributes }
       expect(response).to have_http_status(:unauthorized)
     end
 
@@ -157,7 +157,7 @@ describe "Hub Management", :type => :request do
 
   context "POST /hubs/:id/printers" do
     it "should not create a new printer if not authenticated" do
-      post v1_hub_printers_path(hubs.first.id)
+      post v1_hub_printers_path(hubs.first.id), params: { printer: new_printer.attributes }
       expect(response).to have_http_status(:unauthorized)
     end
 

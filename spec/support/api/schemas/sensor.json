@@ -23,7 +23,7 @@
             "type": "string"
         },
         "data_count": {
-            "type": "number"
+            "type": "integer"
         }
     },
     "required": ["friendly_id", "category", "manufacturer", "model", "data_count"]

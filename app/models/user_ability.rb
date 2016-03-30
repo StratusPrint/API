@@ -32,6 +32,7 @@ class UserAbility
       can :manage, :all
     else
       can :read, :all
+      can :create, Job
     end
   end
 end
