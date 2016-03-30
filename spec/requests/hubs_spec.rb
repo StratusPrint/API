@@ -136,40 +136,4 @@ describe "Hub Management", :type => :request do
       expect(response).to match_response_schema("sensor")
     end
   end
-
-  context "GET /hubs/:id/printers" do
-    it "should not return a hub's printers if not authenticated" do
-      get v1_hub_printers_path(hubs.first.id)
-      expect(response).to have_http_status(:unauthorized)
-    end
-
-    it "should return a hub's printers if authenticated as user" do
-      get v1_hub_printers_path(hubs.first.id), headers: user_auth_headers
-      expect(response).to have_http_status(:success)
-    end
-
-    it "should return a hub's printers if authenticated as admin" do
-      get v1_hub_printers_path(hubs.first.id), headers: admin_auth_headers
-      expect(response).to have_http_status(:success)
-    end
-
-  end
-
-  context "POST /hubs/:id/printers" do
-    it "should not create a new printer if not authenticated" do
-      post v1_hub_printers_path(hubs.first.id), params: { printer: new_printer.attributes }
-      expect(response).to have_http_status(:unauthorized)
-    end
-
-    it "should not create a new printer if authenticated as user" do
-      post v1_hub_printers_path(hubs.first.id), params: { printer: new_printer.attributes }, headers: user_auth_headers
-      expect(response).to have_http_status(:forbidden)
-    end
-
-    it "should create a new printer if authenticated as admin" do
-      post v1_hub_printers_path(hubs.first.id), params: { printer: new_printer.attributes }, headers: admin_auth_headers
-      expect(response).to have_http_status(:created)
-      expect(response).to match_response_schema("printer")
-    end
-  end
 end

@@ -40,7 +40,7 @@ class Printer < ApplicationRecord
   has_many :jobs, through: :printer_jobs
 
   private
-  def destroy_job
+  def destroy_jobs
     self.jobs.destroy_all
   end
 end
