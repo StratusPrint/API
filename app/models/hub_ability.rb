@@ -38,8 +38,8 @@ class HubAbility
     # and printers.
 
     # Allow hub to log sensor data
-    # and create new printer jobs
-    can [:create], [DataPoint, Job]
+    # and create new printers, jobs, and sensors
+    can [:create], [DataPoint, Job, Printer, Sensor]
 
     # Allow hub to read and update existing
     # sensor data
