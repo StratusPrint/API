@@ -70,6 +70,11 @@ describe "Hub Management", :type => :request do
       expect(response).to match_response_schema("hub")
     end
 
+    it "should not return a hub if not authenticated as that hub" do
+      get v1_hub_path(hubs.second.id), headers: hub_auth_headers
+      expect(response).to have_http_status(:forbidden)
+    end
+
     it "should return a hub if authenticated as user" do
       get v1_hub_path(hubs.first.id), headers: user_auth_headers
       expect(response).to have_http_status(:success)
