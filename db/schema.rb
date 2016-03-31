@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228064339) do
+ActiveRecord::Schema.define(version: 20160331052128) do
 
   create_table "data_points", force: :cascade do |t|
     t.text     "value"
@@ -121,13 +121,13 @@ ActiveRecord::Schema.define(version: 20160228064339) do
   add_index "sensors", ["friendly_id"], name: "index_sensors_on_friendly_id", unique: true
 
   create_table "users", force: :cascade do |t|
-    t.string   "provider",               default: "email", null: false
-    t.string   "uid",                    default: "",      null: false
-    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "provider",               default: "email",                                        null: false
+    t.string   "uid",                    default: "",                                             null: false
+    t.string   "encrypted_password",     default: "",                                             null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,       null: false
+    t.integer  "sign_in_count",          default: 0,                                              null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -138,7 +138,7 @@ ActiveRecord::Schema.define(version: 20160228064339) do
     t.string   "unconfirmed_email"
     t.string   "name"
     t.string   "nickname"
-    t.string   "image"
+    t.string   "image",                  default: "https://www.gravatar.com/avatar/?d=identicon"
     t.string   "email"
     t.boolean  "admin",                  default: false
     t.text     "tokens"
