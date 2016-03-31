@@ -9,12 +9,17 @@ describe "Hub Management", :type => :request do
   let(:user) { create :user }
   let(:admin_auth_headers) { admin.create_new_auth_token }
   let(:user_auth_headers) { user.create_new_auth_token }
-  let(:hub_auth_headers) { hub.first.create_new_auth_token }
+  let(:hub_auth_headers) { hubs.first.create_new_auth_token }
 
   context "GET /hubs" do
     it "should not return all hubs if not authenticated" do
       get v1_hubs_path
       expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "should not return all hubs if authenticated as hub" do
+      get v1_hubs_path, headers: hub_auth_headers
+      expect(response).to have_http_status(:forbidden)
     end
 
     it "should return all hubs if authenticated as admin" do
@@ -36,6 +41,11 @@ describe "Hub Management", :type => :request do
       expect(response).to have_http_status(:unauthorized)
     end
 
+    it "should not create a new hub if authenticated as hub" do
+      post v1_hubs_path(new_hub), params: { hub: new_hub.attributes }, headers: hub_auth_headers
+      expect(response).to have_http_status(:forbidden)
+    end
+
     it "should not create a new hub if authenticated as user" do
       post v1_hubs_path(new_hub), params: { hub: new_hub.attributes }, headers: user_auth_headers
       expect(response).to have_http_status(:forbidden)
@@ -52,6 +62,12 @@ describe "Hub Management", :type => :request do
     it "should not return a hub if not authenticated" do
       get v1_hub_path(hubs.first.id)
       expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "should return a hub if authenticated as that hub" do
+      get v1_hub_path(hubs.first.id), headers: hub_auth_headers
+      expect(response).to have_http_status(:success)
+      expect(response).to match_response_schema("hub")
     end
 
     it "should return a hub if authenticated as user" do
@@ -73,6 +89,11 @@ describe "Hub Management", :type => :request do
       expect(response).to have_http_status(:unauthorized)
     end
 
+    it "should not update a hub if authenticated as hub" do
+      patch v1_hub_path(hubs.first.id), params: { hub: new_hub.attributes }, headers: hub_auth_headers
+      expect(response).to have_http_status(:forbidden)
+    end
+
     it "should not update a hub if authenticated as user" do
       patch v1_hub_path(hubs.first.id), params: { hub: new_hub.attributes }, headers: user_auth_headers
       expect(response).to have_http_status(:forbidden)
@@ -89,6 +110,11 @@ describe "Hub Management", :type => :request do
     it "should not delete a hub if not authenticated" do
       delete v1_hub_path(hubs.first.id)
       expect(response).to have_http_status(:unauthorized)
+    end
+
+    it "should not delete a hub if authenticated as hub" do
+      delete v1_hub_path(hubs.first.id), headers: hub_auth_headers
+      expect(response).to have_http_status(:forbidden)
     end
 
     it "should not delete a hub if authenticated as user" do
