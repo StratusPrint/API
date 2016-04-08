@@ -4,29 +4,31 @@
     "type": "object",
     "properties": {
         "job_id": { "type": "integer" },
-        "status": {
-            "enum": ["processing", "slicing", "printing", "completed", "paused", "errored"],
-            "type": "string"
-        },
-        "started": { "type": "date-time" },
-        "completed": { "type": "date-time" },
-        "file": {
-          "name": { "type": "string" },
-          "origin": { "type": "string" },
-          "size": { "type": "integer" },
-          "date": { "type": "date-time" }
-        },
-        "estimatedPrintTime": { "type": "integer" },
-        "filament": {
-          "length": { "type": "string" },
-          "volume": { "type": "string" }
-        },
-        "progress": {
-            "completion": { "type": "string" },
-            "filePos": { "type": "integer" },
-            "printTime": { "type": "integer" },
-            "printTimeLeft": { "type": "integer" }
+        "data": {
+            "status": {
+                "enum": ["processing", "slicing", "printing", "completed", "paused", "errored"],
+                "type": "string"
+            },
+            "started": { "type": "date-time" },
+            "completed": { "type": "date-time" },
+            "file": {
+              "name": { "type": "string" },
+              "origin": { "type": "string" },
+              "size": { "type": "integer" },
+              "date": { "type": "date-time" }
+            },
+            "estimatedPrintTime": { "type": "integer" },
+            "filament": {
+              "length": { "type": "string" },
+              "volume": { "type": "string" }
+            },
+            "progress": {
+                "completion": { "type": "string" },
+                "filePos": { "type": "integer" },
+                "printTime": { "type": "integer" },
+                "printTimeLeft": { "type": "integer" }
+            },
         }
     },
-    "required": ["job_id", "status", "file", "started", "completed", "estimatedPrintTime", "fileament", "progress"]
+    "required": ["job_id", "data"]
 }
