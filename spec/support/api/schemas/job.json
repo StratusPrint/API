@@ -3,28 +3,30 @@
     "description": "A printing job belonging to a 3D printer.",
     "type": "object",
     "properties": {
-        "id": {
-            "type": "integer"
-        },
-        "file": {
-            "type": "string"
-        },
-        "started": {
-            "type": "date-time"
-        },
-        "completed": {
-            "type": "date-time"
-        },
+        "job_id": { "type": "integer" },
         "status": {
-            "enum": ["active", "completed", "paused", "cancelled", "errored"],
+            "enum": ["processing", "slicing", "printing", "completed", "paused", "errored"],
             "type": "string"
         },
-        "duration": {
-            "type": "integer"
+        "started": { "type": "date-time" },
+        "completed": { "type": "date-time" },
+        "file": {
+          "name": { "type": "string" },
+          "origin": { "type": "string" },
+          "size": { "type": "integer" },
+          "date": { "type": "date-time" }
+        },
+        "estimatedPrintTime": { "type": "integer" },
+        "filament": {
+          "length": { "type": "string" },
+          "volume": { "type": "string" }
         },
         "progress": {
-            "type": "string"
+            "completion": { "type": "string" },
+            "filePos": { "type": "integer" },
+            "printTime": { "type": "integer" },
+            "printTimeLeft": { "type": "integer" }
         }
     },
-    "required": ["id", "file", "completed", "status", "duration", "progress"]
+    "required": ["job_id", "status", "file", "started", "completed", "estimatedPrintTime", "fileament", "progress"]
 }
