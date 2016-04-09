@@ -133,21 +133,9 @@ describe "Job Management", :type => :request do
       expect(response).to have_http_status(:unauthorized)
     end
 
-    it "should update a job if authenticated as the parent hub" do
-      patch v1_job_path(job.id), params: { job: new_job.attributes }, headers: hub_auth_headers
-      expect(response).to have_http_status(:success)
-      expect(response).to match_response_schema("job")
-    end
-
     it "should not update a job if not authenticated as the parent hub" do
       patch v1_job_path(hubs.second.printers.first.jobs.first.id), params: { job: new_job.attributes }, headers: hub_auth_headers
       expect(response).to have_http_status(:forbidden)
-    end
-
-    it "should update a job if authenticated as parent hub" do
-      patch v1_job_path(job.id), params: { job: new_job.attributes }, headers: hub_auth_headers
-      expect(response).to have_http_status(:success)
-      expect(response).to match_response_schema("job")
     end
 
     it "should not update a job if not authenticated as parent hub" do
@@ -158,6 +146,12 @@ describe "Job Management", :type => :request do
     it "should not update a job if authenticated as user" do
       patch v1_job_path(job.id), params: { job: new_job.attributes }, headers: user_auth_headers
       expect(response).to have_http_status(:forbidden)
+    end
+
+    it "should update a job if authenticated as the parent hub" do
+      patch v1_job_path(job.id), params: { job: new_job.attributes }, headers: hub_auth_headers
+      expect(response).to have_http_status(:success)
+      expect(response).to match_response_schema("job")
     end
 
     it "should update a job if authenticated as admin" do

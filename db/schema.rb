@@ -67,13 +67,14 @@ ActiveRecord::Schema.define(version: 20160408215415) do
   add_index "hubs", ["uid", "provider"], name: "index_hubs_on_uid_and_provider", unique: true, using: :btree
 
   create_table "jobs", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                                                                                                                                                                                                                                                                                                                             null: false
+    t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                             null: false
     t.integer  "job_id"
-    t.jsonb    "data"
+    t.text     "data",       default: "{\"file\": {\"date\": 0, \"name\": \"string\", \"size\": 0, \"origin\": \"sdcard\"}, \"status\": \"processing\", \"filament\": {\"length\": \"string\", \"volume\": \"string\"}, \"progress\": {\"filepos\": 0, \"printTime\": 0, \"completion\": \"string\", \"printTimeLeft\": 0}, \"estimatedPrintTime\": 0}"
   end
 
   add_index "jobs", ["job_id"], name: "index_jobs_on_job_id", unique: true, using: :btree
+  add_index "jobs", ["job_id"], name: "jobs_job_id_key", unique: true, using: :btree
 
   create_table "printer_jobs", force: :cascade do |t|
     t.integer  "printer_id"

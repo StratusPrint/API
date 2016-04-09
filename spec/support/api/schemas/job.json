@@ -3,7 +3,9 @@
     "description": "A printing job belonging to a 3D printer.",
     "type": "object",
     "properties": {
-        "job_id": { "type": "integer" },
+        "id": { "type": "integer" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" },
         "data": {
             "status": {
                 "enum": ["processing", "slicing", "printing", "completed", "paused", "errored"],
@@ -27,8 +29,8 @@
                 "filePos": { "type": "integer" },
                 "printTime": { "type": "integer" },
                 "printTimeLeft": { "type": "integer" }
-            },
+            }
         }
     },
-    "required": ["job_id", "data"]
+    "required": ["id", "data"]
 }

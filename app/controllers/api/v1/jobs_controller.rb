@@ -145,6 +145,7 @@ module Api::V1
 
     # PATCH/PUT /jobs/1
     def update
+      #if @job.update(job_params.except(:id))
       if @job.update(job_params)
         render json: @job
       else
@@ -165,7 +166,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def job_params
-      params.require(:job).permit(:file, :started, :completed, :status, :duration, :progress, :status_code)
+      params.require(:job).permit(:data => [{:file => [:date, :name, :size, :origin]}, :status, {:filament => [:length, :volume]}, {:progress => [:filepos, :printTime, :completion, :printTimeLeft]}, :estimatedPrintTime])
     end
   end
 end

@@ -1,9 +1,9 @@
 class Job < ApplicationRecord
   swagger_schema :Job do
-    key :required, [:job_id, :data]
-    property :job_id do
+    key :required, [:id, :data]
+    property :id do
       key :type, :integer
-      key :description, 'The unique ID of the print job'
+      key :description, 'The unique ID of the print job.'
     end
     property :created_at do
       key :type, :string
@@ -35,11 +35,11 @@ class Job < ApplicationRecord
         key :title, 'file'
         property :name do
           key :type, :string
-          key :enum, ['sdcard', 'local']
           key :description, 'The name of the file being printed'
         end
         property :origin do
           key :type, :string
+          key :enum, ['sdcard', 'local']
           key :description, 'The origin of the file, local when stored in OctoPrint’s uploads folder, sdcard when stored on the printer’s SD card (if available)'
         end
         property :size do
@@ -91,5 +91,9 @@ class Job < ApplicationRecord
   has_one :printer_job
   has_one :printer, through: :printer_job
 
-  validates :job_id, :uniqueness => true
+  #validates :job_id, :uniqueness => true
+
+  serialize :data, JSON
+
+  #self.primary_key = 'job_id'
 end
