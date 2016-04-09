@@ -91,9 +91,5 @@ class Job < ApplicationRecord
   has_one :printer_job
   has_one :printer, through: :printer_job
 
-  #validates :job_id, :uniqueness => true
-
   serialize :data, JSON
-
-  #self.primary_key = 'job_id'
 end

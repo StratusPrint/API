@@ -145,7 +145,6 @@ module Api::V1
 
     # PATCH/PUT /jobs/1
     def update
-      #if @job.update(job_params.except(:id))
       if @job.update(job_params)
         render json: @job
       else
