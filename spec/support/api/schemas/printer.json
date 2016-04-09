@@ -15,13 +15,23 @@
         "model": {
             "type": "string"
         },
-        "status": {
-            "enum": ["idle", "printing", "online", "offline"],
-            "type": "string"
-        },
         "num_jobs": {
             "type": "integer"
-        }
+        },
+        "data": {
+            "state": {
+                "text": { "type": "string" },
+                "flags": {
+                    "operational": { "type": "boolean" },
+                    "paused": { "type": "boolean" },
+                    "printing": { "type": "boolean" },
+                    "sdReady": { "type": "boolean" },
+                    "error": { "type": "boolean" },
+                    "ready": { "type": "boolean" },
+                    "closedOrError": { "type": "boolean" }
+                }
+            }
+        },
     },
-    "required": ["id", "friendly_id", "manufacturer", "model", "status", "num_jobs"]
+    "required": ["id", "friendly_id", "manufacturer", "model", "status", "num_jobs", "data"]
 }

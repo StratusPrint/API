@@ -17,14 +17,51 @@ class Printer < ApplicationRecord
       key :type, :string
       key :description, 'The model name of the printer'
     end
-    property :status do
-      key :type, :string
-      key :description, 'The current status of the printer'
-      key :enum, ['idle', 'printing', 'online', 'offline']
-    end
     property :num_jobs do
       key :type, :integer
       key :description, 'The number of current and previous jobs managed by the printer'
+    end
+    property :data do
+      key :title, 'data'
+      property :state do
+        key :title, 'state'
+        property :text do
+          key :type, :string
+          key :description, 'A textual representation of the current state of the printer, e.g. "Operational" or "Printing"'
+          key :enum, ['Operational', 'Paused', 'Printing', 'SD Ready', 'Error', 'Ready', 'Closed or Error']
+        end
+        property :flags do
+          key :title, 'flags'
+          property :operational do
+            key :type, :boolean
+            key :description, 'true if the printer is operational, false otherwise'
+          end
+          property :paused do
+            key :type, :boolean
+            key :description, 'true if the printer is currently paused, false otherwise'
+          end
+          property :printing do
+            key :type, :boolean
+            key :description, 'true if the printer is currently printing, false otherwise'
+          end
+          property :sdReady do
+            key :type, :boolean
+            key :description, 'true if the printer’s SD card is available and initialized, false otherwise'
+          end
+          property :error do
+            key :type, :boolean
+            key :description, 'true if an unrecoverable error occurred, false otherwise'
+          end
+          property :ready do
+            key :type, :boolean
+            key :description, 'true if the printer is operational and no data is currently being streamed to SD, so ready to receive instructions'
+          end
+          property :closedOrError do
+            key :type, :boolean
+            key :description, 'true if the printer is disconnected (possibly due to an error), false otherwise'
+          end
+        end
+      end
     end
   end
 
@@ -32,7 +69,7 @@ class Printer < ApplicationRecord
 
   validates :friendly_id, :uniqueness => true, :presence => true
 
-  enumerize :status, in: [:idle, :printing, :online, :offline]
+  #enumerize :status, in: [:idle, :printing, :online, :offline]
 
   has_one :hub_printer
   has_one :hub, through: :hub_printer
