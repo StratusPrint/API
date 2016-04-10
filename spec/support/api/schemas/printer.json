@@ -18,6 +18,12 @@
         "num_jobs": {
             "type": "integer"
         },
+        "updated_at": {
+            "type": "date-time"
+        },
+        "description": {
+            "type": "string"
+        },
         "data": {
             "state": {
                 "text": { "type": "string" },
@@ -31,7 +37,7 @@
                     "closedOrError": { "type": "boolean" }
                 }
             }
-        },
+        }
     },
-    "required": ["id", "friendly_id", "manufacturer", "model", "status", "num_jobs", "data"]
+    "required": ["id", "friendly_id", "manufacturer", "model", "num_jobs", "updated_at", "description", "data"]
 }

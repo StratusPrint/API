@@ -3,10 +3,10 @@ class CreatePrinters < ActiveRecord::Migration[5.0]
     create_table :printers do |t|
       t.text :manufacturer
       t.text :model
-      t.text :status
       t.text :friendly_id
       t.text :num_jobs
-      t.text :desc
+      t.text :description
+      t.text :data, default: '{"state": {"text": "Operational", "flags": {"operational": true, "paused": true, "printing": true, "sdReady": true, "error": true, "ready": true, "closedOrError": true } } }'
       t.timestamps
     end
 

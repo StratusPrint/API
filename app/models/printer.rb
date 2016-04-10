@@ -21,6 +21,10 @@ class Printer < ApplicationRecord
       key :type, :integer
       key :description, 'The number of current and previous jobs managed by the printer'
     end
+    property :description do
+      key :type, :string
+      key :description, 'A description of what the printer for organizational purposes.'
+    end
     property :data do
       key :title, 'data'
       property :state do
@@ -75,6 +79,8 @@ class Printer < ApplicationRecord
   has_one :hub, through: :hub_printer
   has_many :printer_jobs
   has_many :jobs, through: :printer_jobs
+
+  serialize :data, JSON
 
   private
   def destroy_jobs
