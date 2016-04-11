@@ -1,6 +1,5 @@
 class User < ApplicationRecord
   swagger_schema :User do
-    key :required, [:friendly_id, :ip, :hostname]
     property :id do
       key :type, :integer
       key :description, 'The unique ID of the user'
