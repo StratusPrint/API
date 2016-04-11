@@ -19,6 +19,12 @@ en:
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
+        confirm_link_msg: "You can confirm your account email through the link below:"
+        confirm_account_link: "Confirm my account"
+        password_msg: "After confirming your account, you will then be able to login with the following credentials:"
+        email_label: "E-mail:"
+        password_label: "Password:"
+        change_password_msg: "You can change your account password to one of your own personal choice after logging in."
       reset_password_instructions:
         subject: "Reset password instructions"
       unlock_instructions:
