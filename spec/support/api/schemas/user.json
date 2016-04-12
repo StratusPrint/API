@@ -9,9 +9,6 @@
         "name": {
             "type": "string"
         },
-        "nickname": {
-            "type": "string"
-        },
         "image": {
             "type": "string"
         },
@@ -20,7 +17,16 @@
         },
         "admin": {
             "type": "boolean"
+        },
+        "last_sign_in_ip": {
+            "type": "string"
+        },
+        "last_sign_in_at": {
+            "type": "date-time"
+        },
+        "created_at": {
+            "type": "date-time"
         }
     },
-    "required": ["email", "name"]
+    "required": ["id", "email", "name", "image", "admin", "created_at"]
 }
