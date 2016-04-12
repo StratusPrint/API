@@ -259,7 +259,7 @@ module Api::V1
     swagger_path '/users' do
       operation :get do
         key :summary, 'List all users'
-        key :description, 'Use this route to list all registered users. Required admin priveleges.'
+        key :description, 'Use this route to list all registered users. Requires admin priveleges.'
         key :operationId, 'listUsers'
         key :produces, [
           'application/json'
