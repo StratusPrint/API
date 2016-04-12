@@ -358,6 +358,9 @@ module Api::V1
             key :description, 'When the access token expires'
             key :type, :string
           end
+          schema do
+            key :'$ref', :Hub
+          end
         end
         response 401 do
           key :description, 'Not authorized'
@@ -414,6 +417,9 @@ module Api::V1
         end
         response 200 do
           key :description, 'Token valid'
+          schema do
+            key :'$ref', :Hub
+          end
         end
         response 401 do
           key :description, 'Token invalid'

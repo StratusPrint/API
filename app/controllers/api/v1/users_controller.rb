@@ -6,7 +6,7 @@ module Api::V1
     swagger_path '/auth' do
       operation :post do
         key :summary, 'Register new user'
-        key :description, 'Requires email, password, password_confirmation, and confirm_success_url params. A verification email will be sent to the email address provided.'
+        key :description, 'Requires email and confirm_success_url params. Valid user model params are also accepted as well. A confirmation email will be sent to the email address provided with a randomly generated password. Once the account is confirmed, the user will be able to login. Note that the action of creating a new account requires admin priveleges.'
         key :operationId, 'registerNewUser'
         key :produces, [
           'application/json'
@@ -22,20 +22,6 @@ module Api::V1
           key :type, :string
         end
         parameter do
-          key :name, :password
-          key :in, :query
-          key :description, 'Password of the user'
-          key :required, :true
-          key :type, :string
-        end
-        parameter do
-          key :name, :password_confirmation
-          key :in, :query
-          key :description, 'Password confirmation'
-          key :required, :true
-          key :type, :string
-        end
-        parameter do
           key :name, :confirm_success_url
           key :in, :query
           key :description, 'Where to redirect user after successful e-mail confirmation'
@@ -44,13 +30,16 @@ module Api::V1
         end
         response 200 do
           key :description, 'User successfully registered'
+          schema do
+            key :'$ref', :Hub
+          end
         end
       end
     end
     swagger_path '/auth' do
       operation :patch do
         key :summary, 'Update existing user'
-        key :description, 'This route will update an existing user\'s account settings. The default accepted params are password and password_confirmation.'
+        key :description, 'This route will update an existing user\'s profile. The default accepted params are all valid user model params including password and password_confirmation.'
         key :operationId, 'updateUserAccount'
         key :produces, [
           'application/json'
@@ -62,18 +51,35 @@ module Api::V1
           key :name, :password
           key :in, :query
           key :description, 'Password of the user'
-          key :required, :true
+          key :required, :false
           key :type, :string
         end
         parameter do
           key :name, :password_confirmation
           key :in, :query
-          key :description, 'Password confirmation'
-          key :required, :true
+          key :description, 'Password confirmation (required if password param provided)'
+          key :required, :false
+          key :type, :string
+        end
+        parameter do
+          key :name, :name
+          key :in, :query
+          key :description, 'The name of the user'
+          key :required, :false
+          key :type, :string
+        end
+        parameter do
+          key :name, :email
+          key :in, :query
+          key :description, 'The email of the user'
+          key :required, :false
           key :type, :string
         end
         response 200 do
           key :description, 'User successfully updated'
+          schema do
+            key :'$ref', :Hub
+          end
         end
       end
     end
