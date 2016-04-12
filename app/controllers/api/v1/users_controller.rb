@@ -226,7 +226,7 @@ module Api::V1
       end
       operation :patch do
         key :summary, 'Change user password'
-        key :description, 'Use this route to change users\' passwords. Requires password and password_confirmation as params.'
+        key :description, 'Use this route to change the current user\'s password. Requires password and password_confirmation as params.'
         key :operationId, 'changePassword'
         key :produces, [
           'application/json'
