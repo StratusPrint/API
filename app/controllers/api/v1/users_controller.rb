@@ -6,7 +6,7 @@ module Api::V1
     swagger_path '/auth' do
       operation :post do
         key :summary, 'Register new user'
-        key :description, 'Requires email and confirm_success_url params. Valid user model params are also accepted as well. A confirmation email will be sent to the email address provided with a randomly generated password. Once the account is confirmed, the user will be able to login. Note that the action of creating a new account requires admin priveleges.'
+        key :description, 'Requires email and confirm_success_url params. Valid user model params (e.g. name, image, etc.) are also accepted. A confirmation email will be sent to the email address provided with a randomly generated password. Once the account is confirmed, the user will be able to login. Note that the action of creating a new account requires admin priveleges.'
         key :operationId, 'registerNewUser'
         key :produces, [
           'application/json'
@@ -259,7 +259,7 @@ module Api::V1
     swagger_path '/users' do
       operation :get do
         key :summary, 'List all users'
-        key :description, 'Use this route to list all registered users.'
+        key :description, 'Use this route to list all registered users. Required admin priveleges.'
         key :operationId, 'listUsers'
         key :produces, [
           'application/json'
