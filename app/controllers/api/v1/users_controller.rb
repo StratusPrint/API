@@ -31,7 +31,7 @@ module Api::V1
         response 200 do
           key :description, 'User successfully registered'
           schema do
-            key :'$ref', :Hub
+            key :'$ref', :User
           end
         end
       end
@@ -39,7 +39,7 @@ module Api::V1
     swagger_path '/auth' do
       operation :patch do
         key :summary, 'Update existing user'
-        key :description, 'This route will update an existing user\'s profile. The default accepted params are all valid user model params including password and password_confirmation.'
+        key :description, 'This route will update an existing user\'s profile. The default accepted params are all valid user model params. This can be used to change the current user\'s password by including password and password_confirmation as params.'
         key :operationId, 'updateUserAccount'
         key :produces, [
           'application/json'
@@ -78,7 +78,7 @@ module Api::V1
         response 200 do
           key :description, 'User successfully updated'
           schema do
-            key :'$ref', :Hub
+            key :'$ref', :User
           end
         end
       end
