@@ -284,7 +284,7 @@ module Api::V1
     swagger_path '/users/{id}' do
       operation :get do
         key :summary, 'Find user by ID'
-        key :description, 'Fetch a single user. Users only have access to themselves while admins can access all registered users.'
+        key :description, 'Fetch a single user. Requires admin priveleges.'
         key :operationId, 'findUserById'
         key :produces, [
           'application/json'
@@ -297,6 +297,77 @@ module Api::V1
           schema do
             key :'$ref', :User
           end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+      end
+      operation :patch do
+        key :summary, 'Update an existing user'
+        key :description, 'Accepts valid user model params. Requires admin priveleges.'
+        key :operationId, 'updateUserById'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'User Management'
+        ]
+        parameter do
+          key :name, :email
+          key :in, :query
+          key :description, 'E-mail address of the user'
+          key :required, :false
+          key :type, :string
+        end
+        parameter do
+          key :name, :name
+          key :in, :query
+          key :description, 'Name of the user'
+          key :required, :false
+          key :type, :string
+        end
+        parameter do
+          key :name, :image
+          key :in, :query
+          key :description, 'The profile image URL of the user'
+          key :required, :false
+          key :type, :string
+        end
+        parameter do
+          key :name, :admin
+          key :in, :query
+          key :description, 'Whether the user has admin priveleges or not'
+          key :required, :false
+          key :type, :boolean
+        end
+        response 200 do
+          key :description, 'User object'
+          schema do
+            key :'$ref', :User
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+      end
+      operation :delete do
+        key :summary, 'Delete an existing user'
+        key :description, 'Deletes a user account. Requires admin priveleges.'
+        key :operationId, 'deleteUser'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'User Management'
+        ]
+        response 204 do
+          key :description, 'User successfully deleted'
         end
         response 401 do
           key :description, 'Authorization error'
@@ -357,7 +428,9 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:name, :email)
+      # Ensure a user can't give themselves admin priveleges
+      params.delete(:admin) if current_user.admin?
+      params.require(:user).permit(:name, :email, :admin, :image)
     end
   end
 end

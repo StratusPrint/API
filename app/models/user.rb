@@ -8,10 +8,6 @@ class User < ApplicationRecord
       key :type, :string
       key :description, 'The name of the user'
     end
-    property :nickname do
-      key :type, :string
-      key :description, 'The nickname of the user'
-    end
     property :image do
       key :type, :string
       key :description, 'The user\'s profile image'
