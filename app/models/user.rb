@@ -20,6 +20,18 @@ class User < ApplicationRecord
       key :type, :boolean
       key :description, 'Whether the user has admin priveleges or not'
     end
+    property :last_sign_in_ip do
+      key :type, :string
+      key :description, 'The IP address the user has last signed in with'
+    end
+    property :last_sign_in_at do
+      key :type, :string
+      key :description, 'The last time that the user signed in'
+    end
+    property :created_at do
+      key :type, :string
+      key :description, 'When the user was created'
+    end
   end
 
   validates :email, :uniqueness => true
