@@ -165,7 +165,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def job_params
-      params.require(:job).permit(:data => [{:file => [:date, :name, :size, :origin]}, :status, {:filament => [:length, :volume]}, {:progress => [:filepos, :printTime, :completion, :printTimeLeft]}, :estimatedPrintTime])
+      params.fetch(:job, {}).permit(:data => [{:file => [:date, :name, :size, :origin]}, :status, {:filament => [:length, :volume]}, {:progress => [:file_position, :print_time, :completion, :print_time_left]}, :estimated_print_time])
     end
   end
 end
