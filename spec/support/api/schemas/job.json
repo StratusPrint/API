@@ -19,16 +19,16 @@
               "size": { "type": "integer" },
               "date": { "type": "date-time" }
             },
-            "estimatedPrintTime": { "type": "integer" },
+            "estimated_print_time": { "type": "integer" },
             "filament": {
               "length": { "type": "string" },
               "volume": { "type": "string" }
             },
             "progress": {
                 "completion": { "type": "string" },
-                "filePos": { "type": "integer" },
-                "printTime": { "type": "integer" },
-                "printTimeLeft": { "type": "integer" }
+                "file_position": { "type": "integer" },
+                "printe_time": { "type": "integer" },
+                "print_time_left": { "type": "integer" }
             }
         }
     },

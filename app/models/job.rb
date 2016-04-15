@@ -51,7 +51,7 @@ class Job < ApplicationRecord
           key :description, 'The UNIX timestamp when this file was uploaded. Only available for local files.'
         end
       end
-      property :estimatedPrintTime do
+      property :estimated_print_time do
         key :type, :integer
         key :description, 'The estimated print time of the file, in seconds'
       end
@@ -72,15 +72,15 @@ class Job < ApplicationRecord
           key :type, :string
           key :description, 'Percentage of completion of the current print job'
         end
-        property :filepos do
+        property :file_position do
           key :type, :integer
           key :description, 'Current position in the file being printed, in bytes from the beginning'
         end
-        property :printTime do
+        property :print_time do
           key :type, :integer
           key :description, 'Time already spent printing, in seconds'
         end
-        property :printTimeLeft do
+        property :print_time_left do
           key :type, :integer
           key :description, 'Time already spent printing, in seconds'
         end
