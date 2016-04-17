@@ -33,5 +33,5 @@
             }
         }
     },
-    "required": ["id", "data", "model_file_url"]
+    "required": ["id", "data"]
 }
