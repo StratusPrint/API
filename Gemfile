@@ -32,6 +32,9 @@ gem 'activevalidators'
 gem 'enumerize'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+# File uploads
+gem 'carrierwave'
+gem 'carrierwave-base64'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'

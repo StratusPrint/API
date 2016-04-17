@@ -15,6 +15,15 @@ class Job < ApplicationRecord
       key :format, 'date-time'
       key :description, 'The time the print job was last updated by the hub'
     end
+    property :model do
+      key :type, :string
+      key :format, :byte
+      key :description, 'The 3D model to print. Must be base64 encoded. Accepts *.stl and *.gcode extensions.'
+    end
+    property :model_file_url do
+      key :type, :string
+      key :description, 'A URL that can be used to download the model file associated with this job.'
+    end
     property :data do
       key :title, 'data'
       key :required, [:status, :started, :completed, :file, :origin, :size, :date, :filament, :progress]
@@ -90,6 +99,8 @@ class Job < ApplicationRecord
 
   has_one :printer_job
   has_one :printer, through: :printer_job
+
+  mount_base64_uploader :model, ModelUploader
 
   serialize :data, JSON
 end
