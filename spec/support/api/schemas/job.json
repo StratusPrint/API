@@ -6,7 +6,6 @@
         "id": { "type": "integer" },
         "created_at": { "type": "string" },
         "updated_at": { "type": "string" },
-        "model_file_url": { "type": "string" },
         "data": {
             "status": {
                 "enum": ["processing", "slicing", "printing", "completed", "paused", "errored"],
