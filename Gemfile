@@ -17,7 +17,7 @@ gem 'redis', '~> 3.0'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 # User authentication
 gem 'omniauth', '>= 1.0.0'
-gem "devise", :github => 'plataformatec/devise', :ref => 'ccda4692b45c60ba2a76bc9d2cdac777a2574769'
+gem "devise", :github => 'plataformatec/devise', :branch => 'master'
 gem 'devise_token_auth', :github => 'StratusPrint/devise_token_auth', :branch => 'master'
 # Resource authorization
 gem 'cancancan', '~> 1.10'
@@ -35,7 +35,6 @@ gem 'enumerize'
 # File uploads
 gem 'carrierwave'
 gem 'carrierwave-base64'
-
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
