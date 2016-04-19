@@ -9,8 +9,8 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/devise.git
-  revision: 2b3799e6ceb315172d14a16103ab9fb1702f79fc
-  branch: master
+  revision: ccda4692b45c60ba2a76bc9d2cdac777a2574769
+  tag: ccda4692b45c60ba2a76bc9d2cdac777a2574769
   specs:
     devise (4.0.0.rc2)
       bcrypt (~> 3.0)
