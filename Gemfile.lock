@@ -8,6 +8,18 @@ GIT
       rails (< 6)
 
 GIT
+  remote: git://github.com/plataformatec/devise.git
+  revision: ccda4692b45c60ba2a76bc9d2cdac777a2574769
+  ref: ccda4692b45c60ba2a76bc9d2cdac777a2574769
+  specs:
+    devise (4.0.0.rc2)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0, < 5.1)
+      responders
+      warden (~> 1.2.3)
+
+GIT
   remote: git://github.com/rails-api/active_model_serializers.git
   revision: 63e93375e3ad172b1e4df38b75c97ed30e29adbb
   specs:
@@ -95,12 +107,6 @@ GEM
     date_validator (0.9.0)
       activemodel
       activesupport
-    devise (4.0.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
-      responders
-      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     docile (1.1.5)
     enumerize (1.1.1)
@@ -232,7 +238,7 @@ DEPENDENCIES
   carrierwave-base64
   coveralls
   database_cleaner
-  devise
+  devise!
   devise_token_auth!
   enumerize
   factory_girl_rails
