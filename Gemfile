@@ -17,7 +17,7 @@ gem 'redis', '~> 3.0'
 gem 'active_model_serializers', :github => 'rails-api/active_model_serializers'
 # User authentication
 gem 'omniauth', '>= 1.0.0'
-gem "devise", :github => 'plataformatec/devise', :tag => 'ccda4692b45c60ba2a76bc9d2cdac777a2574769'
+gem "devise", :github => 'plataformatec/devise', :branch => 'master'
 gem 'devise_token_auth', :github => 'StratusPrint/devise_token_auth', :branch => 'master'
 # Resource authorization
 gem 'cancancan', '~> 1.10'
@@ -31,11 +31,12 @@ gem 'rack-cors', :require => 'rack/cors'
 gem 'activevalidators'
 gem 'enumerize'
 # File uploads
-gem 'carrierwave'
+gem 'carrierwave', '0.10.0'
 gem 'carrierwave-base64'
 # Background processing
 gem 'sidekiq'
 gem 'carrierwave_backgrounder', github: 'lardawge/carrierwave_backgrounder'
+gem 'mime-types', '2.3'
 
 group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
