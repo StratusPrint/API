@@ -8,6 +8,14 @@ GIT
       rails (< 6)
 
 GIT
+  remote: git://github.com/lardawge/carrierwave_backgrounder.git
+  revision: 38b381faaace6c75f7310ea726dcd1be2604d3fb
+  specs:
+    carrierwave_backgrounder (0.4.2)
+      carrierwave (~> 0.5)
+      mime-types (~> 2.3)
+
+GIT
   remote: git://github.com/plataformatec/devise.git
   revision: ccda4692b45c60ba2a76bc9d2cdac777a2574769
   tag: ccda4692b45c60ba2a76bc9d2cdac777a2574769
@@ -21,9 +29,9 @@ GIT
 
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 5af7d96294be6922d954c9dcc3ccc5e743c44ec2
+  revision: 7485c8487ee60a591db500740f88699d4ba7c71c
   specs:
-    active_model_serializers (0.10.0.rc4)
+    active_model_serializers (0.10.0.rc5)
       actionpack (>= 4.0)
       activemodel (>= 4.0)
       railties (>= 4.0)
@@ -80,7 +88,7 @@ GEM
     arel (7.0.0)
     bcrypt (3.1.11)
     builder (3.2.2)
-    byebug (8.2.2)
+    byebug (8.2.4)
     cancancan (1.13.1)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -90,6 +98,7 @@ GEM
     carrierwave-base64 (2.1.1)
       carrierwave (>= 0.8.0, < 0.11.0)
     concurrent-ruby (1.0.1)
+    connection_pool (2.2.0)
     countries (1.2.5)
       currencies (~> 0.4.2)
       i18n_data (~> 0.7.0)
@@ -103,7 +112,7 @@ GEM
       activemodel (>= 3, < 5)
       activesupport (>= 3, < 5)
     currencies (0.4.2)
-    database_cleaner (1.5.1)
+    database_cleaner (1.5.2)
     date_validator (0.9.0)
       activemodel
       activesupport
@@ -112,10 +121,10 @@ GEM
     enumerize (1.1.1)
       activesupport (>= 3.2)
     erubis (2.7.0)
-    factory_girl (4.5.0)
+    factory_girl (4.7.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.6.0)
-      factory_girl (~> 4.5.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -132,9 +141,7 @@ GEM
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
-    mime-types (3.0)
-      mime-types-data (~> 3.2015)
-    mime-types-data (3.2016.0221)
+    mime-types (2.99.1)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     nio4r (1.2.1)
@@ -145,8 +152,8 @@ GEM
       rack (>= 1.0, < 3)
     orm_adapter (0.5.0)
     pg (0.18.4)
-    phony (2.15.17)
-    puma (3.0.2)
+    phony (2.15.21)
+    puma (3.4.0)
     rack (2.0.0.alpha)
       json
     rack-cors (0.4.0)
@@ -179,7 +186,7 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.1.2)
-    redis (3.2.2)
+    redis (3.3.0)
     responders (2.1.2)
       railties (>= 4.2.0, < 5.1)
     rspec-core (3.1.7)
@@ -198,13 +205,17 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
+    sidekiq (4.1.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     simplecov (0.11.2)
       docile (~> 1.1.0)
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    spring (1.6.4)
-    sprockets (3.5.2)
+    spring (1.7.1)
+    sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.0.4)
@@ -212,7 +223,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     sqlite3 (1.3.11)
-    swagger-blocks (1.3.1)
+    swagger-blocks (1.3.3)
     term-ansicolor (1.3.2)
       tins (~> 1.0)
     thor (0.19.1)
@@ -236,6 +247,7 @@ DEPENDENCIES
   cancancan (~> 1.10)
   carrierwave
   carrierwave-base64
+  carrierwave_backgrounder!
   coveralls
   database_cleaner
   devise!
@@ -251,6 +263,7 @@ DEPENDENCIES
   rails (= 5.0.0.beta3)
   redis (~> 3.0)
   rspec-rails
+  sidekiq
   spring
   sqlite3
   swagger-blocks

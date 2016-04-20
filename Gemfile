@@ -30,13 +30,12 @@ gem 'rack-cors', :require => 'rack/cors'
 # ActiveModel Validators
 gem 'activevalidators'
 gem 'enumerize'
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 # File uploads
 gem 'carrierwave'
 gem 'carrierwave-base64'
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem 'rack-cors'
+# Background processing
+gem 'sidekiq'
+gem 'carrierwave_backgrounder', github: 'lardawge/carrierwave_backgrounder'
 
 group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

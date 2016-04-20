@@ -32,5 +32,8 @@ module Api
     config.autoload_paths << Rails.root.join('lib')
 
     config.middleware.use ActionDispatch::Flash
+
+    # Use sidekiq as job queueing backend
+    config.active_job.queue_adapter = :sidekiq
   end
 end
