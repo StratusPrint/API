@@ -103,5 +103,7 @@ class Job < ApplicationRecord
   mount_base64_uploader :model, ModelUploader
   process_in_background :model, ModelWorker
 
+  validates_presence_of :model
+
   serialize :data, JSON
 end
