@@ -15,7 +15,5 @@ def model_file_extension
 end
 
 def model_file_name_full
-  name = self.model_file_name
-  extension = model_file_extension
-  "#{name}.#{extension}"
+  "#{model_file_name}#{model_file_extension}"
 end

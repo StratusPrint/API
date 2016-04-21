@@ -7,5 +7,7 @@ FactoryGirl.define do
     created_at { Time.at(rand(12.hours.ago.to_f..Time.now.to_f)) }
     updated_at { Time.now }
     id { generate(:id) }
+    model_file_name { "planet_gear" }
+    model { "data:application/stl;base64,R0lGODlhPQ==" }
   end
 end
