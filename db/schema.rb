@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420192542) do
+ActiveRecord::Schema.define(version: 20160421033004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20160420192542) do
     t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                                                 null: false
     t.integer  "job_id"
     t.text     "data",             default: "{\"status\": \"processing\", \"file\": {\"name\": \"string\", \"origin\": \"sdcard\", \"size\": 0, \"date\": 0 }, \"estimated_print_time\": 0, \"filament\": {\"length\": \"string\", \"volume\": \"string\"}, \"progress\": {\"completion\": \"string\", \"file_position\": 0, \"print_time\": 0, \"print_time_left\": 0 } }"
-    t.string   "model"
+    t.text     "model"
     t.boolean  "model_processing", default: false,                                                                                                                                                                                                                                                                                                                           null: false
   end
 

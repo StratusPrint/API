@@ -39,19 +39,12 @@ class ModelUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_white_list
-    %w(stl gcode gif)
+    %w(stl gcode)
   end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "#{secure_token}.#{file.extension}" if original_filename.present?
-  # end
-
-  protected
-
-  def secure_token
-    var = :"@#{mounted_as}_secure_token"
-    model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
+  def filename
+    "#{model.model_file_name}.#{file.extension}" if original_filename.present?
   end
 end

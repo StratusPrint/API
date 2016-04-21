@@ -20,6 +20,10 @@ class Job < ApplicationRecord
       key :format, :byte
       key :description, 'The 3D model to print. Must be base64 encoded. Accepts *.stl and *.gcode extensions.'
     end
+    property :model_file_name do
+      key :type, :string
+      key :description, 'The file name of the 3D model'
+    end
     property :model_file_url do
       key :type, :string
       key :description, 'A URL that can be used to download the model file associated with this job.'
@@ -103,7 +107,7 @@ class Job < ApplicationRecord
   mount_base64_uploader :model, ModelUploader
   process_in_background :model, ModelWorker
 
-  validates_presence_of :model
+  validates_presence_of :model, :model_name
 
   serialize :data, JSON
 end
