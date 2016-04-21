@@ -11,7 +11,7 @@ def model_file_name
 end
 
 def model_file_extension
-  "test"
+  File.extname(self.model.url)
 end
 
 def model_file_name_full
