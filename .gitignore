@@ -26,4 +26,4 @@
 config/application.yml
 
 # Uploads
-public/uploads
+uploads/

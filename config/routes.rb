@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     end
   end
   resources :apidocs, only: [:index]
+  get '/uploads/:resource/:id/:attachment/:basename.:extension', :controller => "downloads", :action => "download", via: :get
 end
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
