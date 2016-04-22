@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       resources :hubs, shallow: true do
         resources :printers do
           resources :jobs
+          member do
+            post 'start'
+            post 'pause'
+            post 'cancel'
+          end
         end
         resources :sensors do
           resources :data, :controller => :data_points

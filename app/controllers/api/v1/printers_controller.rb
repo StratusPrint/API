@@ -110,7 +110,72 @@ module Api::V1
         end
       end
     end
-
+    swagger_path '/prints/{id}/start' do
+      operation :post do
+        key :summary, 'Send start command to the printer'
+        key :description, 'Sends a start command to the printer. If printing is paused, it will resume again after this command is issued.'
+        key :operationId, 'startPrinterCommand'
+        key :tags, [
+          'Printer Management'
+        ]
+        response 204 do
+          key :description, 'Command sent to printer'
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
+    swagger_path '/prints/{id}/pause' do
+      operation :post do
+        key :summary, 'Send pause command to the printer'
+        key :description, 'Sends a pause command to the printer. If printing is active, it will pause after this command is issued.'
+        key :operationId, 'pausePrinterCommand'
+        key :tags, [
+          'Printer Management'
+        ]
+        response 204 do
+          key :description, 'Command sent to printer'
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
+    swagger_path '/prints/{id}/cancel' do
+      operation :post do
+        key :summary, 'Send cancel command to the printer'
+        key :description, 'Sends a cancel command to the printer. The current print job will be cancelled.'
+        key :operationId, 'cancelPrinterCommand'
+        key :tags, [
+          'Printer Management'
+        ]
+        response 204 do
+          key :description, 'Command sent to printer'
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
     swagger_path '/printers/{id}/jobs' do
       operation :get do
         key :summary, 'List all current and previous jobs managed by a printer'
@@ -215,6 +280,24 @@ module Api::V1
       else
         render json: @printer.errors, status: :unprocessable_entity
       end
+    end
+
+    # POST /printers/1/start
+    def start
+      SendPrinterCommandJob.perform_later 'start'
+      render :json => Messages::CommandIssuedMessage, status: :created
+    end
+
+    # POST /printers/1/pause
+    def pause
+      SendPrinterCommandJob.perform_later 'pause'
+      render :json => Messages::CommandIssuedMessage, status: :created
+    end
+
+    # POST /printers/1/cancel
+    def cancel
+      SendPrinterCommandJob.perform_later 'cancel'
+      render :json => Messages::CommandIssuedMessage, status: :created
     end
 
     # PATCH/PUT /printers/1

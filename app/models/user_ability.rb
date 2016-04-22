@@ -33,8 +33,13 @@ class UserAbility
     else
       can :read, :all
       can :create, Job
-      can :show_statistics, Hub
       cannot :manage, User
+
+      # Custom Actions
+      can :show_statistics, Hub
+      can :start, Printer
+      can :pause, Printer
+      can :cancel, Printer
     end
   end
 end
