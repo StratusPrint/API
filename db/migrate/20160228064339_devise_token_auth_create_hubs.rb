@@ -6,7 +6,7 @@ class DeviseTokenAuthCreateHubs < ActiveRecord::Migration
       t.text :location
       t.text :ip
       t.text :hostname
-      t.text :status
+      t.text :status, :default => "offline"
       t.text :desc
 
       ## Required
