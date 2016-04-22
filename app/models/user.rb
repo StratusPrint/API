@@ -52,7 +52,7 @@ class User < ApplicationRecord
 
   private
   def set_default_hub
-    unless Hub.first.id.nil?
+    unless Hub.count == 0 or !self.default_hub_id.blank?
       self.default_hub_id = Hub.first.id
     end
   end
