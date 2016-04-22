@@ -164,6 +164,75 @@ module Api::V1
         end
       end
     end
+    swagger_path '/hubs/{id}/statistics' do
+      operation :get do
+        key :summary, 'List hub statistics'
+        key :description, 'Fetch a list of useful statistics about the printers connected to the given hub.'
+        key :operationId, 'findHubStatistics'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Hub Management'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the hub'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'A list of sensors'
+          schema do
+            property :jobs_in_progress do
+              key :name, :jobs_in_progress
+              key :description, 'The number of jobs currently in progress'
+              key :type, :integer
+            end
+            property :queued_jobs do
+              key :name, :queued_jobs
+              key :description, 'The number of jobs queued and waiting to be printed'
+              key :type, :integer
+            end
+            property :processing_jobs do
+              key :name, :processing_jobs
+              key :description, 'The number of jobs processing that have not yet been queued or sent to a printer'
+              key :type, :integer
+            end
+            property :current_wait_time do
+              key :name, :current_wait_time
+              key :description, 'The estimated amount of time (in seconds) until a printer is ready for to begin another job. This value will be zero if there are one or more printers that are currently ready to begin a print job.'
+              key :type, :integer
+            end
+            property :current_wait_time do
+              key :name, :current_wait_time
+              key :description, 'The estimated amount of time (in seconds) until a printer is ready for another job. This value will be zero if there are printers that are currently idle.'
+              key :type, :integer
+            end
+            property :ready_printers do
+              key :name, :ready_printers
+              key :description, 'The number of printers that are ready for a new print job.'
+              key :type, :integer
+            end
+            property :busy_printers do
+              key :name, :busy_printers
+              key :description, 'The number of printers that are currently busy with a print job.'
+              key :type, :integer
+            end
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Hub not found'
+        end
+      end
+    end
     swagger_path '/hubs/{id}/sensors' do
       operation :get do
         key :summary, 'List all sensors managed by a hub'
@@ -437,6 +506,11 @@ module Api::V1
       @hubs = Hub.all
 
       render json: @hubs
+    end
+
+    # GET /hubs/1/statistics
+    def show_statistics
+      render json: @hub, serializer: HubStatisticSerializer
     end
 
     # GET /hubs/1

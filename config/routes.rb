@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  #devise_for :hubs, :users
   mount_devise_token_auth_for 'Hub', at: 'v1/hub_auth'
   mount_devise_token_auth_for 'User', at: 'v1/auth', controllers: {
     registrations: 'overrides/registrations'
@@ -12,6 +11,9 @@ Rails.application.routes.draw do
         end
         resources :sensors do
           resources :data, :controller => :data_points
+        end
+        member do
+          get 'statistics', :action => 'show_statistics'
         end
       end
       resources :users

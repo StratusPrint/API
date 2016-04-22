@@ -33,6 +33,7 @@ class UserAbility
     else
       can :read, :all
       can :create, Job
+      can :show_statistics, Hub
       cannot :manage, User
     end
   end
