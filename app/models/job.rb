@@ -105,7 +105,7 @@ class Job < ApplicationRecord
   has_one :printer, through: :printer_job
 
   mount_base64_uploader :model, ModelUploader
-  process_in_background :model, ModelWorker
+  process_in_background :model, UploadModelJob
 
   validates_presence_of :model, :model_name
 

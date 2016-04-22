@@ -1,9 +1,9 @@
-class ModelWorker < ApplicationJob
+class UploadModelJob < ApplicationJob
   include ::CarrierWave::Workers::ProcessAssetMixin
   queue_as :default
 
   after_perform do
-    # Upload model to HUB inside here, along with any other
+    # Upload model to printer inside here, along with any other
     # required computations.
   end
 
