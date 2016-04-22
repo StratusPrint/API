@@ -16,6 +16,7 @@ FactoryGirl.define do
     last_sign_in_ip { generate(:ip) }
     last_sign_in_at Time.now
     created_at Time.now
+    default_hub_id 0
   end
 
   factory :admin, class: User do
@@ -27,5 +28,6 @@ FactoryGirl.define do
     last_sign_in_ip { generate(:user_ip) }
     last_sign_in_at Time.now
     created_at Time.now
+    default_hub_id 0
   end
 end

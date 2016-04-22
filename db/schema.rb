@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20160421033004) do
     t.string   "image",                  default: "https://www.gravatar.com/avatar/?d=identicon"
     t.string   "email"
     t.boolean  "admin",                  default: false
+    t.integer  "default_hub_id"
     t.text     "tokens"
     t.datetime "created_at"
     t.datetime "updated_at"

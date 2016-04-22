@@ -26,7 +26,10 @@
         },
         "created_at": {
             "type": "date-time"
+        },
+        "default_hub_id": {
+            "type": "integer"
         }
     },
-    "required": ["id", "email", "name", "image", "admin", "created_at"]
+    "required": ["id", "email", "name", "image", "admin", "created_at", "default_hub_id"]
 }
