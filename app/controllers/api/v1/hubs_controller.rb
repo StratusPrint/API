@@ -202,22 +202,22 @@ module Api::V1
             end
             property :current_wait_time do
               key :name, :current_wait_time
-              key :description, 'The estimated amount of time (in seconds) until a printer is ready for to begin another job. This value will be zero if there are one or more printers that are currently ready to begin a print job.'
+              key :description, 'The estimated amount of time (in seconds) until a printer is ready for to begin another job. This value will be zero if there are one or more printers that are currently ready to begin a print job'
               key :type, :integer
             end
             property :current_wait_time do
               key :name, :current_wait_time
-              key :description, 'The estimated amount of time (in seconds) until a printer is ready for another job. This value will be zero if there are printers that are currently ready for a new print job.'
+              key :description, 'The estimated amount of time (in seconds) until a printer is ready for another job. This value will be zero if there are printers that are currently ready for a new print job'
               key :type, :integer
             end
             property :ready_printers do
               key :name, :ready_printers
-              key :description, 'The number of printers that are ready for a new print job.'
+              key :description, 'The number of printers that are ready for a new print job'
               key :type, :integer
             end
             property :busy_printers do
               key :name, :busy_printers
-              key :description, 'The number of printers that are currently busy.'
+              key :description, 'The number of printers that are currently busy'
               key :type, :integer
             end
           end
