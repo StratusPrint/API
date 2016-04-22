@@ -110,7 +110,7 @@ module Api::V1
         end
       end
     end
-    swagger_path '/prints/{id}/start' do
+    swagger_path '/printers/{id}/start' do
       operation :post do
         key :summary, 'Send start command to the printer'
         key :description, 'Sends a start command to the printer. If printing is paused, it will resume again after this command is issued.'
@@ -132,7 +132,7 @@ module Api::V1
         end
       end
     end
-    swagger_path '/prints/{id}/pause' do
+    swagger_path '/printers/{id}/pause' do
       operation :post do
         key :summary, 'Send pause command to the printer'
         key :description, 'Sends a pause command to the printer. If printing is active, it will pause after this command is issued.'
@@ -154,7 +154,7 @@ module Api::V1
         end
       end
     end
-    swagger_path '/prints/{id}/cancel' do
+    swagger_path '/printers/{id}/cancel' do
       operation :post do
         key :summary, 'Send cancel command to the printer'
         key :description, 'Sends a cancel command to the printer. The current print job will be cancelled.'
