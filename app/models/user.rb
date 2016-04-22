@@ -32,7 +32,13 @@ class User < ApplicationRecord
       key :type, :string
       key :description, 'When the user was created'
     end
+    property :default_hub_id do
+      key :type, :integer
+      key :description, 'The ID of the user\'s preferred hub'
+    end
   end
+
+  before_create :set_default_hub
 
   validates :email, :uniqueness => true
 
@@ -43,4 +49,9 @@ class User < ApplicationRecord
     :recoverable, :rememberable, :trackable, :validatable,
     :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+
+  private
+  def set_default_hub
+    self.default_hub_id = Hub.first.id
+  end
 end

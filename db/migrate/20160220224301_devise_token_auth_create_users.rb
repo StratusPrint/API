@@ -39,6 +39,7 @@ class DeviseTokenAuthCreateUsers < ActiveRecord::Migration
       t.string :image, :default => "https://www.gravatar.com/avatar/?d=identicon"
       t.string :email
       t.boolean :admin, :default => false
+      t.integer :default_hub_id
 
       ## Tokens
       t.text :tokens
