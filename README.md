@@ -24,3 +24,11 @@ Running locally
 	```
 
 4. Access the the API locally at [http://localhost:8081/](http://localhost:8081/)   
+
+Queueing backend
+---------------
+Background jobs created by the API are configured to run on [Sidekiq](http://sidekiq.org/). Sidekiq can be started by running:
+```
+bundle exec sidekiq
+```
+inside the Rails application directory.
