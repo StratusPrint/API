@@ -24,9 +24,6 @@
         },
         "location": {
             "type": "string"
-        },
-        "api_token": {
-            "type": "string"
         }
     },
     "required": ["friendly_id", "ip", "hostname", "status", "api_token"]
