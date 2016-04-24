@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/StratusPrint/devise_token_auth.git
-  revision: 3e942312f2b2c055c202a6554488a73af723e89b
+  revision: ab1c057f2abc762fa3ecbef0291335628d68bfe3
   branch: master
   specs:
     devise_token_auth (0.1.37)
