@@ -39,7 +39,11 @@ def current_wait_time
       durations.push(j.data['progress']['print_time_left']) if j.data['status'] == 'printing'
     end
   end
-  return durations.min
+  if durations.empty?
+    return 0
+  else
+    return durations.min
+  end
 end
 
 def ready_printers
