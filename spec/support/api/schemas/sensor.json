@@ -10,7 +10,7 @@
             "type": "string"
         },
         "category": {
-            "enum": ["temperature", "humidity", "infrared"],
+            "enum": ["temperature", "humidity", "door"],
             "type": "string"
         },
         "manufacturer": {

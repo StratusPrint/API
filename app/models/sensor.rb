@@ -36,7 +36,7 @@ class Sensor < ApplicationRecord
 
   validates :friendly_id, :uniqueness => true, :presence => true
 
-  enumerize :category, in: [:temperature, :humidity, :infrared]
+  enumerize :category, in: [:temperature, :humidity, :door]
 
   has_one :hub_sensor
   has_one :hub, through: :hub_sensor
