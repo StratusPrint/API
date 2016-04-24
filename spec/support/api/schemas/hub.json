@@ -26,5 +26,5 @@
             "type": "string"
         }
     },
-    "required": ["friendly_id", "ip", "hostname", "status", "api_token"]
+    "required": ["friendly_id", "ip", "hostname", "status"]
 }
