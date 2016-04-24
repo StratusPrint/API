@@ -55,7 +55,7 @@ module Api::V1
         response 403 do
           key :description, 'No permission to access'
         end
-        response 421 do
+        response 422 do
           key :description, 'Validation error(s) - see response for details'
         end
       end
@@ -132,7 +132,7 @@ module Api::V1
         response 404 do
           key :description, 'Hub not found'
         end
-        response 421 do
+        response 422 do
           key :description, 'Validation error(s) - see response for details'
         end
       end
@@ -344,7 +344,7 @@ module Api::V1
         response 404 do
           key :description, 'Hub not found'
         end
-        response 421 do
+        response 422 do
           key :description, 'Validation error(s) - see response for details'
         end
       end
@@ -421,7 +421,7 @@ module Api::V1
         response 404 do
           key :description, 'Hub not found'
         end
-        response 421 do
+        response 422 do
           key :description, 'Validation error(s) - see response for details'
         end
       end
