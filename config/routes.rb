@@ -19,6 +19,7 @@ Rails.application.routes.draw do
         end
         member do
           get 'statistics', :action => 'show_statistics'
+          post 'generate_api_key', :action => 'generate_api_key'
         end
       end
       resources :users

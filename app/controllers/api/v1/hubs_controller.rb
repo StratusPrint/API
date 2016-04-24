@@ -164,6 +164,45 @@ module Api::V1
         end
       end
     end
+    swagger_path '/hubs/{id}/generate_api_key' do
+      operation :post do
+        key :summary, 'Generate new API key'
+        key :description, 'Generates a new API key that can be used by the hub to authenticate with the API. The new API key that is generated will replace any pre-existing key. The API key is returned in plaintext in the response, after which it cannot be retrieved again. If a hub API key is forgotten, then it must be regenerated using this endpoint. Requires admin priveleges.'
+        key :operationId, 'generateHubApiKey'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Hub Management'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the hub'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'API key successfully generated'
+          schema do
+            property :api_key do
+              key :name, :api_key
+              key :description, 'The API key that the hub can use for authentication'
+              key :type, :string
+            end
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Hub not found'
+        end
+      end
+    end
     swagger_path '/hubs/{id}/statistics' do
       operation :get do
         key :summary, 'List hub statistics'
@@ -527,6 +566,15 @@ module Api::V1
       else
         render json: @hub.errors, status: :unprocessable_entity
       end
+    end
+
+    # POST /hubs/1/generate_api_key
+    def generate_api_key
+      api_key = @hub.generate_api_token
+      resp = {
+        :api_key => api_key
+      }
+      render json: resp
     end
 
     # PATCH/PUT /hubs/1
