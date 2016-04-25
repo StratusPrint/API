@@ -486,7 +486,7 @@ module Api::V1
         key :tags, [
           'Hub Authentication'
         ]
-        response 201 do
+        response 200 do
           key :description, 'Hub successfully logged out'
         end
       end
