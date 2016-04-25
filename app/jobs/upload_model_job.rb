@@ -22,9 +22,9 @@ class UploadModelJob < ApplicationJob
     begin
       RestClient.post(hub_endpoint, :file => File.new(@job.model.current_path), :job_id => @job.id) { |response, request, result, &block|
         case response.code
-        when 204
+        when 201
           logger.info "Job ##{@job.id} successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
-          logger.info "Response from hub: " + response
+          logger.debug "Response from hub: " + response
           clear_model_processing
         end
       }
@@ -49,14 +49,14 @@ class UploadModelJob < ApplicationJob
 
   private
   def set_job_errored
-    logger.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for ##{@printer.id} after #{@max_retries} attempts. Setting job status to errored."
+    logger.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id} after #{@max_retries} attempts. Setting job status to errored."
     clear_model_processing
     @job.data['status'] = 'errored'
     @job.save
   end
 
   def hub_endpoint
-    hub_endpoint = 'http://' + @hub.ip + '/' + @hub.id.to_s + '/' + 'printers/' + @printer.id.to_s
+    "http://#{@hub.ip}/#{@hub.id}/printers/#{@printer.id}"
   end
 
   def set_model_processing

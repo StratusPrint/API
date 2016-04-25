@@ -284,19 +284,19 @@ module Api::V1
 
     # POST /printers/1/start
     def start
-      SendPrinterCommandJob.perform_later 'start'
+      SendPrinterCommandJob.perform_later('start', @printer)
       render :json => Messages::CommandIssuedMessage, status: :created
     end
 
     # POST /printers/1/pause
     def pause
-      SendPrinterCommandJob.perform_later 'pause'
+      SendPrinterCommandJob.perform_later('pause', @printer)
       render :json => Messages::CommandIssuedMessage, status: :created
     end
 
     # POST /printers/1/cancel
     def cancel
-      SendPrinterCommandJob.perform_later 'cancel'
+      SendPrinterCommandJob.perform_later('cancel', @printer)
       render :json => Messages::CommandIssuedMessage, status: :created
     end
 
