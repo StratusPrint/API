@@ -569,7 +569,7 @@ module Api::V1
     end
 
     # POST /hubs/1/api_key
-    def api_key
+    def generate_api_key
       api_key = @hub.generate_api_token
       resp = {
         :api_key => api_key
