@@ -187,6 +187,41 @@ module Api::V1
         end
       end
     end
+    swagger_path '/printers/{id}/completed_jobs' do
+      operation :get do
+        key :summary, 'List all completed for a printer'
+        key :description, 'Fetches a list of completed jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
+        key :operationId, 'findCompletedPrinterJobs'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Printer Management', 'Job Management'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'List completed of jobs'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
     swagger_path '/printers/{id}/queued_jobs' do
       operation :get do
         key :summary, 'List all queued for a printer'
@@ -342,6 +377,17 @@ module Api::V1
       }
 
       render json: processing_jobs
+    end
+
+    # GET /printers/1/completed_jobs
+    def show_completed_jobs
+      @jobs = Printer.find_by(id: params[:id]).jobs
+
+      completed_jobs = @jobs.all.select { |j|
+        j.data['status'] == 'completed'
+      }
+
+      render json: completed_jobs
     end
 
     # POST /printers

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
             get 'current_job', :action => 'show_current_job'
             get 'queued_jobs', :action => 'show_queued_jobs'
             get 'processing_jobs', :action => 'show_processing_jobs'
+            get 'completed_jobs', :action => 'show_completed_jobs'
           end
         end
         resources :sensors do
