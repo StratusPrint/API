@@ -10,6 +10,11 @@ Rails.application.routes.draw do
         resources :printers do
           resources :jobs
           resources :commands
+          member do
+            get 'current_job', :action => 'show_current_job'
+            get 'queued_jobs', :action => 'show_queued_jobs'
+            get 'processing_jobs', :action => 'show_processing_jobs'
+          end
         end
         resources :sensors do
           resources :data, :controller => :data_points
@@ -23,7 +28,7 @@ Rails.application.routes.draw do
     end
   end
   resources :apidocs, only: [:index]
-  get '/uploads/:resource/:id/:attachment/:basename.:extension', :controller => "downloads", :action => "download", via: :get
+  get '/uploads/:resource/:id/:attachment/:basename.:extension', :controller => 'downloads', :action => 'download', via: :get
 end
 
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

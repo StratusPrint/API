@@ -119,7 +119,7 @@ module Api::V1
     ###########################################################################
     before_action :set_job, only: [:show, :update, :destroy]
 
-    # GET /jobs
+    # GET /printers/1/jobs
     def index
       @jobs = Printer.find_by(id: params[:printer_id]).jobs
 
@@ -131,7 +131,7 @@ module Api::V1
       render json: @job
     end
 
-    # POST /jobs
+    # POST /printers/1/jobs
     def create
       @job = Job.new(job_params)
 

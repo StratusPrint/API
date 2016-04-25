@@ -34,7 +34,7 @@ class Job < ApplicationRecord
       property :status do
         key :type, :string
         key :description, 'The current status of the print job'
-        key :enum, ['processing', 'slicing', 'printing', 'completed', 'paused', 'errored']
+        key :enum, ['processing', 'queued', 'completed', 'errored', 'slicing', 'printing', 'paused']
       end
       property :started do
         key :type, 'date-time'

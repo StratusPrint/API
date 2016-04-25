@@ -187,7 +187,111 @@ module Api::V1
         end
       end
     end
-
+    swagger_path '/printers/{id}/queued_jobs' do
+      operation :get do
+        key :summary, 'List all queued for a printer'
+        key :description, 'Fetches a list of queued jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
+        key :operationId, 'findQueuedPrinterJobs'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Printer Management', 'Job Management'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'List queued of jobs'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
+    swagger_path '/printers/{id}/processing_jobs' do
+      operation :get do
+        key :summary, 'List all queued for a printer'
+        key :description, 'Fetches a list of processing jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
+        key :operationId, 'findProcessingPrinterJobs'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Printer Management', 'Job Management'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'List processing of jobs'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
+    swagger_path '/printers/{id}/current_job' do
+      operation :get do
+        key :summary, 'Retrieve the current job for a printer'
+        key :description, 'Fetches the job being printed by a given printer. Note that user must have access to the parent printer to carry out this action.'
+        key :operationId, 'findCurrentPrinterJob'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Printer Management', 'Job Management'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'The current job'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
     ###########################################################################
     # CONTROLLER ACTIONS
     ###########################################################################
@@ -203,6 +307,41 @@ module Api::V1
     # GET /printers/1
     def show
       render json: @printer
+    end
+
+    # GET /printers/1/current_job
+    def show_current_job
+      @jobs = Printer.find_by(id: params[:id]).jobs
+
+      current_job = @jobs.all.select { |j|
+        j.data['status'] == 'slicing' or
+        j.data['status'] == 'printing' or
+        j.data['status'] == 'paused'
+      }.last
+
+      render json: current_job
+    end
+
+    # GET /printers/1/queued_jobs
+    def show_queued_jobs
+      @jobs = Printer.find_by(id: params[:id]).jobs
+
+      queued_jobs = @jobs.all.select { |j|
+        j.data['status'] == 'queued'
+      }
+
+      render json: queued_jobs
+    end
+
+    # GET /printers/1/processing_jobs
+    def show_processing_jobs
+      @jobs = Printer.find_by(id: params[:id]).jobs
+
+      processing_jobs = @jobs.all.select { |j|
+        j.data['status'] == 'processing'
+      }
+
+      render json: processing_jobs
     end
 
     # POST /printers
