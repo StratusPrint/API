@@ -23,10 +23,6 @@ class ApidocsController < ApplicationController
     key :consumes, ['application/json']
     key :produces, ['application/json']
 
-    response 500 do
-      key :description, 'User successfully registered'
-    end
-
     security_definition :bearer do
       key :type, :apiKey
       key :name, :Authorization
@@ -42,12 +38,14 @@ class ApidocsController < ApplicationController
     Api::V1::DataPointsController,
     Api::V1::JobsController,
     Api::V1::UsersController,
+    Api::V1::CommandsController,
     User,
     Hub,
     Sensor,
     Printer,
     Job,
     DataPoint,
+    Command,
     self,
   ].freeze
 

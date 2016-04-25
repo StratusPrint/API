@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :commands
   mount_devise_token_auth_for 'Hub', at: 'v1/hub_auth'
   mount_devise_token_auth_for 'User', at: 'v1/auth', controllers: {
     registrations: 'overrides/registrations'
@@ -8,18 +9,14 @@ Rails.application.routes.draw do
       resources :hubs, shallow: true do
         resources :printers do
           resources :jobs
-          member do
-            post 'start'
-            post 'pause'
-            post 'cancel'
-          end
+          resources :commands
         end
         resources :sensors do
           resources :data, :controller => :data_points
         end
         member do
           get 'statistics', :action => 'show_statistics'
-          post 'generate_api_key', :action => 'generate_api_key'
+          post 'api_key', :action => 'generate_api_key'
         end
       end
       resources :users

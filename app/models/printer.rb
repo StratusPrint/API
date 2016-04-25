@@ -77,6 +77,8 @@ class Printer < ApplicationRecord
   has_one :hub, through: :hub_printer
   has_many :printer_jobs
   has_many :jobs, through: :printer_jobs
+  has_many :printer_commands
+  has_many :commands, through: :printer_commands
 
   serialize :data, JSON
 

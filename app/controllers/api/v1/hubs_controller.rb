@@ -164,7 +164,7 @@ module Api::V1
         end
       end
     end
-    swagger_path '/hubs/{id}/generate_api_key' do
+    swagger_path '/hubs/{id}/api_key' do
       operation :post do
         key :summary, 'Generate new API key'
         key :description, 'Generates a new API key that can be used by the hub to authenticate with the API. The new API key that is generated will replace any pre-existing key. The API key is returned in plaintext in the response, after which it cannot be retrieved again. If a hub API key is forgotten, then it must be regenerated using this endpoint. Requires admin priveleges.'
@@ -568,8 +568,8 @@ module Api::V1
       end
     end
 
-    # POST /hubs/1/generate_api_key
-    def generate_api_key
+    # POST /hubs/1/api_key
+    def api_key
       api_key = @hub.generate_api_token
       resp = {
         :api_key => api_key
