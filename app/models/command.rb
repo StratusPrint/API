@@ -6,10 +6,9 @@ class Command < ApplicationRecord
       key :format, :int64
       key :description, 'The unique ID of the command'
     end
-    property :issued_by_user do
-      key :type, :integer
-      key :format, :int64
-      key :description, 'The ID of the user who issued the command'
+    property :issued_by do
+      key :type, :string
+      key :description, 'The name of the user who issued the command'
     end
     property :created_at do
       key :type, :string
