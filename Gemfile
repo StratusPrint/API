@@ -37,6 +37,8 @@ gem 'carrierwave-base64'
 gem 'sidekiq'
 gem 'carrierwave_backgrounder', github: 'lardawge/carrierwave_backgrounder'
 gem 'mime-types', '2.3'
+# REST client
+gem 'rest-client'
 
 group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
