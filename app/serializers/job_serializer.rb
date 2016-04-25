@@ -11,6 +11,9 @@ def model_file_name
 end
 
 def model_file_extension
+  if self.model.url.nil?
+    return ""
+  end
   File.extname(self.model.url)
 end
 
