@@ -202,6 +202,7 @@ module Api::V1
       printer = Printer.find(params[:printer_id])
 
       if @command.save
+        printer.commands << @command
         SendPrinterCommandJob.perform_later(params[:name], printer)
         render json: @command, status: :created, location: @command
       else

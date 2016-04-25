@@ -17,11 +17,12 @@ ActiveRecord::Schema.define(version: 20160425171544) do
   enable_extension "plpgsql"
 
   create_table "commands", force: :cascade do |t|
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.text     "status"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.text     "status",         default: "issued"
     t.datetime "executed_at"
-    t.integer  "issed_by_user"
+    t.integer  "issued_by_user"
+    t.text     "name"
   end
 
   create_table "data_points", force: :cascade do |t|
@@ -86,6 +87,16 @@ ActiveRecord::Schema.define(version: 20160425171544) do
 
   add_index "jobs", ["job_id"], name: "index_jobs_on_job_id", unique: true, using: :btree
   add_index "jobs", ["job_id"], name: "jobs_job_id_key", unique: true, using: :btree
+
+  create_table "printer_commands", force: :cascade do |t|
+    t.integer  "printer_id"
+    t.integer  "command_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "printer_commands", ["command_id"], name: "index_printer_commands_on_command_id", using: :btree
+  add_index "printer_commands", ["printer_id"], name: "index_printer_commands_on_printer_id", using: :btree
 
   create_table "printer_jobs", force: :cascade do |t|
     t.integer  "printer_id"

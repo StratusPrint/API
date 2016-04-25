@@ -40,6 +40,7 @@ class UserAbility
       can :start, Printer
       can :pause, Printer
       can :cancel, Printer
+      can :create, Command
     end
   end
 end
