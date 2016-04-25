@@ -9,8 +9,8 @@ FactoryGirl.define do
     model "Play"
     description "Used to print models for project XYZ."
 
-    after(:create) do |printer|
-      5.times do printer.jobs << create(:job) end
+    after(:build) do |printer|
+      5.times do printer.jobs << build(:job) end
       printer.num_jobs = 5
     end
   end

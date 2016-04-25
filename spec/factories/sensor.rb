@@ -10,14 +10,14 @@ FactoryGirl.define do
     model "SENSOR-4000"
     desc "Detects environmental condition XYZ."
 
-    after(:create) do |sensor|
+    after(:build) do |sensor|
       case sensor.category
       when "temperature"
-        10.times do sensor.data_points << create(:temperature_data_point) end
+        10.times do sensor.data_points << build(:temperature_data_point) end
       when "humidity"
-        10.times do sensor.data_points << create(:humidity_data_point) end
+        10.times do sensor.data_points << build(:humidity_data_point) end
       when "door"
-        10.times do sensor.data_points << create(:door_data_point) end
+        10.times do sensor.data_points << build(:door_data_point) end
       end
     end
   end

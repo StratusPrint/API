@@ -19,9 +19,9 @@ FactoryGirl.define do
     desc "Manages the printers and sensors of a deployment."
     status { ["online", "offline", "unknown"].sample }
 
-    after(:create) do |hub|
-      2.times do hub.printers << create(:printer) end
-      5.times do hub.sensors << create(:sensor) end
+    after(:build) do |hub|
+      2.times do hub.printers << build(:printer) end
+      5.times do hub.sensors << build(:sensor) end
     end
   end
 end
