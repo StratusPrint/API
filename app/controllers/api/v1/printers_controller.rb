@@ -292,6 +292,41 @@ module Api::V1
         end
       end
     end
+    swagger_path '/printers/{id}/recent_jobs' do
+      operation :get do
+        key :summary, 'List the last 15 jobs for a printer'
+        key :description, 'Fetches a list of the 15 most recent jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
+        key :operationId, 'findRecentPrinterJobs'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Printer Management', 'Job Management'
+        ]
+        parameter do
+          key :name, :id
+          key :in, :path
+          key :description, 'ID of the printer'
+          key :required, :true
+          key :type, :integer
+        end
+        response 200 do
+          key :description, 'List recent of jobs'
+          schema do
+            key :'$ref', :Job
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+        response 404 do
+          key :description, 'Printer not found'
+        end
+      end
+    end
     swagger_path '/printers/{id}/current_job' do
       operation :get do
         key :summary, 'Retrieve the current job for a printer'
@@ -388,6 +423,13 @@ module Api::V1
       }
 
       render json: completed_jobs.sort_by(&:created_at).reverse
+    end
+
+    # GET /printers/1/recent_jobs
+    def show_recent_jobs
+      @jobs = Printer.find_by(id: params[:id]).jobs.last(15).reverse
+
+      render json: @jobs
     end
 
     # POST /printers
