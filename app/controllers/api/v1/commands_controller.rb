@@ -186,9 +186,9 @@ module Api::V1
 
     # GET /commands
     def index
-      @commands = Command.all
+      @commands = Printer.find_by(id: params[:printer_id]).commands
 
-      render json: @commands
+      render json: @commands.sort_by(&:created_at).reverse
     end
 
     # GET /commands/1
