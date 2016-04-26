@@ -123,7 +123,7 @@ module Api::V1
     def index
       @jobs = Printer.find_by(id: params[:printer_id]).jobs
 
-      render json: @jobs
+      render json: @jobs.sort_by(&:created_at).reverse
     end
 
     # GET /jobs/1

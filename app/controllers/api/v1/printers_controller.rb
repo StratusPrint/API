@@ -365,7 +365,7 @@ module Api::V1
         j.data['status'] == 'queued'
       }
 
-      render json: queued_jobs
+      render json: queued_jobs.sort_by(&:created_at).reverse
     end
 
     # GET /printers/1/processing_jobs
@@ -376,7 +376,7 @@ module Api::V1
         j.data['status'] == 'processing'
       }
 
-      render json: processing_jobs
+      render json: processing_jobs.sort_by(&:created_at).reverse
     end
 
     # GET /printers/1/completed_jobs
@@ -387,7 +387,7 @@ module Api::V1
         j.data['status'] == 'completed'
       }
 
-      render json: completed_jobs
+      render json: completed_jobs.sort_by(&:created_at).reverse
     end
 
     # POST /printers
