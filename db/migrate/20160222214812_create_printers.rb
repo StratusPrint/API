@@ -6,7 +6,7 @@ class CreatePrinters < ActiveRecord::Migration[5.0]
       t.text :friendly_id
       t.text :num_jobs
       t.text :description
-      t.text :data, default: '{"state": {"text": "Operational", "flags": {"operational": true, "paused": true, "printing": true, "sdReady": true, "error": true, "ready": true, "closedOrError": true } } }'
+      t.text :status, :default => 'offline'
       t.timestamps
     end
 

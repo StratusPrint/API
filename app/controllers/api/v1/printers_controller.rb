@@ -423,7 +423,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def printer_params
-      params.fetch(:printer, {}).permit(:friendly_id, :manufacturer, :model, :num_jobs, :description, :data => [{:state => [:text, {:flags => [:operational, :paused, :printing, :sdReady, :error, :ready, :closedOrError]}]}])
+      params.fetch(:printer, {}).permit(:friendly_id, :manufacturer, :model, :num_jobs, :description, :status)
     end
   end
 end

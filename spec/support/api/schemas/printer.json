@@ -24,20 +24,10 @@
         "description": {
             "type": "string"
         },
-        "data": {
-            "state": {
-                "text": { "type": "string" },
-                "flags": {
-                    "operational": { "type": "boolean" },
-                    "paused": { "type": "boolean" },
-                    "printing": { "type": "boolean" },
-                    "sdReady": { "type": "boolean" },
-                    "error": { "type": "boolean" },
-                    "ready": { "type": "boolean" },
-                    "closedOrError": { "type": "boolean" }
-                }
-            }
+        "status": {
+            "type": "string",
+            "enum": ["ready", "paused", "printing", "errored", "offline", "cancelled", "completed"]
         }
     },
-    "required": ["id", "friendly_id", "manufacturer", "model", "num_jobs", "updated_at", "description", "data"]
+    "required": ["id", "friendly_id", "manufacturer", "model", "num_jobs", "updated_at", "description", "status"]
 }

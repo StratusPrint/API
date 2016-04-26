@@ -72,6 +72,7 @@ class Printer < ApplicationRecord
   before_destroy :destroy_jobs
 
   validates :friendly_id, :uniqueness => true, :presence => true
+  enumerize :status, in: [:ready, :paused, :printing, :errored, :offline, :cancelled, :completed]
 
   has_one :hub_printer
   has_one :hub, through: :hub_printer
