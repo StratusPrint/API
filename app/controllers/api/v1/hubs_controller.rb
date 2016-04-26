@@ -259,6 +259,41 @@ module Api::V1
               key :description, 'The number of printers that are currently busy'
               key :type, :integer
             end
+            property :errored_printers do
+              key :name, :errored_printers
+              key :description, 'The number of printers that are in the errored state'
+              key :type, :integer
+            end
+            property :completed_printers do
+              key :name, :completed_printers
+              key :description, 'The number of printers that are in the completed state'
+              key :type, :integer
+            end
+            property :paused_printers do
+              key :name, :paused_printers
+              key :description, 'The number of printers that are in the paused state'
+              key :type, :integer
+            end
+            property :printing_printers do
+              key :name, :printing_printers
+              key :description, 'The number of printers that are in the printing state'
+              key :type, :integer
+            end
+            property :offline_printers do
+              key :name, :offline_printers
+              key :description, 'The number of printers that are in the offline state'
+              key :type, :integer
+            end
+            property :cancelled_printers do
+              key :name, :cancelled_printers
+              key :description, 'The number of printers that are in the cancelled state'
+              key :type, :integer
+            end
+            property :attached_printers do
+              key :name, :attached_printers
+              key :description, 'The number of printers attached to the hub'
+              key :type, :integer
+            end
           end
         end
         response 401 do

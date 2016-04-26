@@ -1,5 +1,5 @@
 class HubStatisticSerializer < ActiveModel::Serializer
-  attributes :jobs_in_progress, :queued_jobs, :processing_jobs, :current_wait_time, :ready_printers, :busy_printers
+  attributes :jobs_in_progress, :queued_jobs, :processing_jobs, :current_wait_time, :ready_printers, :busy_printers, :errored_printers, :completed_printers, :paused_printers, :offline_printers, :cancelled_printers, :attached_printers
 end
 
 def jobs_in_progress
@@ -47,17 +47,37 @@ def current_wait_time
 end
 
 def ready_printers
-  num_ready = 0;
-  self.printers.each do |p|
-    num_ready += 1 if p.data['state']['flags']['ready']
-  end
-  return num_ready
+  self.printers.where(:status => 'ready').count
 end
 
 def busy_printers
-  num_busy = 0
-  self.printers.each do |p|
-    num_busy += 1 if not p.data['state']['flags']['ready']
-  end
-  return num_busy
+  self.printers.where(:status => ['printing', 'paused']).count
+end
+
+def errored_printers
+  self.printers.where(:status => 'errored').count
+end
+
+def completed_printers
+  self.printers.where(:status => 'completed').count
+end
+
+def paused_printers
+  self.printers.where(:status => 'paused').count
+end
+
+def printing_printers
+  self.printers.where(:status => 'printing').count
+end
+
+def offline_printers
+  self.printers.where(:status => 'offline').count
+end
+
+def cancelled_printers
+  self.printers.where(:status => 'cancelled').count
+end
+
+def attached_printers
+  self.printers.count
 end
