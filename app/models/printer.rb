@@ -25,47 +25,10 @@ class Printer < ApplicationRecord
       key :type, :string
       key :description, 'A description of what the printer for organizational purposes.'
     end
-    property :data do
-      key :title, 'data'
-      property :state do
-        key :title, 'state'
-        property :text do
-          key :type, :string
-          key :description, 'A textual representation of the current state of the printer, e.g. "Operational" or "Printing"'
-          key :enum, ['Operational', 'Paused', 'Printing', 'SD Ready', 'Error', 'Ready', 'Closed or Error']
-        end
-        property :flags do
-          key :title, 'flags'
-          property :operational do
-            key :type, :boolean
-            key :description, 'true if the printer is operational, false otherwise'
-          end
-          property :paused do
-            key :type, :boolean
-            key :description, 'true if the printer is currently paused, false otherwise'
-          end
-          property :printing do
-            key :type, :boolean
-            key :description, 'true if the printer is currently printing, false otherwise'
-          end
-          property :sdReady do
-            key :type, :boolean
-            key :description, 'true if the printer’s SD card is available and initialized, false otherwise'
-          end
-          property :error do
-            key :type, :boolean
-            key :description, 'true if an unrecoverable error occurred, false otherwise'
-          end
-          property :ready do
-            key :type, :boolean
-            key :description, 'true if the printer is operational and no data is currently being streamed to SD, so ready to receive instructions'
-          end
-          property :closedOrError do
-            key :type, :boolean
-            key :description, 'true if the printer is disconnected (possibly due to an error), false otherwise'
-          end
-        end
-      end
+    property :status do
+      key :type, :string
+      key :description, 'The status of the printer'
+      key :enum, ['ready', 'paused', 'printing', 'errored', 'offline', 'cancelled', 'completed']
     end
   end
 
