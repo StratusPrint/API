@@ -389,6 +389,8 @@ module Api::V1
         j.data['status'] == 'paused'
       }.last
 
+      current_job = '{}' if current_job.nil?
+
       render json: current_job
     end
 
@@ -399,6 +401,8 @@ module Api::V1
       queued_jobs = @jobs.all.select { |j|
         j.data['status'] == 'queued'
       }
+
+      queued_jobs = '[]' if queued_jobs.nil?
 
       render json: queued_jobs.sort_by(&:created_at).reverse
     end
@@ -411,6 +415,8 @@ module Api::V1
         j.data['status'] == 'processing'
       }
 
+      processing_jobs = '[]' if processing_jobs.nil?
+
       render json: processing_jobs.sort_by(&:created_at).reverse
     end
 
@@ -421,6 +427,8 @@ module Api::V1
       completed_jobs = @jobs.all.select { |j|
         j.data['status'] == 'completed'
       }
+
+      completed_jobs = '[]' if completed_jobs.nil?
 
       render json: completed_jobs.sort_by(&:created_at).reverse
     end
