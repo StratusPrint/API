@@ -30,6 +30,10 @@ class Sensor < ApplicationRecord
       key :type, :integer
       key :description, 'The number of data entries logged by the sensor'
     end
+    property :reading do
+      key :type, :string
+      key :description, 'The most recent data point logged by the sensor'
+    end
   end
 
   before_destroy :destroy_data

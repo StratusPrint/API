@@ -24,7 +24,10 @@
         },
         "data_count": {
             "type": "integer"
+        },
+        "reading": {
+            "type": "string"
         }
     },
-    "required": ["friendly_id", "category", "manufacturer", "model", "data_count"]
+    "required": ["friendly_id", "category", "manufacturer", "model", "data_count", "reading"]
 }
