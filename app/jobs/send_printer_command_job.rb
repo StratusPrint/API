@@ -14,7 +14,7 @@ class SendPrinterCommandJob < ApplicationJob
         end
       }
     rescue
-      set_job_errored
+      set_command_errored
     end
   end
 
