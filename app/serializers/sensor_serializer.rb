@@ -6,6 +6,10 @@ class SensorSerializer < ActiveModel::Serializer
   end
 
   def reading
-    object.data_points.last.value
+    if object.data_points.empty?
+      return ""
+    else
+      return object.data_points.last.value
+    end
   end
 end
