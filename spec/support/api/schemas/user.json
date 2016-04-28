@@ -27,6 +27,9 @@
         "current_sign_in_at": {
             "type": "date-time"
         },
+        "current_sign_in_ip": {
+            "type": "string"
+        },
         "created_at": {
             "type": "date-time"
         },

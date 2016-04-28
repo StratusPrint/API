@@ -20,13 +20,21 @@ class User < ApplicationRecord
       key :type, :boolean
       key :description, 'Whether the user has admin priveleges or not'
     end
+    property :current_sign_in_ip do
+      key :type, :string
+      key :description, 'Holds the remote ip of the previous sign in'
+    end
+    property :current_sign_in_at do
+      key :type, :string
+      key :description, 'A timestamp updated when the user signs in'
+    end
     property :last_sign_in_ip do
       key :type, :string
       key :description, 'The IP address the user has last signed in with'
     end
     property :last_sign_in_at do
       key :type, :string
-      key :description, 'The last time that the user signed in'
+      key :description, 'Holds the timestamp of the previous sign in'
     end
     property :created_at do
       key :type, :string
