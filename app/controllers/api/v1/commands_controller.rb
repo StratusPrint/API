@@ -203,7 +203,7 @@ module Api::V1
 
       if @command.save
         printer.commands << @command
-        SendPrinterCommandJob.perform_later(params[:name], printer)
+        SendPrinterCommandJob.perform_later(@command, printer)
         render json: @command, status: :created, location: @command
       else
         render json: @command.errors, status: :unprocessable_entity
