@@ -15,6 +15,8 @@ FactoryGirl.define do
     admin false
     last_sign_in_ip { generate(:ip) }
     last_sign_in_at Time.now
+    current_sign_in_ip { generate(:ip) }
+    current_sign_in_at Time.now
     created_at Time.now
     default_hub_id 0
   end
@@ -27,6 +29,8 @@ FactoryGirl.define do
     admin true
     last_sign_in_ip { generate(:user_ip) }
     last_sign_in_at Time.now
+    current_sign_in_ip { generate(:user_ip) }
+    current_sign_in_at Time.now
     created_at Time.now
     default_hub_id 0
   end
