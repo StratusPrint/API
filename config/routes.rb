@@ -28,7 +28,7 @@ Rails.application.routes.draw do
         end
       end
       resources :users
-      resources :alerts
+      resources :alerts, :only => [:show, :index]
     end
   end
   resources :apidocs, only: [:index]

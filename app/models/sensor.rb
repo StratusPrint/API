@@ -55,6 +55,6 @@ class Sensor < ApplicationRecord
 
   def thresholds
     errors.add(:thresholds, 'low_threshold must be less than high_threshold') unless
-    self.low_threshold < self.high_threshold
+    self.low_threshold.to_i < self.high_threshold.to_i
   end
 end

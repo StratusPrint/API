@@ -1,5 +1,61 @@
 module Api::V1
   class AlertsController < ApiController
+    ###########################################################################
+    # SWAGGER API DOCUMENTATION
+    ###########################################################################
+    swagger_path '/alerts' do
+      operation :get do
+        key :summary, 'List all alerts'
+        key :description, 'Use this route to list all alerts that have been generated. Each alert represents a specific event that would be important for an end user to know.'
+        key :operationId, 'listAlerts'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Alert Management'
+        ]
+        response 200 do
+          key :description, 'List of alerts'
+          schema do
+            key :'$ref', :Alert
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+      end
+    end
+    swagger_path '/alerts/{id}' do
+      operation :get do
+        key :summary, 'Find alert by ID'
+        key :description, 'Use this route to retrieve a specific alert.'
+        key :operationId, 'findAlertById'
+        key :produces, [
+          'application/json'
+        ]
+        key :tags, [
+          'Alert Management'
+        ]
+        response 200 do
+          key :description, 'Alert object'
+          schema do
+            key :'$ref', :Alert
+          end
+        end
+        response 401 do
+          key :description, 'Authorization error'
+        end
+        response 403 do
+          key :description, 'No permission to access'
+        end
+      end
+    end
+    ###########################################################################
+    # CONTROLLER ACTIONS
+    ###########################################################################
     before_action :set_alert, only: [:show, :update, :destroy]
 
     # GET /alerts

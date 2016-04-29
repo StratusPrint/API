@@ -8,6 +8,7 @@ class CreateSensors < ActiveRecord::Migration[5.0]
       t.text :desc
       t.text :low_threshold
       t.text :high_threshold
+      t.boolean :alert_generated, :default => false
       t.timestamps
     end
 

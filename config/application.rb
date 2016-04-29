@@ -35,5 +35,8 @@ module Api
 
     # Use sidekiq as job queueing backend
     config.active_job.queue_adapter = :sidekiq
+
+    # Set timezone
+    config.time_zone = 'Eastern Time (US & Canada)'
   end
 end

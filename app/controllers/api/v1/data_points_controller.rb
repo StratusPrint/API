@@ -67,9 +67,19 @@ module Api::V1
       @data_point = DataPoint.new(data_point_params)
 
       if @data_point.save
-        create_alert if @data_point.violates_threshold?
+        @sensor = Sensor.find_by(id: params[:sensor_id])
+        @sensor.data_points << @data_point
 
-        Sensor.find_by(id: params[:sensor_id]).data_points << @data_point
+        if @data_point.violates_threshold? and !@sensor.alert_generated?
+          @sensor.alert_generated = true
+          @sensor.save
+          create_alert
+        elsif @data_point.is_normal? and @sensor.alert_generated?
+          @sensor.alert_generated = false
+          @sensor.save
+          create_alert
+        end
+
         render json: @data_point, status: :created, location: v1_datum_path(@data_point)
       else
         render json: @data_point.errors, status: :unprocessable_entity
@@ -103,6 +113,7 @@ module Api::V1
 
     # Create an alert if new data point violates a sensor threshold
     def create_alert
+      CreateAlertJob.perform_later(@data_point.sensor, @data_point)
     end
   end
 end

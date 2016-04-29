@@ -17,6 +17,10 @@ class DataPoint < ApplicationRecord
   has_one :sensor, through: :sensor_data_point
 
   def violates_threshold?
-    self.value <= self.sensor.low_threshold || self.value >= self.sensor.high_threshold
+    (self.value.to_i <= self.sensor.low_threshold.to_i) || (self.value.to_i >= self.sensor.high_threshold.to_i)
+  end
+
+  def is_normal?
+    (self.value.to_i > self.sensor.low_threshold.to_i) && (self.value.to_i < self.sensor.high_threshold.to_i)
   end
 end

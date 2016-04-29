@@ -1,3 +1,3 @@
 class AlertSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :category, :title, :message, :time, :snapshot
 end
