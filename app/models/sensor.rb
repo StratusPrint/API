@@ -38,6 +38,7 @@ class Sensor < ApplicationRecord
 
   before_destroy :destroy_data
 
+  validate :thresholds
   validates :friendly_id, :uniqueness => true, :presence => true
 
   enumerize :category, in: [:temperature, :humidity, :door]
@@ -50,5 +51,10 @@ class Sensor < ApplicationRecord
   private
   def destroy_data
     self.data_points.destroy_all
+  end
+
+  def thresholds
+    errors.add(:thresholds, 'low_threshold must be less than high_threshold') unless
+    self.low_threshold < self.high_threshold
   end
 end

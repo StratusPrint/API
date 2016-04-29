@@ -67,6 +67,8 @@ module Api::V1
       @data_point = DataPoint.new(data_point_params)
 
       if @data_point.save
+        create_alert if @data_point.violates_threshold?
+
         Sensor.find_by(id: params[:sensor_id]).data_points << @data_point
         render json: @data_point, status: :created, location: v1_datum_path(@data_point)
       else
@@ -97,6 +99,10 @@ module Api::V1
     # Only allow a trusted parameter "white list" through.
     def data_point_params
       params.fetch(:data_point, {}).permit(:value)
+    end
+
+    # Create an alert if new data point violates a sensor threshold
+    def create_alert
     end
   end
 end
