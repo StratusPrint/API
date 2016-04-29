@@ -10,6 +10,7 @@
         "model_file_name": { "type": ["string", "null"] },
         "model_file_extension": { "type": ["string", "null"] },
         "model_file_name_full": { "type": ["string", "null"] },
+        "created_by": { "type": "string" },
         "data": {
             "status": {
                 "enum": ["processing", "slicing", "printing", "completed", "paused", "errored"],
@@ -36,5 +37,5 @@
             }
         }
     },
-    "required": ["id", "data", "model_file_url"]
+    "required": ["id", "data", "model_file_url", "created_by"]
 }
