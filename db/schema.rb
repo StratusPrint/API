@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160425171544) do
+ActiveRecord::Schema.define(version: 20160429001424) do
+
+  create_table "alerts", force: :cascade do |t|
+    t.text     "category"
+    t.text     "title"
+    t.text     "message"
+    t.datetime "time"
+    t.text     "snapshot"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "commands", force: :cascade do |t|
     t.datetime "created_at",                        null: false
@@ -73,16 +83,14 @@ ActiveRecord::Schema.define(version: 20160425171544) do
   add_index "hubs", ["uid", "provider"], name: "index_hubs_on_uid_and_provider", unique: true
 
   create_table "jobs", force: :cascade do |t|
-    t.integer  "job_id"
-    t.text     "data",             default: "{\"status\": \"processing\", \"file\": {\"name\": \"string\", \"origin\": \"file\", \"size\": 0, \"date\": 0 }, \"estimated_print_time\": 0, \"filament\": {\"length\": \"string\", \"volume\": \"string\"}, \"progress\": {\"completion\": \"0\", \"file_position\": 0, \"print_time\": 0, \"print_time_left\": 0 } }"
-    t.datetime "created_at",                                                                                                                                                                                                                                                                                                                                          null: false
-    t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                                          null: false
+    t.integer  "created_by_user_id"
+    t.text     "data",               default: "{\"status\": \"processing\", \"file\": {\"name\": \"string\", \"origin\": \"file\", \"size\": 0, \"date\": 0 }, \"estimated_print_time\": 0, \"filament\": {\"length\": \"string\", \"volume\": \"string\"}, \"progress\": {\"completion\": \"0\", \"file_position\": 0, \"print_time\": 0, \"print_time_left\": 0 } }"
+    t.datetime "created_at",                                                                                                                                                                                                                                                                                                                                            null: false
+    t.datetime "updated_at",                                                                                                                                                                                                                                                                                                                                            null: false
     t.text     "model"
-    t.boolean  "model_processing", default: false,                                                                                                                                                                                                                                                                                                                    null: false
+    t.boolean  "model_processing",   default: false,                                                                                                                                                                                                                                                                                                                    null: false
     t.text     "model_file_name"
   end
-
-  add_index "jobs", ["job_id"], name: "index_jobs_on_job_id", unique: true
 
   create_table "printer_commands", force: :cascade do |t|
     t.integer  "printer_id"
@@ -133,8 +141,11 @@ ActiveRecord::Schema.define(version: 20160425171544) do
     t.text     "manufacturer"
     t.text     "friendly_id"
     t.text     "desc"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.text     "low_threshold"
+    t.text     "high_threshold"
+    t.boolean  "alert_generated", default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "sensors", ["friendly_id"], name: "index_sensors_on_friendly_id", unique: true

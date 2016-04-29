@@ -8,6 +8,10 @@ class Command < ApplicationRecord
     end
     property :issued_by do
       key :type, :string
+      key :description, 'The name of the command'
+    end
+    property :issued_by do
+      key :type, :string
       key :description, 'The name of the user who issued the command'
     end
     property :created_at do

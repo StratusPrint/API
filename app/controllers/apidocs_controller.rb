@@ -39,6 +39,7 @@ class ApidocsController < ApplicationController
     Api::V1::JobsController,
     Api::V1::UsersController,
     Api::V1::CommandsController,
+    Api::V1::AlertsController,
     User,
     Hub,
     Sensor,
@@ -46,6 +47,7 @@ class ApidocsController < ApplicationController
     Job,
     DataPoint,
     Command,
+    Alert,
     self,
   ].freeze
 

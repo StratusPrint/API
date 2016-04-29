@@ -133,7 +133,7 @@ module Api::V1
 
     # POST /printers/1/jobs
     def create
-      @job = Job.new(job_params)
+      @job = Job.new(job_params.merge(:created_by_user_id => current_user.id))
 
       if @job.save
         Printer.find_by(id: params[:printer_id]).jobs << @job

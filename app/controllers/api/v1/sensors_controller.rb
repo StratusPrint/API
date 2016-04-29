@@ -241,7 +241,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def sensor_params
-      params.fetch(:sensor, {}).permit(:friendly_id, :category, :manufacturer, :model, :desc, :data_count)
+      params.fetch(:sensor, {}).permit(:friendly_id, :category, :manufacturer, :model, :desc, :data_count, :low_threshold, :high_threshold)
     end
   end
 end
