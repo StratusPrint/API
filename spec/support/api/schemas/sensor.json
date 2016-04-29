@@ -27,7 +27,13 @@
         },
         "reading": {
             "type": "string"
+        },
+        "low_threshold": {
+            "type": "string"
+        },
+        "high_threshold": {
+            "type": "string"
         }
     },
-    "required": ["friendly_id", "category", "manufacturer", "model", "data_count", "reading"]
+    "required": ["friendly_id", "category", "manufacturer", "model", "data_count", "reading", "low_threshold", "high_threshold"]
 }

@@ -9,6 +9,8 @@ FactoryGirl.define do
     manufacturer "MicroChip"
     model "SENSOR-4000"
     desc "Detects environmental condition XYZ."
+    low_threshold "0"
+    high_threshold "100"
 
     after(:build) do |sensor|
       case sensor.category

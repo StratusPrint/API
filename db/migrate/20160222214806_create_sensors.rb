@@ -6,6 +6,8 @@ class CreateSensors < ActiveRecord::Migration[5.0]
       t.text :manufacturer
       t.text :friendly_id
       t.text :desc
+      t.text :low_threshold
+      t.text :high_threshold
       t.timestamps
     end
 
