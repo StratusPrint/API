@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :alerts
   resources :commands
   mount_devise_token_auth_for 'Hub', at: 'v1/hub_auth'
   mount_devise_token_auth_for 'User', at: 'v1/auth', controllers: {
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
         end
       end
       resources :users
+      resources :alerts
     end
   end
   resources :apidocs, only: [:index]
