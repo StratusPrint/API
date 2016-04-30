@@ -55,7 +55,6 @@ class CreateAlertJob < ApplicationJob
 
   def environment_conditions
     sensors = @job.printer.hub.sensors
-    return "[]" if sensors.count.empty?
     array = Array.new
     sensors.each do |s|
       reading = friendly_reading(s)
@@ -109,6 +108,7 @@ class CreateAlertJob < ApplicationJob
   end
 
   def friendly_reading(sensor)
+    return "No data logged" if sensor.data_points.empty?
     case sensor.category
     when "temperature"
       return "#{sensor.data_points.last.value.to_i.round(2)}°F"
