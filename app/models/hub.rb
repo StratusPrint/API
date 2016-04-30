@@ -37,6 +37,7 @@ class Hub < ApplicationRecord
   validates :friendly_id, :hostname, :uniqueness => true, :presence => true
   validates :ip, :uniqueness => true, :presence => true, :ip => { :format => :v4 }
   validates_format_of :hostname, :with => /\A[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}\z/ix
+  validates_inclusion_of :port, in: 0..65535
 
   enumerize :status, in: [:online, :offline, :unknown]
 

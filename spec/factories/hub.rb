@@ -14,6 +14,7 @@ FactoryGirl.define do
   factory :hub do
     friendly_id { generate(:hub_name) }
     ip { generate(:ip) }
+    port { 5000 }
     hostname { generate(:hostname) }
     location "Secret Location 1234"
     desc "Manages the printers and sensors of a deployment."
