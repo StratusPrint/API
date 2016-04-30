@@ -55,6 +55,7 @@ class CreateAlertJob < ApplicationJob
 
   def environment_conditions
     sensors = @job.printer.hub.sensors
+    return "[]" if sensors.count.empty?
     array = Array.new
     sensors.each do |s|
       reading = friendly_reading(s)
