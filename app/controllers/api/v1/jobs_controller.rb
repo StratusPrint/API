@@ -136,6 +136,7 @@ module Api::V1
       @job = Job.new(job_params.merge(:created_by_user_id => current_user.id))
 
       if @job.save
+        CreateAlertJob.perform_later(@job, 'processing', 'created')
         Printer.find_by(id: params[:printer_id]).jobs << @job
         render json: @job, status: :created, location: v1_job_path(@job)
       else

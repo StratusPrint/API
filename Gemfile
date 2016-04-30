@@ -35,6 +35,7 @@ gem 'carrierwave', '0.10.0'
 gem 'carrierwave-base64'
 # Background processing
 gem 'sidekiq'
+gem 'sinatra', github: 'sinatra/sinatra'
 gem 'carrierwave_backgrounder', github: 'lardawge/carrierwave_backgrounder'
 gem 'mime-types', '2.3'
 # REST client

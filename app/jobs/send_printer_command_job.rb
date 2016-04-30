@@ -7,7 +7,7 @@ class SendPrinterCommandJob < ApplicationJob
     @printer = printer
 
     begin
-      RestClient.post(hub_endpoint, :command_id => @command.id) { |response, request, result, &block|
+      RestClient.post(hub_endpoint, :id => @command.id, :name => command.name) { |response, request, result, &block|
         case response.code
         when 201
           logger.info "#{@command.name} command successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
@@ -23,7 +23,7 @@ class SendPrinterCommandJob < ApplicationJob
 
   private
   def hub_endpoint
-    "http://#{@hub.ip}:#{@hub.port}/printers/#{@printer.id}/#{@command.name}"
+    "http://#{@hub.ip}:#{@hub.port}/printers/#{@printer.id}/commands"
   end
 
   def set_command_errored
