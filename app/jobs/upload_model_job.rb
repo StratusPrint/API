@@ -20,7 +20,7 @@ class UploadModelJob < ApplicationJob
     logger.info "Sending job number #{@job.id} with model file #{@job.model} to hub for printing."
 
     begin
-      RestClient.post(hub_endpoint, :file => File.new(@job.model.current_path), :job_id => @job.id) { |response, request, result, &block|
+      RestClient.post(hub_endpoint, :file => File.new(@job.model.current_path), :id => @job.id) { |response, request, result, &block|
         case response.code
         when 201
           logger.info "Job ##{@job.id} successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
