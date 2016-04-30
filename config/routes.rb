@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   resources :alerts
   resources :commands
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == ENV['sidekiq_ui_user'] && password == ENV['sidekiq_ui_pw']
+  end
   mount Sidekiq::Web => '/sidekiq'
   mount_devise_token_auth_for 'Hub', at: 'v1/hub_auth'
   mount_devise_token_auth_for 'User', at: 'v1/auth', controllers: {
