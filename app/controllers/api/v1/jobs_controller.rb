@@ -145,7 +145,13 @@ module Api::V1
 
     # PATCH/PUT /jobs/1
     def update
+      old_status = @job.data['status']
+      new_status = job_params[:data][:status]
+
       if @job.update(job_params)
+        if old_status != new_status
+          CreateAlertJob.perform_later(@job, new_status, old_status)
+        end
         render json: @job
       else
         render json: @job.errors, status: :unprocessable_entity

@@ -31,5 +31,5 @@ class Alert < ApplicationRecord
 
   enumerize :category, in: [:hub, :printer, :job, :sensor]
 
-  serialize :sensors, JSON
+  serialize :snapshot, JSON
 end

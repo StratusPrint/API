@@ -9,7 +9,11 @@ class CreateAlertJob < ApplicationJob
       logger.info "Creating an alert for sensor ##{@sensor.id}"
       create_sensor_alert
     when Job
-      # create a job alert
+      @job = type
+      @new_status = args[0]
+      @old_status = args[1]
+      logger.info "Creating an alert for job ##{@job.id} due to a status change from #{@old_status.upcase} to #{@new_status.upcase}"
+      create_job_alert
     when Printer
       # create a printer alert
     when Hub
@@ -18,6 +22,48 @@ class CreateAlertJob < ApplicationJob
   end
 
   private
+  def create_job_alert
+    if @new_status == 'errored'
+      @alert = Alert.new(:snapshot => environment_conditions, :category => 'job', :title => build_job_status_change_title, :message => build_job_status_change_message, :time => @job.updated_at)
+    else
+      @alert = Alert.new(:category => 'job', :title => build_job_status_change_title, :message => build_job_status_change_message, :time => @job.updated_at)
+    end
+    if @alert.save
+      send_job_status_change_email
+    end
+  end
+
+  def send_job_status_change_email
+    AlertMailer.notify(@alert, User.find(@job.created_by_user_id).email).deliver
+  end
+
+  def build_job_status_change_title
+    if @new_status == 'errored'
+      "[ALERT] Job ##{@job.id} (#{@job.model_file_name}#{File.extname(@job.model.url)}) has #{@new_status.upcase}"
+    else
+      "[ALERT] Job ##{@job.id} (#{@job.model_file_name}#{File.extname(@job.model.url)}) is now #{@new_status.upcase}"
+    end
+  end
+
+  def build_job_status_change_message
+    if @new_status == 'errored'
+      "The job has failed and is no longer printing."
+    else
+      "The job status has changed from #{@old_status} to #{@new_status}."
+    end
+  end
+
+  def environment_conditions
+    sensors = @job.printer.hub.sensors
+    array = Array.new
+    sensors.each do |s|
+      reading = friendly_reading(s)
+      s = s.as_json
+      s['reading'] = reading
+      array.push s
+    end
+    return array
+  end
 
   def create_sensor_alert
     if @sensor.alert_generated
@@ -59,6 +105,18 @@ class CreateAlertJob < ApplicationJob
 
   def build_threshold_violation_title
     "[ALERT] Sensor ##{@sensor.id} (#{@sensor.friendly_id}) - #{@sensor.category.capitalize} Threshold Violated"
+  end
+
+  def friendly_reading(sensor)
+    case sensor.category
+    when "temperature"
+      return "#{sensor.data_points.last.value.to_i.round(2)}°F"
+    when "humidity"
+      return "#{sensor.data_points.last.value.to_i.round(2)}%"
+    when "door"
+      return "OPEN" if sensor.data_points.last.value == '0'
+      return "CLOSED" if sensor.data_points.last.value == '1'
+    end
   end
 
   def sensor_unit
