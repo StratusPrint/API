@@ -56,7 +56,7 @@ class UploadModelJob < ApplicationJob
   end
 
   def hub_endpoint
-    "http://#{@hub.ip}:#{@hub.port}/#{@hub.id}/printers/#{@printer.id}"
+    "http://#{@hub.ip}:#{@hub.port}/printers/#{@printer.id}/jobs"
   end
 
   def set_model_processing

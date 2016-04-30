@@ -23,7 +23,7 @@ class SendPrinterCommandJob < ApplicationJob
 
   private
   def hub_endpoint
-    "http://#{@hub.ip}:#{@hub.port}/#{@hub.id}/printers/#{@printer.id}/#{@command.name}"
+    "http://#{@hub.ip}:#{@hub.port}/printers/#{@printer.id}/#{@command.name}"
   end
 
   def set_command_errored
