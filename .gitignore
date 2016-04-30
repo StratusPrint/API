@@ -27,3 +27,6 @@ config/application.yml
 
 # Uploads
 uploads/
+
+# Database
+config/database.yml
