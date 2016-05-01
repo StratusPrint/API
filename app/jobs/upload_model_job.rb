@@ -52,9 +52,8 @@ class UploadModelJob < ApplicationJob
     logger.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id} after #{@max_retries} attempts. Setting job status to errored."
     clear_model_processing
     @job.data['status'] = 'errored'
-    if @job.save
-      CreateAlertJob.perform_later(@job, 'errored', 'processing')
-    end
+    @job.save
+    CreateAlertJob.perform_later(@job, 'errored', 'processing')
   end
 
   def hub_endpoint
