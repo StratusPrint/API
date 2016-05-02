@@ -7,7 +7,7 @@ class SendPrinterCommandJob < ApplicationJob
     @printer = printer
 
     begin
-      RestClient.post(hub_endpoint, :id => @command.id, :name => command.name) { |response, request, result, &block|
+      RestClient.post(hub_endpoint, {:id => @command.id, :name => command.name}.to_json, :content_type => :json, :accept => :json) { |response, request, result, &block|
         case response.code
         when 201
           logger.application.info "#{@command.name} command successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
