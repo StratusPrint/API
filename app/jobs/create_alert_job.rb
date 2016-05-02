@@ -6,13 +6,13 @@ class CreateAlertJob < ApplicationJob
     when Sensor
       @sensor = type
       @data_point = args[0]
-      logger.info "Creating an alert for sensor ##{@sensor.id}"
+      logger.application.info "Creating an alert for sensor ##{@sensor.id}"
       create_sensor_alert
     when Job
       @job = type
       @new_status = args[0]
       @old_status = args[1]
-      logger.info "Creating an alert for job ##{@job.id} due to a status change from #{@old_status.upcase} to #{@new_status.upcase}"
+      logger.application.info "Creating an alert for job ##{@job.id} due to a status change from #{@old_status.upcase} to #{@new_status.upcase}"
       create_job_alert
     when Printer
       # create a printer alert

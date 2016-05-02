@@ -10,8 +10,8 @@ class SendPrinterCommandJob < ApplicationJob
       RestClient.post(hub_endpoint, :id => @command.id, :name => command.name) { |response, request, result, &block|
         case response.code
         when 201
-          logger.info "#{@command.name} command successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
-          logger.debug "Response from hub: " + response
+          logger.application.info "#{@command.name} command successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
+          logger.application.debug "Response from hub: " + response
         else
           set_command_errored
         end
@@ -27,7 +27,7 @@ class SendPrinterCommandJob < ApplicationJob
   end
 
   def set_command_errored
-    logger.info "Unable to send #{@command.name} command to hub ##{@hub.id} for printer ##{@printer.id}."
+    logger.application.info "Unable to send #{@command.name} command to hub ##{@hub.id} for printer ##{@printer.id}."
     @command.status = 'errored'
     @command.save
   end

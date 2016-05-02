@@ -17,21 +17,21 @@ class UploadModelJob < ApplicationJob
 
     # Make the POST request. This will try to send the model file to the hub at most 6 times
     # should the initial POST request fail.
-    logger.info "Sending job number #{@job.id} with model file #{@job.model} to hub for printing."
+    logger.application.info "Sending job number #{@job.id} with model file #{@job.model} to hub for printing."
 
     begin
       RestClient.post(hub_endpoint, :file => File.new(@job.model.current_path), :id => @job.id) { |response, request, result, &block|
         case response.code
         when 201
-          logger.info "Job ##{@job.id} successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
-          logger.debug "Response from hub: " + response
+          logger.application.info "Job ##{@job.id} successfully sent to hub ##{@hub.id} for printer ##{@printer.id}."
+          logger.application.debug "Response from hub: " + response
           clear_model_processing
         end
       }
     rescue
       @retries ||= 0
       if @retries < @max_retries
-        logger.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id}. Beginning retry ##{@retries}."
+        logger.application.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id}. Beginning retry ##{@retries}."
         @retries += 1
         retry
       else
@@ -49,7 +49,7 @@ class UploadModelJob < ApplicationJob
 
   private
   def set_job_errored
-    logger.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id} after #{@max_retries} attempts. Setting job status to errored."
+    logger.application.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id} after #{@max_retries} attempts. Setting job status to errored."
     clear_model_processing
     @job.data['status'] = 'errored'
     @job.save
