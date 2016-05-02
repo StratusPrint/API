@@ -17,7 +17,10 @@ module Api::V1
         response 200 do
           key :description, 'List of hubs'
           schema do
-            key :'$ref', :Hub
+            key :type, :array
+            items do
+              key :'$ref', :Hub
+            end
           end
         end
         response 401 do
@@ -328,7 +331,10 @@ module Api::V1
         response 200 do
           key :description, 'A list of sensors'
           schema do
-            key :'$ref', :Sensor
+            key :type, :array
+            items do
+              key :'$ref', :Sensor
+            end
           end
         end
         response 401 do
@@ -405,7 +411,10 @@ module Api::V1
         response 200 do
           key :description, 'A list of printers'
           schema do
-            key :'$ref', :Printer
+            key :type, :array
+            items do
+              key :'$ref', :Printer
+            end
           end
         end
         response 401 do

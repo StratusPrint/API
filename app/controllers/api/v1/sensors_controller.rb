@@ -134,7 +134,10 @@ module Api::V1
         response 200 do
           key :description, 'Sensor data'
           schema do
-            key :'$ref', :DataPoint
+            key :type, :array
+            items do
+              key :'$ref', :DataPoint
+            end
           end
         end
         response 401 do

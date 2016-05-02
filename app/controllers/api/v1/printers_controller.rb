@@ -131,7 +131,10 @@ module Api::V1
         response 200 do
           key :description, 'List of jobs'
           schema do
-            key :'$ref', :Job
+            key :type, :array
+            items do
+              key :'$ref', :Job
+            end
           end
         end
         response 401 do
@@ -189,7 +192,7 @@ module Api::V1
     end
     swagger_path '/printers/{id}/completed_jobs' do
       operation :get do
-        key :summary, 'List all completed for a printer'
+        key :summary, 'List all completed jobs for a printer'
         key :description, 'Fetches a list of completed jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
         key :operationId, 'findCompletedPrinterJobs'
         key :produces, [
@@ -208,7 +211,10 @@ module Api::V1
         response 200 do
           key :description, 'List completed of jobs'
           schema do
-            key :'$ref', :Job
+            key :type, :array
+            items do
+              key :'$ref', :Job
+            end
           end
         end
         response 401 do
@@ -224,7 +230,7 @@ module Api::V1
     end
     swagger_path '/printers/{id}/queued_jobs' do
       operation :get do
-        key :summary, 'List all queued for a printer'
+        key :summary, 'List all queued jobs for a printer'
         key :description, 'Fetches a list of queued jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
         key :operationId, 'findQueuedPrinterJobs'
         key :produces, [
@@ -243,7 +249,10 @@ module Api::V1
         response 200 do
           key :description, 'List queued of jobs'
           schema do
-            key :'$ref', :Job
+            key :type, :array
+            items do
+              key :'$ref', :Job
+            end
           end
         end
         response 401 do
@@ -259,7 +268,7 @@ module Api::V1
     end
     swagger_path '/printers/{id}/processing_jobs' do
       operation :get do
-        key :summary, 'List all queued for a printer'
+        key :summary, 'List all processing jobs for a printer'
         key :description, 'Fetches a list of processing jobs associated with the given printer. Note that user must have access to the parent printer to carry out this action.'
         key :operationId, 'findProcessingPrinterJobs'
         key :produces, [
@@ -278,7 +287,10 @@ module Api::V1
         response 200 do
           key :description, 'List processing of jobs'
           schema do
-            key :'$ref', :Job
+            key :type, :array
+            items do
+              key :'$ref', :Job
+            end
           end
         end
         response 401 do
@@ -313,7 +325,10 @@ module Api::V1
         response 200 do
           key :description, 'List recent of jobs'
           schema do
-            key :'$ref', :Job
+            key :type, :array
+            items do
+              key :'$ref', :Job
+            end
           end
         end
         response 401 do

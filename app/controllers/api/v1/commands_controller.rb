@@ -35,7 +35,10 @@ module Api::V1
         response 201 do
           key :description, 'Command successfully issued'
           schema do
-            key :'$ref', :Command
+            key :type, :array
+            items do
+              key :'$ref', :Command
+            end
           end
         end
         response 401 do

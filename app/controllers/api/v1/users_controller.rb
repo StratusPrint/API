@@ -270,7 +270,10 @@ module Api::V1
         response 200 do
           key :description, 'List of users'
           schema do
-            key :'$ref', :User
+            key :type, :array
+            items do
+              key :'$ref', :User
+            end
           end
         end
         response 401 do

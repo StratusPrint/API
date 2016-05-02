@@ -5,7 +5,7 @@ class ApidocsController < ApplicationController
     key :swagger, '2.0'
     info do
       key :version, '1.0.0'
-      key :title, 'StratusPrint API'
+      key :title, 'StratusPrint Control Panel API'
       key :description, '3D printer management and environmental monitoring'
       contact do
       end

@@ -42,11 +42,13 @@ class Job < ApplicationRecord
         key :enum, ['processing', 'queued', 'completed', 'errored', 'slicing', 'printing', 'paused']
       end
       property :started do
-        key :type, 'date-time'
+        key :type, 'string'
+        key :format, 'date-time'
         key :description, 'The time that the file began printing'
       end
       property :completed do
-        key :type, 'date-time'
+        key :type, 'string'
+        key :format, 'date-time'
         key :description, 'The time that the file was finished printing'
       end
       property :file do
