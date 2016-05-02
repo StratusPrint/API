@@ -22,7 +22,7 @@ class CheckHubStatusJob < ApplicationJob
 
   def hub_alive?(hub)
     begin
-      response = RestClient.get("http://#{hub.ip}:#{hub.port}")
+      response = RestClient.get("http://#{hub.ip}:#{hub.port}/printers")
       case response.code
       when 200
         return true
