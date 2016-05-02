@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  require 'sidekiq/web'
   resources :alerts
   resources :commands
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
