@@ -215,8 +215,8 @@ module Api::V1
     def create
       @sensor = Sensor.new(sensor_params)
       if @sensor.save
-        hub = Hub.find_by(id: params[:hub_id]).sensors
-        hub << @sensor
+        hub = Hub.find_by(id: params[:hub_id])
+        hub.sensors << @sensor
         RegisterSensorJob.perform_later(@sensor, hub)
         render json: @sensor, status: :created, location: v1_sensor_path(@sensor)
       else
