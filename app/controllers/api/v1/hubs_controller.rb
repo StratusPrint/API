@@ -643,7 +643,7 @@ module Api::V1
 
     # Only allow a trusted parameter "white list" through.
     def hub_params
-      params.fetch(:hub, {}).permit(:friendly_id, :ip, :port, :hostname, :location, :desc, :status)
+      params.fetch(:hub, {}).permit(:friendly_id, :ip, :port, :hostname, :location, :desc, :status, :nodes)
     end
   end
 end

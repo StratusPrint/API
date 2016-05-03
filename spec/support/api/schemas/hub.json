@@ -29,11 +29,11 @@
             "type": "string"
         },
         "nodes": {
-            "type": "array",
+            "type": ["array", "null"],
             "items": {
                 "type": "integer"
             }
         }
     },
-    "required": ["friendly_id", "ip", "port", "hostname", "status", "nodes"]
+    "required": ["friendly_id", "ip", "port", "hostname", "status"]
 }
