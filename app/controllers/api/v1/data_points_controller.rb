@@ -54,8 +54,7 @@ module Api::V1
 
     # GET /data_points
     def index
-      @data_points = Sensor.find_by(id: params[:sensor_id]).data_points
-      @data_points = @data_points & apply_scopes(DataPoint).all
+      @data_points = Sensor.find_by(id: params[:sensor_id]).data_points & apply_scopes(DataPoint).all
       render json: @data_points
     end
 
