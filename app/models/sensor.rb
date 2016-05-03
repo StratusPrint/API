@@ -34,6 +34,14 @@ class Sensor < ApplicationRecord
       key :type, :string
       key :description, 'The most recent data point logged by the sensor'
     end
+    property :node_id do
+      key :type, :integer
+      key :description, 'The ID of the node associated with the sensor'
+    end
+    property :pin do
+      key :type, :integer
+      key :description, 'The GPIO pin number that the sensor is connected to'
+    end
   end
 
   before_destroy :destroy_data
