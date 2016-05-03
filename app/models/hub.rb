@@ -30,6 +30,13 @@ class Hub < ApplicationRecord
       key :description, 'The current status of the hub'
       key :enum, ['online', 'offline', 'unknown']
     end
+    property :nodes do
+      key :type, :array
+      key :description, 'List of nodes associated with the hub'
+      items do
+        key :type, :integer
+      end
+    end
   end
 
   before_destroy :destroy_sensors_printers

@@ -19,7 +19,7 @@ FactoryGirl.define do
     location "Secret Location 1234"
     desc "Manages the printers and sensors of a deployment."
     status { ["online", "offline", "unknown"].sample }
-
+    nodes { [0, 1, 2, 3, 4, 5] }
     after(:build) do |hub|
       2.times do hub.printers << build(:printer) end
       5.times do hub.sensors << build(:sensor) end

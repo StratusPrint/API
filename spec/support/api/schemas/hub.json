@@ -27,7 +27,13 @@
         },
         "location": {
             "type": "string"
+        },
+        "nodes": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
         }
     },
-    "required": ["friendly_id", "ip", "port", "hostname", "status"]
+    "required": ["friendly_id", "ip", "port", "hostname", "status", "nodes"]
 }
