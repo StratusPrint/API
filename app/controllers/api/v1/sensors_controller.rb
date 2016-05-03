@@ -215,7 +215,9 @@ module Api::V1
     def create
       @sensor = Sensor.new(sensor_params)
       if @sensor.save
-        Hub.find_by(id: params[:hub_id]).sensors << @sensor
+        hub = Hub.find_by(id: params[:hub_id]).sensors
+        hub << @sensor
+        RegisterSensorJob.perform_later(@sensor, hub)
         render json: @sensor, status: :created, location: v1_sensor_path(@sensor)
       else
         render json: @sensor.errors, status: :unprocessable_entity

@@ -36,7 +36,10 @@
         },
         "node_id": {
             "type": "integer"
+        },
+        "pin": {
+            "type": "integer"
         }
     },
-    "required": ["friendly_id", "category", "manufacturer", "model", "data_count", "reading", "low_threshold", "high_threshold", "node_id"]
+    "required": ["friendly_id", "category", "manufacturer", "model", "data_count", "reading", "low_threshold", "high_threshold", "node_id", "pin"]
 }
