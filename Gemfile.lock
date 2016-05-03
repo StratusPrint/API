@@ -140,6 +140,9 @@ GEM
       thor (~> 0.14)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    has_scope (0.7.0)
+      actionpack (>= 4.1, < 5.1)
+      activesupport (>= 4.1, < 5.1)
     hashie (3.4.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -287,6 +290,7 @@ DEPENDENCIES
   enumerize
   factory_girl_rails
   figaro
+  has_scope
   json-schema
   mime-types (= 2.3)
   multi_logger

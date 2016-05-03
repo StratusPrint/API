@@ -128,7 +128,21 @@ module Api::V1
           key :name, :id
           key :in, :path
           key :description, 'ID of the sensor'
-          key :required, :true
+          key :required, true
+          key :type, :integer
+        end
+        parameter do
+          key :name, :days_ago
+          key :in, :query
+          key :description, 'How far back (in number of days) to retrieve data points'
+          key :required, false
+          key :type, :integer
+        end
+        parameter do
+          key :name, :hours_ago
+          key :in, :query
+          key :description, 'How far back (in number of hours) to retrieve data points'
+          key :required, false
           key :type, :integer
         end
         response 200 do

@@ -43,6 +43,8 @@ gem 'mime-types', '2.3'
 gem 'rest-client'
 # Logging
 gem 'multi_logger'
+# Result filtering
+gem 'has_scope'
 
 group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
