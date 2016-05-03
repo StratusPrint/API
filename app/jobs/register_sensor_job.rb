@@ -15,7 +15,7 @@ class RegisterSensorJob < ApplicationJob
 
   def register_sensor
     begin
-      RestClient.post(hub_endpoint, {:id => @sensor.id, :pin => @sensor.pin, :sensor_type => @sensor.category}.to_json, :content_type => :json, :accept => :json) { |response, request, result, &block|
+      RestClient.post(hub_endpoint, {:id => @sensor.id, :pin => @sensor.pin, :type => @sensor.category}.to_json, :content_type => :json, :accept => :json) { |response, request, result, &block|
         case response.code
         when 201
           logger.application.info "Sensor ##{@sensor.id} (#{@sensor.name}) successfully registered with hub ##{@hub.id}."
