@@ -12,6 +12,7 @@ FactoryGirl.define do
     low_threshold "0"
     high_threshold "100"
     node_id 0
+    pin 0
 
     after(:build) do |sensor|
       case sensor.category
