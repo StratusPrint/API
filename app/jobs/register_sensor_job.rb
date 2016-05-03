@@ -13,7 +13,7 @@ class RegisterSensorJob < ApplicationJob
     "http://#{@hub.ip}:#{@hub.port}/nodes/#{@sensor.node_id}/sensors"
   end
 
-  def register_sensor(sensor, hub)
+  def register_sensor
     RestClient.post(hub_endpoint, {:id => @sensor.id, :pin => @sensor.pin, :sensor_type => @sensor.category}.to_json, :content_type => :json, :accept => :json) { |response, request, result, &block|
       case response.code
       when 201
