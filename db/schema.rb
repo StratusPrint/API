@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160503040939) do
+ActiveRecord::Schema.define(version: 20160503072636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,7 @@ ActiveRecord::Schema.define(version: 20160503040939) do
     t.text     "high_threshold"
     t.boolean  "alert_generated", default: false
     t.integer  "node_id"
+    t.integer  "pin"
   end
 
   add_index "sensors", ["friendly_id"], name: "index_sensors_on_friendly_id", unique: true, using: :btree
