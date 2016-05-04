@@ -49,8 +49,8 @@ module Api::V1
     # CONTROLLER ACTIONS
     ###########################################################################
     before_action :set_data_point, only: [:show, :update, :destroy]
-    has_scope :days_ago
-    has_scope :hours_ago
+    has_scope :days_ago, only: [:index]
+    has_scope :hours_ago, only: [:index]
 
     # GET /data_points
     def index

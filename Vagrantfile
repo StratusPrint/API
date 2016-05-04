@@ -3,7 +3,7 @@ Vagrant.configure(2) do |config|
   config.vm.host_name = "stratusprint-api"
   # Forward 8080 on host machine to guest VM
   config.vm.network "forwarded_port", guest: 80, host: 8081
-  config.vm.network "forwarded_port", guest: 22, host: 1234
+  config.vm.network "forwarded_port", guest: 22, host: 2512
   # Shared Folders
   config.vm.synced_folder '.', '/vagrant'
   config.vm.synced_folder 'puppet', '/puppet'
