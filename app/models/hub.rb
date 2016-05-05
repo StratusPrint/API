@@ -48,8 +48,8 @@ class Hub < ApplicationRecord
 
   enumerize :status, in: [:online, :offline, :unknown]
 
-  has_many :hub_printers
-  has_many :hub_sensors
+  has_many :hub_printers, :dependent => :destroy
+  has_many :hub_sensors, :dependent => :destroy
   has_many :printers, through: :hub_printers
   has_many :sensors, through: :hub_sensors
 

@@ -13,7 +13,7 @@ class DataPoint < ApplicationRecord
     end
   end
 
-  has_one :sensor_data_point
+  has_one :sensor_data_point, :dependent => :destroy
   has_one :sensor, through: :sensor_data_point
 
   scope :days_ago, -> num_days { where(:created_at => (Time.zone.now-num_days.to_i.days..Time.zone.now)) }

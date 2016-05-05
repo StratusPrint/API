@@ -108,7 +108,7 @@ class Job < ApplicationRecord
     end
   end
 
-  has_one :printer_job
+  has_one :printer_job, :dependent => :destroy
   has_one :printer, through: :printer_job
 
   mount_base64_uploader :model, ModelUploader

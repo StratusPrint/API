@@ -43,6 +43,6 @@ class Command < ApplicationRecord
 
   attr_readonly :issued_by_user, :name
 
-  has_one :printer_command
+  has_one :printer_command, :dependent => :destroy
   has_one :printer, through: :printer_command
 end
