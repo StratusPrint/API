@@ -86,9 +86,9 @@ module Api::V1
         end
       end
       operation :delete do
-        key :summary, 'Delete an existing job'
-        key :description, 'Deletes an existing job. Requires admin priveleges.'
-        key :operationId, 'deleteJob'
+        key :summary, 'Cancel an existing job'
+        key :description, 'Cancels an existing job. Requires admin priveleges.'
+        key :operationId, 'cancelJob'
         key :tags, [
           'Job Management'
         ]
@@ -161,7 +161,9 @@ module Api::V1
 
     # DELETE /jobs/1
     def destroy
-      @job.destroy
+      #@job.destroy
+      CancelJob.perform_later(@job)
+      render json: Messages::CommandIssuedMessage, status: :no_content
     end
 
     private

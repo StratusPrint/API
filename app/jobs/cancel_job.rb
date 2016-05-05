@@ -1,0 +1,30 @@
+class CancelJob < ApplicationJob
+  queue_as :default
+
+  def perform(job)
+    @job = job
+    cancel_job
+  end
+
+  private
+
+  def cancel_job
+    begin
+      RestClient.delete(hub_endpoint) { |response, request, result, &block|
+        case response.code
+        when 200
+          logger.application.info "Requested that job ##{@job.id} be cancelled with the HUB."
+          logger.application.debug "Response from hub: " + response
+        else
+          logger.application.info "Unable to cancel ##{@job.id}."
+        end
+      }
+    rescue
+      # Do nothing
+    end
+  end
+
+  def hub_endpoint
+    "http://#{@hub.ip}:#{@hub.port}/jobs/#{@job.id}"
+  end
+end
