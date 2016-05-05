@@ -37,7 +37,7 @@ class Printer < ApplicationRecord
   validates :friendly_id, :uniqueness => true, :presence => true
   enumerize :status, in: [:ready, :paused, :printing, :errored, :offline, :cancelled, :completed]
 
-  has_one :hub_printer
+  has_one :hub_printer, :dependent => :destroy
   has_one :hub, through: :hub_printer
   has_many :printer_jobs
   has_many :jobs, through: :printer_jobs
