@@ -31,13 +31,13 @@ class Command < ApplicationRecord
     end
     property :type do
       key :type, :string
-      key :enum, ['start', 'pause', 'cancel']
+      key :enum, ['start', 'pause', 'cancel', 'clear']
       key :description, 'The type of command issued'
     end
   end
 
   enumerize :status, in: [:issued, :executed, :errored]
-  enumerize :name, in: [:start, :pause, :cancel]
+  enumerize :name, in: [:start, :pause, :cancel, :clear]
 
   validates :name, :presence => true
 
