@@ -23,7 +23,7 @@ class CancelJob < ApplicationJob
         end
       }
     rescue
-      @job.data['status'] = 'canceled'
+      @job.data['status'] = 'cancelled'
       @job.save
     end
   end
