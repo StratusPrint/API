@@ -65,8 +65,9 @@ class HubAbility
       p.hub.id == hub.id
     end
 
-    # Allow hub to read its own profile
+    # Allow hub to read and update its own profile
     can :show, Hub, :id => hub.id
+    can :update, Hub, :id => hub.id
 
     # Allow hub to update printer commands
     can :update, Command do |c|
