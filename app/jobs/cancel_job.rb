@@ -34,6 +34,7 @@ class CancelJob < ApplicationJob
       else
         @job.data['status'] = 'cancelled'
         @job.save
+        logger.application.info "Job ##{@job.id} status set to cancelled."
       end
     end
   end
