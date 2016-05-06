@@ -9,6 +9,9 @@ class CancelJob < ApplicationJob
   private
 
   def cancel_job
+    # Set number of max retries
+    @max_retries = 3
+
     begin
       RestClient.delete(hub_endpoint) { |response, request, result, &block|
         case response.code
@@ -23,8 +26,15 @@ class CancelJob < ApplicationJob
         end
       }
     rescue
-      @job.data['status'] = 'cancelled'
-      @job.save
+      @retries ||= 0
+      if @retries < @max_retries
+        logger.application.info "Unable to contact HUB to cancel job ##{@job.id}. Beginning retry ##{@retries}."
+        @retries += 1
+        retry
+      else
+        @job.data['status'] = 'cancelled'
+        @job.save
+      end
     end
   end
 
