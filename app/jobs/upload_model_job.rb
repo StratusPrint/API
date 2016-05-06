@@ -5,9 +5,9 @@ class UploadModelJob < ApplicationJob
   after_perform do |j|
     # Retrieve Job, Printer, and Hub from database
     begin
-      @job = Job.find(j.arguments.second)
-      @printer = Job.find(j.arguments.second).printer
-      @hub = Job.find(j.arguments.second).printer.hub
+      @job = Job.find(j.arguments.second.to_i)
+      @printer = @job.printer
+      @hub = @printer.hub
     rescue
       set_job_errored
       return
@@ -54,11 +54,11 @@ class UploadModelJob < ApplicationJob
 
   private
   def set_job_errored
-    logger.application.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id} after #{@max_retries} attempts. Setting job status to errored."
     clear_model_processing
     @job.data['status'] = 'errored'
     @job.save
     CreateAlertJob.perform_later(@job, 'errored', 'processing')
+    logger.application.info "Unable to send job ##{@job.id} to hub ##{@hub.id} for printer ##{@printer.id} after #{@max_retries} attempts. Setting job status to errored."
   end
 
   def hub_endpoint
