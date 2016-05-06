@@ -3,6 +3,7 @@ class CancelJob < ApplicationJob
 
   def perform(job)
     @job = job
+    @hub = job.printer.hub
     cancel_job
   end
 
