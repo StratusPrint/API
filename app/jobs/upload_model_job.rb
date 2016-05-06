@@ -10,6 +10,7 @@ class UploadModelJob < ApplicationJob
       @hub = Job.find(j.arguments.second).printer.hub
     rescue
       set_job_errored
+      return
     end
 
     # Set model as processing. This flag indicates that model
