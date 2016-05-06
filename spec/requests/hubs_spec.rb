@@ -94,7 +94,7 @@ describe "Hub Management", :type => :request do
       expect(response).to have_http_status(:unauthorized)
     end
 
-    it "should not update a hub if authenticated as hub" do
+    it "should update a hub if authenticated as hub" do
       patch v1_hub_path(hubs.first.id), params: { hub: new_hub.attributes }, headers: hub_auth_headers
       expect(response).to have_http_status(:forbidden)
     end
