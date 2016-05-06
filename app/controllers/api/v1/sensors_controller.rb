@@ -190,7 +190,7 @@ module Api::V1
         response 201 do
           key :description, 'Data successfully added to sensor'
           schema do
-            key :'$ref', :Sensor
+            key :'$ref', :DataPoint
           end
         end
         response 401 do
