@@ -13,8 +13,11 @@ class CancelJob < ApplicationJob
       RestClient.delete(hub_endpoint) { |response, request, result, &block|
         case response.code
         when 200
-          logger.application.info "Requested that job ##{@job.id} be cancelled with the HUB."
+          logger.application.info "Successfully requested that job ##{@job.id} be cancelled with the HUB."
           logger.application.debug "Response from hub: " + response
+          @job.data['status'] = 'cancelled'
+          @job.save
+          logger.application.info "Job ##{@job.id} status set to cancelled."
         else
           logger.application.info "Unable to cancel ##{@job.id}."
         end
