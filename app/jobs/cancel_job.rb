@@ -23,7 +23,7 @@ class CancelJob < ApplicationJob
           @job.save
           logger.application.info "Job ##{@job.id} status set to cancelled."
         else
-          logger.application.info "Unable to cancel ##{@job.id}."
+          logger.application.info "Unable to cancel ##{@job.id}. Received response code #{response.code} from the HUB."
         end
       }
     rescue
