@@ -4,9 +4,13 @@ class UploadModelJob < ApplicationJob
 
   after_perform do |j|
     # Retrieve Job, Printer, and Hub from database
-    @job = Job.find(j.arguments.second)
-    @printer = Job.find(j.arguments.second).printer
-    @hub = Job.find(j.arguments.second).printer.hub
+    begin
+      @job = Job.find(j.arguments.second)
+      @printer = Job.find(j.arguments.second).printer
+      @hub = Job.find(j.arguments.second).printer.hub
+    rescue
+      set_job_errored
+    end
 
     # Set model as processing. This flag indicates that model
     # for a job is currently being processed in a background job.
