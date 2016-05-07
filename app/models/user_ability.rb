@@ -40,7 +40,13 @@ class UserAbility
       can :start, Printer
       can :pause, Printer
       can :cancel, Printer
+      can :show_current_job, Printer
+      can :show_queued_jobs, Printer
+      can :show_processing_jobs, Printer
+      can :show_completed_jobs, Printer
+      can :show_recent_jobs, Printer
       can :create, Command
+      can :show_statistics, Hub
     end
   end
 end
