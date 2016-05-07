@@ -412,6 +412,11 @@ module Api::V1
     # PATCH/PUT /users/1
     def update
       if @user.update(user_params)
+        if @user.previous_changes[:admin]
+          logger.application.info "User ##{@user.id} admin role changed from #{!@user.admin} to #{@user.admin}"
+          @user.tokens = {}
+          @user.save
+        end
         render json: @user
       else
         render json: @user.errors, status: :unprocessable_entity
