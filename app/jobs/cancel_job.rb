@@ -21,7 +21,7 @@ class CancelJob < ApplicationJob
           logger.application.debug "Response from hub: " + response
           set_job_cancelled
         else
-          logger.application.info "Unable to cancel ##{@job.id}. Received response code #{response.code} from the HUB."
+          logger.application.info "Unable to cancel ##{@job.id}. Received response code #{response.code} from the HUB. Perhaps the model has not been sent to the HUB yet?"
         end
       }
     rescue
@@ -39,7 +39,7 @@ class CancelJob < ApplicationJob
     @job.data['status'] = 'cancelled'
     @job.save
     logger.application.info "Job ##{@job.id} status set to cancelled."
-    CreateAlertJob.perform_later(@job, 'processing', 'cancelled')
+    CreateAlertJob.perform_later(@job, 'cancelled', 'processing')
   end
 
   def hub_endpoint
