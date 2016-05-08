@@ -24,6 +24,7 @@ class SyncActiveJobs < ApplicationJob
         data = JSON.parse(response)
         job.data = response["data"]
         job.save!
+        logger.application.info "Job ##{job.id} has been successfully synced with HUB ##{job.printer.hub.id}."
       end
     rescue
       # Do nothing
