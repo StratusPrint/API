@@ -15,7 +15,7 @@ class GetHubNodesJob < ApplicationJob
       when 200
         node_list = Array.new
         data = JSON.parse(response)
-        data["nodes"]each do |node|
+        data["nodes"].each do |node|
           node_list.push(node["id"])
         end
         hub.nodes = node_list
