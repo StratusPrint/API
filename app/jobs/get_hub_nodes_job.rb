@@ -14,13 +14,13 @@ class GetHubNodesJob < ApplicationJob
       case response.code
       when 200
         node_list = Array.new
-        data = JSON.parse(response)
+        data = JSON.parse(response.nodes)
         data.each do |node|
           node_list.push(node.id)
         end
         hub.nodes = node_list
         hub.save!
-        logger.application.info "Successfully retrieved list of node IDs from hub ##{hub.id}: #{node_list}"
+        logger.application.info "Successfully retrieved list of node IDs from hub ##{hub.id}: #{hub.nodes}"
       end
     rescue
       # Do nothing
