@@ -19,7 +19,8 @@ class GetHubNodesJob < ApplicationJob
           node_list.push(node.id)
         end
         hub.nodes = node_list
-        hub.save
+        hub.save!
+        logger.application.info "Successfully retrieved list of node IDs from hub ##{hub.id}: #{node_list}"
       end
     rescue
       # Do nothing
