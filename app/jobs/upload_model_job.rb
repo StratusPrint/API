@@ -9,8 +9,7 @@ class UploadModelJob < ApplicationJob
       @printer = @job.printer
       @hub = @printer.hub
     rescue
-      set_job_errored
-      return
+      retry_job
     end
 
     # Set model as processing. This flag indicates that model

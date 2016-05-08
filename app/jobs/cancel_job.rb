@@ -19,25 +19,27 @@ class CancelJob < ApplicationJob
         when 200
           logger.application.info "Successfully requested that job ##{@job.id} be cancelled with the HUB."
           logger.application.debug "Response from hub: " + response
-          @job.data['status'] = 'cancelled'
-          @job.save
-          logger.application.info "Job ##{@job.id} status set to cancelled."
+          set_job_cancelled
         else
           logger.application.info "Unable to cancel ##{@job.id}. Received response code #{response.code} from the HUB."
         end
       }
     rescue
       @retries ||= 0
+      set_job_cancelled if @retries == 0
       if @retries < @max_retries
         logger.application.info "Unable to contact HUB to cancel job ##{@job.id}. Beginning retry ##{@retries}."
         @retries += 1
         retry
-      else
-        @job.data['status'] = 'cancelled'
-        @job.save
-        logger.application.info "Job ##{@job.id} status set to cancelled."
       end
     end
+  end
+
+  def set_job_cancelled
+    @job.data['status'] = 'cancelled'
+    @job.save
+    logger.application.info "Job ##{@job.id} status set to cancelled."
+    CreateAlertJob.perform_later(@job, 'processing', 'cancelled')
   end
 
   def hub_endpoint
