@@ -14,9 +14,9 @@ class GetHubNodesJob < ApplicationJob
       case response.code
       when 200
         node_list = Array.new
-        data = JSON.parse(response.nodes)
-        data.each do |node|
-          node_list.push(node.id)
+        data = JSON.parse(response)
+        data["nodes"]each do |node|
+          node_list.push(node["id"])
         end
         hub.nodes = node_list
         hub.save!
