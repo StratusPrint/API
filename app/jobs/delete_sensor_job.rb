@@ -25,7 +25,6 @@ class DeleteSensorJob < ApplicationJob
       }
     rescue
       @retries ||= 0
-      set_job_cancelled if @retries == 0
       if @retries < @max_retries
         logger.application.info "Unable to contact HUB to delete sensor ##{@sensor_id}. Beginning retry ##{@retries}."
         @retries += 1
