@@ -249,7 +249,12 @@ module Api::V1
 
     # DELETE /sensors/1
     def destroy
+      hub = @sensor.hub
+      sensor_id = @sensor.id
       @sensor.destroy
+      if @sensor.destroyed?
+        DeleteSensorJob.perform_later(hub, sensor_id)
+      end
     end
 
     private
