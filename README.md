@@ -1,9 +1,9 @@
-# API ![Build Status](https://travis-ci.org/StratusPrint/WebAPI.svg?branch=dev) [![Coverage Status](https://coveralls.io/repos/github/StratusPrint/API/badge.svg?branch=dev)](https://coveralls.io/github/StratusPrint/API?branch=dev)
+# API ![Build Status](https://travis-ci.org/StratusPrint/WebAPI.svg?branch=master) [![Coverage Status](https://coveralls.io/repos/github/StratusPrint/API/badge.svg?branch=master)](https://coveralls.io/github/StratusPrint/API?branch=master)
 Commits pushed to the <b>master</b> branch are automatically deployed to [https://api.stratusprint.com](https://api.stratusprint.com).
 
 Commits pushed to the <b>dev</b> branch are automatically deployed to [https://dev.api.stratusprint.com](https://dev.api.stratusprint.com).
 
-Running locally
+Running locally for development
 ---------------
 0. If you have not done so already, install both [Vagrant](http://www.vagrantup.com) and [VirtualBox](http://www.virtualbox.org).
 
