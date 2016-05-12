@@ -1,0 +1,33 @@
+{
+    "title": "Printer",
+    "description": "A 3D printer.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "friendly_id": {
+            "type": "string"
+        },
+        "manufacturer": {
+            "type": "string"
+        },
+        "model": {
+            "type": "string"
+        },
+        "num_jobs": {
+            "type": "integer"
+        },
+        "updated_at": {
+            "type": "date-time"
+        },
+        "description": {
+            "type": "string"
+        },
+        "status": {
+            "type": "string",
+            "enum": ["ready", "paused", "printing", "errored", "offline", "cancelled", "completed"]
+        }
+    },
+    "required": ["id", "friendly_id", "manufacturer", "model", "num_jobs", "updated_at", "description", "status"]
+}

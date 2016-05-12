@@ -1,0 +1,17 @@
+{
+    "title": "Data Point",
+    "description": "A raw data point logged by a sensor.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "created_at": {
+            "type": "date-time"
+        },
+        "value": {
+            "type": "string"
+        }
+    },
+    "required": ["id", "created_at", "value"]
+}

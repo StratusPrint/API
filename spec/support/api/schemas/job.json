@@ -1,0 +1,41 @@
+{
+    "title": "Printer",
+    "description": "A printing job belonging to a 3D printer.",
+    "type": "object",
+    "properties": {
+        "id": { "type": "integer" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" },
+        "model_file_url": { "type": ["string", "null"] },
+        "model_file_name": { "type": ["string", "null"] },
+        "model_file_extension": { "type": ["string", "null"] },
+        "model_file_name_full": { "type": ["string", "null"] },
+        "created_by": { "type": "string" },
+        "data": {
+            "status": {
+                "enum": ["processing", "slicing", "printing", "completed", "paused", "errored"],
+                "type": "string"
+            },
+            "started": { "type": "date-time" },
+            "completed": { "type": "date-time" },
+            "file": {
+              "name": { "type": "string" },
+              "origin": { "type": "string" },
+              "size": { "type": "integer" },
+              "date": { "type": "date-time" }
+            },
+            "estimated_print_time": { "type": "integer" },
+            "filament": {
+              "length": { "type": "string" },
+              "volume": { "type": "string" }
+            },
+            "progress": {
+                "completion": { "type": "string" },
+                "file_position": { "type": "integer" },
+                "printe_time": { "type": "integer" },
+                "print_time_left": { "type": "integer" }
+            }
+        }
+    },
+    "required": ["id", "data", "model_file_url", "created_by"]
+}

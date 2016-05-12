@@ -18,6 +18,27 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  # E-mail sending
+  config.action_mailer.default_url_options = { host: 'https://api.stratusprint.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "mg.stratusprint.com",
+    :user_name => ENV["smtp_username"],
+    :password => ENV["smtp_password"]
+  }
+
+  # CORS
+  config.middleware.insert_before 0, Rack::Cors do
+    allow do
+      origins 'docs.stratusprint.com', 'dev.stratusprint.com', 'stratusprint.com'
+      resource '*', :headers => :any, :methods => [:get, :post, :options, :delete, :patch, :put], :expose => ['access-token', 'token-type', 'uid', 'client', 'expiry']
+    end
+  end
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = 'http://assets.example.com'

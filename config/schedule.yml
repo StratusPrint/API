@@ -1,0 +1,12 @@
+check_hub_status:
+  cron: "*/5 * * * *"
+  class: "CheckHubStatusJob"
+  queue: default
+get_hub_nodes:
+  cron: "*/5 * * * *"
+  class: "GetHubNodesJob"
+  queue: default
+sync_active_jobs:
+  cron: "*/5 * * * *"
+  class: "SyncActiveJobs"
+  queue: default

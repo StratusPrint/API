@@ -1,0 +1,18 @@
+<h3><%= @alert.title %></h3>
+<p><%= @alert.message %></p>
+<% if @alert.snapshot %>
+<p>A snapshot of each sensor taken when the error occurred is shown below.</p>
+	<% @alert.snapshot.each do |sensor| %> 
+	<ul>
+		<li>Sensor #<%= sensor['id'] %> (<%= sensor['friendly_id'] %>)</li>
+		<li>Type: <%= sensor['category'] %></li>
+		<li>Model: <%= sensor['model'] %></li>
+		<li>Manufacturer: <%= sensor['manufacturer'] %></li>
+		<li>Description: <%= sensor['desc'] %></li>
+		<li><strong>Reading:</strong> <%= sensor['reading'] %></li>
+		<li><strong>Low Threshold:</strong> <%= sensor['low_threshold'] %></li>
+		<li><strong>High Threshold:</strong> <%= sensor['high_threshold'] %></li>
+	</ul>
+	<% end %>
+<% end %>
+<p>This alert was generated on <%= @alert.time.strftime('%m/%d/%Y at %I:%M%p') %>.</p>

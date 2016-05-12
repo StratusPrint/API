@@ -21,3 +21,12 @@
 
 # .DS_Store
 .DS_Store
+
+# Environment variables
+config/application.yml
+
+# Uploads
+uploads/
+
+# Database
+config/database.yml
