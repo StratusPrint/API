@@ -7,4 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Create default administrator account
-admin = User.create({name: 'Administrator', password: 'stratusprint', email: 'admin@stratusprint.com'})
+admin = User.create({name: 'Administrator', password: 'stratusprint', email: 'admin@stratusprint.com', admin: true, confirmed_at: Time.now})
