@@ -45,6 +45,8 @@ gem 'rest-client'
 gem 'multi_logger'
 # Result filtering
 gem 'has_scope'
+# Heroku support
+gem 'rails_12factor', group: :production
 
 group :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
