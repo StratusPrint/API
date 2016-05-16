@@ -30,3 +30,4 @@ uploads/
 
 # Database
 config/database.yml
+.env
